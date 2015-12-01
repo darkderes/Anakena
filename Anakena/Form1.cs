@@ -38,7 +38,7 @@ namespace Anakena
                 DataSet myds = new DataSet();
                 OleDbDataAdapter adap = new OleDbDataAdapter(command);
                 adap.Fill(myds);
-                 dataGridView1.DataSource = myds.Tables[0];  
+                dataGridView1.DataSource = myds.Tables[0];  
          
         }
 
@@ -118,6 +118,11 @@ namespace Anakena
             {
                 TxtFile.Text = newdialog.FileName;
                 importarDatos(TxtFile.Text);
+                if(dataGridView1.Rows.Count > 0)
+                {
+                    btn_ingresar.Visible = true;
+                    Btn_Examinar.Visible = false;
+                }
               //  formato();
             }
         }
@@ -258,55 +263,10 @@ namespace Anakena
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dataGridView1.Rows[e.RowIndex].Cells["SERR"].Value.ToString() != "0")
+            if (e.Value.ToString() != "0")
             {
-                dataGridView1.Rows[e.RowIndex].Cells["SERR"].Style.Format = "##,##.00";
+                e.CellStyle.Format = "##,##.00";
             }
-           if (dataGridView1.Rows[e.RowIndex].Cells["CHANDLER"].Value.ToString() != "0")
-            {
-                dataGridView1.Rows[e.RowIndex].Cells["CHANDLER"].Style.Format = "##,##.00";
-            }
-            if (dataGridView1.Rows[e.RowIndex].Cells["HOWARD"].Value.ToString() != "0")
-            {
-                dataGridView1.Rows[e.RowIndex].Cells["HOWARD"].Style.Format = "##,##.00";
-            }
-            if (dataGridView1.Rows[e.RowIndex].Cells["TULARE"].Value.ToString() != "0")
-            {
-                dataGridView1.Rows[e.RowIndex].Cells["TULARE"].Style.Format = "##,##.00";
-            }
-            if (dataGridView1.Rows[e.RowIndex].Cells["SUNLAND"].Value.ToString() != "0")
-            {
-                dataGridView1.Rows[e.RowIndex].Cells["SUNLAND"].Style.Format = "##,##.00";
-            }
-            if (dataGridView1.Rows[e.RowIndex].Cells["HARTLEY"].Value.ToString() != "0")
-            {
-                dataGridView1.Rows[e.RowIndex].Cells["HARTLEY"].Style.Format = "##,##.00";
-            }
-            if (dataGridView1.Rows[e.RowIndex].Cells["SEMILLA"].Value.ToString() != "0")
-            {
-                dataGridView1.Rows[e.RowIndex].Cells["SEMILLA"].Style.Format = "##,##.00";
-            }
-            if (dataGridView1.Rows[e.RowIndex].Cells[9].Value.ToString() != "0")
-            {
-                dataGridView1.Rows[e.RowIndex].Cells[9].Style.Format = "##,##.00";
-            }
-            if (dataGridView1.Rows[e.RowIndex].Cells["VINA MEJ"].Value.ToString() != "0")
-            {
-                dataGridView1.Rows[e.RowIndex].Cells["VINA MEJ"].Style.Format = "##,##.00";
-            }
-            if (dataGridView1.Rows[e.RowIndex].Cells["FRANQUETTE"].Value.ToString() != "0")
-            {
-                dataGridView1.Rows[e.RowIndex].Cells["FRANQUETTE"].Style.Format = "##,##.00";
-            }
-            if (dataGridView1.Rows[e.RowIndex].Cells["DESCTE DESP"].Value.ToString() != "0")
-            {
-                dataGridView1.Rows[e.RowIndex].Cells["DESCTE DESP"].Style.Format = "##,##.00";
-            }
-            if (dataGridView1.Rows[e.RowIndex].Cells["DESCTE QUEB"].Value.ToString() != "0")
-            {
-                dataGridView1.Rows[e.RowIndex].Cells["DESCTE QUEB"].Style.Format = "##,##.00";
-            }
-
         }
     }
 }
