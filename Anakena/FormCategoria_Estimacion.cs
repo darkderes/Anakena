@@ -14,6 +14,7 @@ namespace Anakena
 {
     public partial class FormCategoria_Estimacion : Form
     {
+        conexion cn = new conexion();
         public FormCategoria_Estimacion()
         {
             InitializeComponent();
@@ -54,18 +55,83 @@ namespace Anakena
             e.CellStyle.Format = "P02";
         }
 
-        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        // Trae la llave priamraria de la tabla categoria
+        public string traerId_Categoria(string categoria)
         {
-            string nombrecolumna = dataGridView1.Columns[e.ColumnIndex].Name;
-            MessageBox.Show(nombrecolumna);
-        }
-
-        private void btn_ingresar_Click(object sender, EventArgs e)
-        {
-            foreach (DataGridViewColumn  col in dataGridView1.Columns)
+            string id = "";
+            SqlCommand cmd = new SqlCommand("spTraerIdCategoria", cn.getConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@categoria", SqlDbType.VarChar, 25);
+            cmd.Parameters["@categoria"].Value = categoria;
+            cn.Abrir();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet myds = new DataSet();
+            adapter.Fill(myds);
+            using (SqlDataReader rsd = cmd.ExecuteReader())
             {
-                string x = col.Name;
+                while (rsd.Read())
+                {
+                    id = rsd[0].ToString();
+                }
             }
+            cn.Cerrar();
+            return id;
+        }
+        public void ingresarEstimacionCategoria(string codigo, string categoria, float porcentaje)
+        {
+            try
+            {
+                // linea de comando de sql
+                SqlCommand cmd = new SqlCommand("spAgregaEstimacionCategoria", cn.getConexion());
+
+                // adhrsion de parametros 
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@Cod_Productor", SqlDbType.Char, 10);
+                cmd.Parameters.Add("@Cod_Categoria", SqlDbType.Char, 2);
+                cmd.Parameters.Add("@Porcentaje", SqlDbType.Float);
+
+
+                cmd.Parameters.Add("@msg", SqlDbType.VarChar, 100);
+
+                // ingreso de parametros
+                cmd.Parameters["@Cod_Productor"].Value = codigo;
+                cmd.Parameters["@Cod_Categoria"].Value = categoria;
+                cmd.Parameters["@Porcentaje"].Value = porcentaje;
+
+
+                cmd.Parameters["@msg"].Value = 1;
+                //abre coneccion a base de datos
+                cn.Abrir();
+                cmd.ExecuteNonQuery();
+                string sqlMensaje = cmd.Parameters["@msg"].Value.ToString();
+
+                //cierre de coneccion a base de datos
+                cn.Cerrar();
+            }
+            catch (Exception ex)
+            {
+                //mensaje de error SQL
+                MessageBox.Show("Error SQL " + ex, "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+
+
+            }
+        }
+        private void btn_ingresar_Click(object sender, EventArgs e)
+        {  
+             for (int x = 1; x < dataGridView1.Columns.Count; x++)
+            {
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    ingresarEstimacionCategoria(dataGridView1.Columns[x].Name, traerId_Categoria(dataGridView1.Rows[i].Cells[0].Value.ToString()), Convert.ToSingle(dataGridView1.Rows[i].Cells[x].Value.ToString()));
+                }
+
+            }
+             MessageBox.Show("Estimacion ingresada correctamente", "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
+        
         }
     }
 }

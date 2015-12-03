@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCategoria_Estimacion));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btn_ingresar = new System.Windows.Forms.Button();
@@ -51,14 +51,13 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 92);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(860, 297);
             this.dataGridView1.TabIndex = 13;
-            this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             // 
             // btn_ingresar
@@ -87,13 +86,14 @@
             // Btn_Examinar
             // 
             this.Btn_Examinar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Btn_Examinar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Examinar.Image = global::Anakena.Properties.Resources.examinar_mod;
             this.Btn_Examinar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Examinar.Location = new System.Drawing.Point(376, 23);
             this.Btn_Examinar.Name = "Btn_Examinar";
-            this.Btn_Examinar.Size = new System.Drawing.Size(140, 33);
+            this.Btn_Examinar.Size = new System.Drawing.Size(186, 35);
             this.Btn_Examinar.TabIndex = 10;
-            this.Btn_Examinar.Text = "Examinar";
+            this.Btn_Examinar.Text = "Examinar .XLS";
             this.Btn_Examinar.UseVisualStyleBackColor = false;
             this.Btn_Examinar.Click += new System.EventHandler(this.Btn_Examinar_Click);
             // 
