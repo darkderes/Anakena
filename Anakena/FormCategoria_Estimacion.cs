@@ -27,7 +27,19 @@ namespace Anakena
             if (newdialog.ShowDialog() == DialogResult.OK)
             {
                 TxtFile.Text = newdialog.FileName;
-                importarDatos(TxtFile.Text);
+                importarDatosSERR(TxtFile.Text);
+                importarDatosCHANDLER(TxtFile.Text);
+                importarDatosDESCTE_DESP(TxtFile.Text);
+                importarDatosDESCTE_QUEB(TxtFile.Text);
+                importarDatosFRANQUETTE(TxtFile.Text);
+                importarDatosHARTLEY(TxtFile.Text);
+                importarDatosHOWARD(TxtFile.Text);
+                importarDatosSEMILLA(TxtFile.Text);
+                importarDatosSUNDLAND(TxtFile.Text);
+                importarDatosTULARE(TxtFile.Text);
+                importarDatosVINA(TxtFile.Text);
+                importarDatosVINA_MEJ(TxtFile.Text);
+
                 if (dataGridView1.Rows.Count > 0)
                 {
                     btn_ingresar.Visible = true;
@@ -36,20 +48,160 @@ namespace Anakena
             }
         }
 
-        public void importarDatos(string file)
+        public void importarDatosSERR(string file)
         {
 
             OleDbCommand command = new OleDbCommand();
             OleDbConnection conn = new OleDbConnection();
             conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
-            command = new OleDbCommand("select * from [Hoja1$]", conn);
+            command = new OleDbCommand("select * from [SERR$]", conn);
             DataSet myds = new DataSet();
             OleDbDataAdapter adap = new OleDbDataAdapter(command);
             adap.Fill(myds);
             dataGridView1.DataSource = myds.Tables[0];
 
         }
+        public void importarDatosCHANDLER(string file)
+        {
 
+            OleDbCommand command = new OleDbCommand();
+            OleDbConnection conn = new OleDbConnection();
+            conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
+            command = new OleDbCommand("select * from [CHANDLER$]", conn);
+            DataSet myds = new DataSet();
+            OleDbDataAdapter adap = new OleDbDataAdapter(command);
+            adap.Fill(myds);
+            dataGridView2.DataSource = myds.Tables[0];
+
+        }
+        public void importarDatosHOWARD(string file)
+        {
+
+            OleDbCommand command = new OleDbCommand();
+            OleDbConnection conn = new OleDbConnection();
+            conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
+            command = new OleDbCommand("select * from [HOWARD$]", conn);
+            DataSet myds = new DataSet();
+            OleDbDataAdapter adap = new OleDbDataAdapter(command);
+            adap.Fill(myds);
+            dataGridView3.DataSource = myds.Tables[0];
+
+        }
+        public void importarDatosTULARE(string file)
+        {
+
+            OleDbCommand command = new OleDbCommand();
+            OleDbConnection conn = new OleDbConnection();
+            conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
+            command = new OleDbCommand("select * from [TULARE$]", conn);
+            DataSet myds = new DataSet();
+            OleDbDataAdapter adap = new OleDbDataAdapter(command);
+            adap.Fill(myds);
+            dataGridView4.DataSource = myds.Tables[0];
+
+        }
+        public void importarDatosSUNDLAND(string file)
+        {
+
+            OleDbCommand command = new OleDbCommand();
+            OleDbConnection conn = new OleDbConnection();
+            conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
+            command = new OleDbCommand("select * from [SUNDLAND$]", conn);
+            DataSet myds = new DataSet();
+            OleDbDataAdapter adap = new OleDbDataAdapter(command);
+            adap.Fill(myds);
+            dataGridView5.DataSource = myds.Tables[0];
+
+        }
+        public void importarDatosHARTLEY(string file)
+        {
+
+            OleDbCommand command = new OleDbCommand();
+            OleDbConnection conn = new OleDbConnection();
+            conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
+            command = new OleDbCommand("select * from [HARTLEY$]", conn);
+            DataSet myds = new DataSet();
+            OleDbDataAdapter adap = new OleDbDataAdapter(command);
+            adap.Fill(myds);
+            dataGridView6.DataSource = myds.Tables[0];
+
+        }
+        public void importarDatosSEMILLA(string file)
+        {
+
+            OleDbCommand command = new OleDbCommand();
+            OleDbConnection conn = new OleDbConnection();
+            conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
+            command = new OleDbCommand("select * from [SEMILLA$]", conn);
+            DataSet myds = new DataSet();
+            OleDbDataAdapter adap = new OleDbDataAdapter(command);
+            adap.Fill(myds);
+            dataGridView7.DataSource = myds.Tables[0];
+
+        }
+        public void importarDatosVINA(string file)
+        {
+
+            OleDbCommand command = new OleDbCommand();
+            OleDbConnection conn = new OleDbConnection();
+            conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
+            command = new OleDbCommand("select * from [VINA$]", conn);
+            DataSet myds = new DataSet();
+            OleDbDataAdapter adap = new OleDbDataAdapter(command);
+            adap.Fill(myds);
+            dataGridView8.DataSource = myds.Tables[0];
+
+        }
+        public void importarDatosVINA_MEJ(string file)
+        {
+
+            OleDbCommand command = new OleDbCommand();
+            OleDbConnection conn = new OleDbConnection();
+            conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
+            command = new OleDbCommand("select * from [VINA MEJORADA$]", conn);
+            DataSet myds = new DataSet();
+            OleDbDataAdapter adap = new OleDbDataAdapter(command);
+            adap.Fill(myds);
+            dataGridView9.DataSource = myds.Tables[0];
+
+        }
+        public void importarDatosFRANQUETTE(string file)
+        {
+
+            OleDbCommand command = new OleDbCommand();
+            OleDbConnection conn = new OleDbConnection();
+            conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
+            command = new OleDbCommand("select * from [FRANQUETTE$]", conn);
+            DataSet myds = new DataSet();
+            OleDbDataAdapter adap = new OleDbDataAdapter(command);
+            adap.Fill(myds);
+            dataGridView10.DataSource = myds.Tables[0];
+
+        }
+        public void importarDatosDESCTE_DESP(string file)
+        {
+
+            OleDbCommand command = new OleDbCommand();
+            OleDbConnection conn = new OleDbConnection();
+            conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
+            command = new OleDbCommand("select * from [DCTE DESPELONADO$]", conn);
+            DataSet myds = new DataSet();
+            OleDbDataAdapter adap = new OleDbDataAdapter(command);
+            adap.Fill(myds);
+            dataGridView11.DataSource = myds.Tables[0];
+
+        }
+        public void importarDatosDESCTE_QUEB(string file)
+        {
+            OleDbCommand command = new OleDbCommand();
+            OleDbConnection conn = new OleDbConnection();
+            conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
+            command = new OleDbCommand("select * from [DCTE QUEBRADO$]", conn);
+            DataSet myds = new DataSet();
+            OleDbDataAdapter adap = new OleDbDataAdapter(command);
+            adap.Fill(myds);
+            dataGridView12.DataSource = myds.Tables[0];
+        }
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             e.CellStyle.Format = "P02";
@@ -77,7 +229,7 @@ namespace Anakena
             cn.Cerrar();
             return id;
         }
-        public void ingresarEstimacionCategoria(string codigo, string categoria, float porcentaje)
+        public void ingresarEstimacionCategoria(string codigo, string categoria, float porcentaje,string variedad)
         {
             try
             {
@@ -89,6 +241,7 @@ namespace Anakena
                 cmd.Parameters.Add("@Cod_Productor", SqlDbType.Char, 10);
                 cmd.Parameters.Add("@Cod_Categoria", SqlDbType.Char, 2);
                 cmd.Parameters.Add("@Porcentaje", SqlDbType.Float);
+                cmd.Parameters.Add("@Cod_Variedad", SqlDbType.Char, 2);
 
 
                 cmd.Parameters.Add("@msg", SqlDbType.VarChar, 100);
@@ -97,7 +250,123 @@ namespace Anakena
                 cmd.Parameters["@Cod_Productor"].Value = codigo;
                 cmd.Parameters["@Cod_Categoria"].Value = categoria;
                 cmd.Parameters["@Porcentaje"].Value = porcentaje;
+                cmd.Parameters["@Cod_Variedad"].Value = variedad;
 
+
+                cmd.Parameters["@msg"].Value = 1;
+                //abre coneccion a base de datos
+                cn.Abrir();
+                cmd.ExecuteNonQuery();
+                string sqlMensaje = cmd.Parameters["@msg"].Value.ToString();
+
+                //cierre de coneccion a base de datos
+               
+            }
+            catch (Exception ex)
+            {
+                //mensaje de error SQL
+                MessageBox.Show("Error SQL " + ex, "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cn.Cerrar();
+            }
+        }
+        private void btn_ingresar_Click(object sender, EventArgs e)
+        {
+            eliminar_estimacion();
+             for (int x = 1; x < dataGridView1.Columns.Count; x++)
+            {
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    ingresarEstimacionCategoria(dataGridView1.Columns[x].Name, traerId_Categoria(dataGridView1.Rows[i].Cells[0].Value.ToString()), Convert.ToSingle(dataGridView1.Rows[i].Cells[x].Value.ToString()),"2");
+                    ingresarEstimacionCategoria(dataGridView2.Columns[x].Name, traerId_Categoria(dataGridView2.Rows[i].Cells[0].Value.ToString()), Convert.ToSingle(dataGridView2.Rows[i].Cells[x].Value.ToString()),"5");
+                    ingresarEstimacionCategoria(dataGridView3.Columns[x].Name, traerId_Categoria(dataGridView3.Rows[i].Cells[0].Value.ToString()), Convert.ToSingle(dataGridView3.Rows[i].Cells[x].Value.ToString()),"9");
+                    ingresarEstimacionCategoria(dataGridView4.Columns[x].Name, traerId_Categoria(dataGridView4.Rows[i].Cells[0].Value.ToString()), Convert.ToSingle(dataGridView4.Rows[i].Cells[x].Value.ToString()),"10");
+
+                    ingresarEstimacionCategoria(dataGridView5.Columns[x].Name, traerId_Categoria(dataGridView5.Rows[i].Cells[0].Value.ToString()), Convert.ToSingle(dataGridView5.Rows[i].Cells[x].Value.ToString()),"6");
+                    ingresarEstimacionCategoria(dataGridView6.Columns[x].Name, traerId_Categoria(dataGridView6.Rows[i].Cells[0].Value.ToString()), Convert.ToSingle(dataGridView6.Rows[i].Cells[x].Value.ToString()),"4");
+                    ingresarEstimacionCategoria(dataGridView7.Columns[x].Name, traerId_Categoria(dataGridView7.Rows[i].Cells[0].Value.ToString()), Convert.ToSingle(dataGridView7.Rows[i].Cells[x].Value.ToString()),"1");
+                    ingresarEstimacionCategoria(dataGridView8.Columns[x].Name, traerId_Categoria(dataGridView8.Rows[i].Cells[0].Value.ToString()), Convert.ToSingle(dataGridView8.Rows[i].Cells[x].Value.ToString()),"3");
+
+                    ingresarEstimacionCategoria(dataGridView9.Columns[x].Name, traerId_Categoria(dataGridView9.Rows[i].Cells[0].Value.ToString()), Convert.ToSingle(dataGridView9.Rows[i].Cells[x].Value.ToString()),"15");
+                    ingresarEstimacionCategoria(dataGridView10.Columns[x].Name, traerId_Categoria(dataGridView10.Rows[i].Cells[0].Value.ToString()),Convert.ToSingle(dataGridView10.Rows[i].Cells[x].Value.ToString()),"8");
+                    ingresarEstimacionCategoria(dataGridView11.Columns[x].Name, traerId_Categoria(dataGridView11.Rows[i].Cells[0].Value.ToString()), Convert.ToSingle(dataGridView11.Rows[i].Cells[x].Value.ToString()),"16");
+                    ingresarEstimacionCategoria(dataGridView12.Columns[x].Name, traerId_Categoria(dataGridView12.Rows[i].Cells[0].Value.ToString()), Convert.ToSingle(dataGridView12.Rows[i].Cells[x].Value.ToString()),"14");
+                }
+
+            }
+             MessageBox.Show("Estimacion ingresada correctamente", "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
+        
+        }
+
+        private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            e.CellStyle.Format = "P02";
+        }
+
+        private void dataGridView3_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            e.CellStyle.Format = "P02";
+        }
+
+        private void dataGridView4_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            e.CellStyle.Format = "P02";
+        }
+
+        private void dataGridView5_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            e.CellStyle.Format = "P02";
+        }
+
+        private void dataGridView6_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            e.CellStyle.Format = "P02";
+        }
+
+        private void dataGridView7_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            e.CellStyle.Format = "P02";
+        }
+
+        private void dataGridView8_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            e.CellStyle.Format = "P02";
+        }
+
+        private void dataGridView9_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            e.CellStyle.Format = "P02";
+        }
+
+        private void dataGridView10_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            e.CellStyle.Format = "P02";
+        }
+
+        private void dataGridView11_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            e.CellStyle.Format = "P02";
+        }
+
+        private void dataGridView12_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            e.CellStyle.Format = "P02";
+        }
+        private void eliminar_estimacion()
+        {
+            try
+            {
+                // linea de comando de sql
+                SqlCommand cmd = new SqlCommand("spDeleteEstimacion_Categoria", cn.getConexion());
+
+                // adhesion de parametros 
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@msg", SqlDbType.VarChar, 100);
+
+                // ingreso de parametros
 
                 cmd.Parameters["@msg"].Value = 1;
                 //abre coneccion a base de datos
@@ -118,20 +387,7 @@ namespace Anakena
 
 
             }
-        }
-        private void btn_ingresar_Click(object sender, EventArgs e)
-        {  
-             for (int x = 1; x < dataGridView1.Columns.Count; x++)
-            {
-                for (int i = 0; i < dataGridView1.RowCount; i++)
-                {
-                    ingresarEstimacionCategoria(dataGridView1.Columns[x].Name, traerId_Categoria(dataGridView1.Rows[i].Cells[0].Value.ToString()), Convert.ToSingle(dataGridView1.Rows[i].Cells[x].Value.ToString()));
-                }
 
-            }
-             MessageBox.Show("Estimacion ingresada correctamente", "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close();
-        
         }
     }
 }
