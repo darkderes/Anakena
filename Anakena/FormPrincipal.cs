@@ -19,7 +19,7 @@ namespace Anakena
 
         private void estimacionTemporadaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 s = new Form1();
+            FormTemporada_Estimacion s = new FormTemporada_Estimacion();
             s.ShowDialog();
         }
 
@@ -42,8 +42,31 @@ namespace Anakena
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 f = new Form2();
+            FormEstimacion f = new FormEstimacion();
             f.ShowDialog();
+        }
+
+        private void estimacionCalibreCategoriaRecepcionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormEstimacion s = new FormEstimacion();
+            s.ShowDialog();
+        }
+
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void estimacionCalibreCategoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCC_Estimacion s = new FormCC_Estimacion();
+            s.ShowDialog();
+        }
+
+        private void realToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormRealidad s = new FormRealidad();
+            s.ShowDialog();
         }
     }
 }

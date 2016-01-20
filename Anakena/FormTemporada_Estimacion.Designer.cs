@@ -1,6 +1,6 @@
 ﻿namespace Anakena
 {
-    partial class Form1
+    partial class FormTemporada_Estimacion
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTemporada_Estimacion));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.TxtFile = new System.Windows.Forms.Label();
             this.CmbHojas = new System.Windows.Forms.ComboBox();

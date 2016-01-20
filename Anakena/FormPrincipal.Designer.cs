@@ -34,11 +34,13 @@
             this.estimacionTemporadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estimacionCalibreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estimacionCategoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.estimacionCalibreCategoriaRecepcionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.estimacionCalibreCategoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.realToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -59,7 +61,10 @@
             this.estimacionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.estimacionTemporadaToolStripMenuItem,
             this.estimacionCalibreToolStripMenuItem,
-            this.estimacionCategoriasToolStripMenuItem});
+            this.estimacionCategoriasToolStripMenuItem,
+            this.estimacionCalibreCategoriaRecepcionToolStripMenuItem,
+            this.estimacionCalibreCategoriaToolStripMenuItem,
+            this.realToolStripMenuItem});
             this.estimacionesToolStripMenuItem.Name = "estimacionesToolStripMenuItem";
             this.estimacionesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.estimacionesToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
@@ -87,6 +92,20 @@
             this.estimacionCategoriasToolStripMenuItem.Text = "Esti&macion Categorias                      ALT+M";
             this.estimacionCategoriasToolStripMenuItem.Click += new System.EventHandler(this.estimacionCategoriasToolStripMenuItem_Click);
             // 
+            // estimacionCalibreCategoriaRecepcionToolStripMenuItem
+            // 
+            this.estimacionCalibreCategoriaRecepcionToolStripMenuItem.Name = "estimacionCalibreCategoriaRecepcionToolStripMenuItem";
+            this.estimacionCalibreCategoriaRecepcionToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.estimacionCalibreCategoriaRecepcionToolStripMenuItem.Text = "Estimacion Calibre-Categoria-Recepcion";
+            this.estimacionCalibreCategoriaRecepcionToolStripMenuItem.Click += new System.EventHandler(this.estimacionCalibreCategoriaRecepcionToolStripMenuItem_Click);
+            // 
+            // estimacionCalibreCategoriaToolStripMenuItem
+            // 
+            this.estimacionCalibreCategoriaToolStripMenuItem.Name = "estimacionCalibreCategoriaToolStripMenuItem";
+            this.estimacionCalibreCategoriaToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.estimacionCalibreCategoriaToolStripMenuItem.Text = "Resumen Variedad";
+            this.estimacionCalibreCategoriaToolStripMenuItem.Click += new System.EventHandler(this.estimacionCalibreCategoriaToolStripMenuItem_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -108,16 +127,6 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Jorge Darderes 2015 Version 1.0";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(287, 209);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 41);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
@@ -138,13 +147,19 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // realToolStripMenuItem
+            // 
+            this.realToolStripMenuItem.Name = "realToolStripMenuItem";
+            this.realToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.realToolStripMenuItem.Text = "Real";
+            this.realToolStripMenuItem.Click += new System.EventHandler(this.realToolStripMenuItem_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1105, 812);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox2);
@@ -154,6 +169,7 @@
             this.Name = "FormPrincipal";
             this.Text = "FormPrincipal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -174,6 +190,8 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem estimacionCalibreCategoriaRecepcionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem estimacionCalibreCategoriaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem realToolStripMenuItem;
     }
 }

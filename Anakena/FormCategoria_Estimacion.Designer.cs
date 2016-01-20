@@ -444,6 +444,7 @@
             this.Name = "FormCategoria_Estimacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Estimacion categoria";
+            this.Load += new System.EventHandler(this.FormCategoria_Estimacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);

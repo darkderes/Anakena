@@ -389,5 +389,10 @@ namespace Anakena
             }
 
         }
+
+        private void FormCategoria_Estimacion_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

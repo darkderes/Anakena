@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -66,18 +69,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>anakenaDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="conexion_ERP.cs" />
     <Compile Include="conexion.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FormCC_Estimacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormCC_Estimacion.Designer.cs">
+      <DependentUpon>FormCC_Estimacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="FormRealidad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="FormRealidad.Designer.cs">
+      <DependentUpon>FormRealidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTemporada_Estimacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTemporada_Estimacion.Designer.cs">
+      <DependentUpon>FormTemporada_Estimacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEstimacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEstimacion.Designer.cs">
+      <DependentUpon>FormEstimacion.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCalibre_Estimacion.cs">
       <SubType>Form</SubType>
@@ -99,11 +115,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormCC_Estimacion.resx">
+      <DependentUpon>FormCC_Estimacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="FormRealidad.resx">
+      <DependentUpon>FormRealidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTemporada_Estimacion.resx">
+      <DependentUpon>FormTemporada_Estimacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEstimacion.resx">
+      <DependentUpon>FormEstimacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCalibre_Estimacion.resx">
       <DependentUpon>FormCalibre_Estimacion.cs</DependentUpon>

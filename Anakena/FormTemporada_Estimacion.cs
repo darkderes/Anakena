@@ -14,10 +14,10 @@ namespace Anakena
 {
 
    
-    public partial class Form1 : Form
+    public partial class FormTemporada_Estimacion : Form
     {
         conexion cn = new conexion();
-        public Form1()
+        public FormTemporada_Estimacion()
         {
             InitializeComponent();
         }
