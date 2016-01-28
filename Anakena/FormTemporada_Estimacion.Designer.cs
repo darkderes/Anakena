@@ -44,7 +44,7 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -124,7 +124,7 @@
             this.Btn_Examinar.UseVisualStyleBackColor = false;
             this.Btn_Examinar.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // Form1
+            // FormTemporada_Estimacion
             // 
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1144, 714);
@@ -136,7 +136,7 @@
             this.Controls.Add(this.TxtFile);
             this.Controls.Add(this.dataGridView1);
             this.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.Name = "Form1";
+            this.Name = "FormTemporada_Estimacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Form1_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

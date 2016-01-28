@@ -51,8 +51,11 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,11 +74,29 @@
     </Compile>
     <Compile Include="conexion_ERP.cs" />
     <Compile Include="conexion.cs" />
+    <Compile Include="FormBusquedaProductor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBusquedaProductor.Designer.cs">
+      <DependentUpon>FormBusquedaProductor.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCC_Estimacion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCC_Estimacion.Designer.cs">
       <DependentUpon>FormCC_Estimacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDialogo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogo.Designer.cs">
+      <DependentUpon>FormDialogo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFactor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFactor.Designer.cs">
+      <DependentUpon>FormFactor.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRealidad.cs">
       <SubType>Form</SubType>
@@ -115,8 +136,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormBusquedaProductor.resx">
+      <DependentUpon>FormBusquedaProductor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCC_Estimacion.resx">
       <DependentUpon>FormCC_Estimacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogo.resx">
+      <DependentUpon>FormDialogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFactor.resx">
+      <DependentUpon>FormFactor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRealidad.resx">
       <DependentUpon>FormRealidad.cs</DependentUpon>

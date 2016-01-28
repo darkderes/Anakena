@@ -36,11 +36,12 @@
             this.estimacionCategoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estimacionCalibreCategoriaRecepcionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estimacionCalibreCategoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.realToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.realToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.factorProductorVariedadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -64,7 +65,8 @@
             this.estimacionCategoriasToolStripMenuItem,
             this.estimacionCalibreCategoriaRecepcionToolStripMenuItem,
             this.estimacionCalibreCategoriaToolStripMenuItem,
-            this.realToolStripMenuItem});
+            this.realToolStripMenuItem,
+            this.factorProductorVariedadToolStripMenuItem});
             this.estimacionesToolStripMenuItem.Name = "estimacionesToolStripMenuItem";
             this.estimacionesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.estimacionesToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
@@ -105,6 +107,13 @@
             this.estimacionCalibreCategoriaToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
             this.estimacionCalibreCategoriaToolStripMenuItem.Text = "Resumen Variedad";
             this.estimacionCalibreCategoriaToolStripMenuItem.Click += new System.EventHandler(this.estimacionCalibreCategoriaToolStripMenuItem_Click);
+            // 
+            // realToolStripMenuItem
+            // 
+            this.realToolStripMenuItem.Name = "realToolStripMenuItem";
+            this.realToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.realToolStripMenuItem.Text = "Real";
+            this.realToolStripMenuItem.Click += new System.EventHandler(this.realToolStripMenuItem_Click);
             // 
             // label2
             // 
@@ -147,12 +156,12 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // realToolStripMenuItem
+            // factorProductorVariedadToolStripMenuItem
             // 
-            this.realToolStripMenuItem.Name = "realToolStripMenuItem";
-            this.realToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
-            this.realToolStripMenuItem.Text = "Real";
-            this.realToolStripMenuItem.Click += new System.EventHandler(this.realToolStripMenuItem_Click);
+            this.factorProductorVariedadToolStripMenuItem.Name = "factorProductorVariedadToolStripMenuItem";
+            this.factorProductorVariedadToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.factorProductorVariedadToolStripMenuItem.Text = "Factor Productor - Variedad";
+            this.factorProductorVariedadToolStripMenuItem.Click += new System.EventHandler(this.factorProductorVariedadToolStripMenuItem_Click);
             // 
             // FormPrincipal
             // 
@@ -193,5 +202,6 @@
         private System.Windows.Forms.ToolStripMenuItem estimacionCalibreCategoriaRecepcionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem estimacionCalibreCategoriaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem realToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem factorProductorVariedadToolStripMenuItem;
     }
 }

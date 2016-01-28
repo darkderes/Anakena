@@ -50,6 +50,10 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
+            this.Btn_limpiar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -57,6 +61,9 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -73,7 +80,7 @@
             // 
             // BtnFiltro
             // 
-            this.BtnFiltro.Location = new System.Drawing.Point(747, 38);
+            this.BtnFiltro.Location = new System.Drawing.Point(386, 13);
             this.BtnFiltro.Name = "BtnFiltro";
             this.BtnFiltro.Size = new System.Drawing.Size(75, 23);
             this.BtnFiltro.TabIndex = 20;
@@ -86,7 +93,7 @@
             this.label1.AutoSize = true;
             this.label1.Cursor = System.Windows.Forms.Cursors.No;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(374, 41);
+            this.label1.Location = new System.Drawing.Point(13, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 16);
             this.label1.TabIndex = 19;
@@ -96,7 +103,7 @@
             // 
             this.cmb_variedad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_variedad.FormattingEnabled = true;
-            this.cmb_variedad.Location = new System.Drawing.Point(460, 40);
+            this.cmb_variedad.Location = new System.Drawing.Point(99, 15);
             this.cmb_variedad.Name = "cmb_variedad";
             this.cmb_variedad.Size = new System.Drawing.Size(166, 21);
             this.cmb_variedad.TabIndex = 18;
@@ -111,6 +118,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(1079, 496);
             this.dataGridView2.TabIndex = 21;
+            this.dataGridView2.Visible = false;
             this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView2_CellFormatting);
             // 
             // dataGridView3
@@ -126,7 +134,7 @@
             // dataGridView4
             // 
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(844, 12);
+            this.dataGridView4.Location = new System.Drawing.Point(844, 162);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.Size = new System.Drawing.Size(240, 150);
             this.dataGridView4.TabIndex = 23;
@@ -135,10 +143,11 @@
             // 
             // pBar1
             // 
-            this.pBar1.Location = new System.Drawing.Point(879, 631);
+            this.pBar1.Location = new System.Drawing.Point(449, 408);
             this.pBar1.Name = "pBar1";
-            this.pBar1.Size = new System.Drawing.Size(226, 23);
+            this.pBar1.Size = new System.Drawing.Size(226, 10);
             this.pBar1.TabIndex = 24;
+            this.pBar1.Visible = false;
             // 
             // Btn_Excel
             // 
@@ -159,7 +168,7 @@
             this.CmbTipo.Items.AddRange(new object[] {
             "Kg",
             "%"});
-            this.CmbTipo.Location = new System.Drawing.Point(641, 40);
+            this.CmbTipo.Location = new System.Drawing.Point(280, 15);
             this.CmbTipo.Name = "CmbTipo";
             this.CmbTipo.Size = new System.Drawing.Size(90, 21);
             this.CmbTipo.TabIndex = 27;
@@ -168,9 +177,9 @@
             // 
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(377, 76);
+            this.groupBox1.Location = new System.Drawing.Point(16, 51);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(445, 34);
+            this.groupBox1.Size = new System.Drawing.Size(526, 34);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vista de reporte";
@@ -205,6 +214,7 @@
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 25;
             this.label2.Text = "label2";
+            this.label2.Visible = false;
             // 
             // btnCancelar
             // 
@@ -214,6 +224,7 @@
             this.btnCancelar.TabIndex = 29;
             this.btnCancelar.Text = "cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Visible = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // dataGridView5
@@ -222,7 +233,7 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(26, 116);
+            this.dataGridView5.Location = new System.Drawing.Point(26, 385);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.Size = new System.Drawing.Size(1079, 196);
             this.dataGridView5.TabIndex = 30;
@@ -235,12 +246,58 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dataGridView6.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView6.Location = new System.Drawing.Point(26, 354);
+            this.dataGridView6.Location = new System.Drawing.Point(26, 116);
             this.dataGridView6.Name = "dataGridView6";
-            this.dataGridView6.Size = new System.Drawing.Size(1079, 196);
+            this.dataGridView6.Size = new System.Drawing.Size(1079, 250);
             this.dataGridView6.TabIndex = 31;
             this.dataGridView6.Visible = false;
             this.dataGridView6.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView6_CellFormatting);
+            // 
+            // Btn_limpiar
+            // 
+            this.Btn_limpiar.Location = new System.Drawing.Point(467, 13);
+            this.Btn_limpiar.Name = "Btn_limpiar";
+            this.Btn_limpiar.Size = new System.Drawing.Size(75, 23);
+            this.Btn_limpiar.TabIndex = 32;
+            this.Btn_limpiar.Text = "Limpiar";
+            this.Btn_limpiar.UseVisualStyleBackColor = true;
+            this.Btn_limpiar.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.Btn_limpiar);
+            this.groupBox2.Controls.Add(this.cmb_variedad);
+            this.groupBox2.Controls.Add(this.BtnFiltro);
+            this.groupBox2.Controls.Add(this.CmbTipo);
+            this.groupBox2.Controls.Add(this.groupBox1);
+            this.groupBox2.Location = new System.Drawing.Point(311, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(559, 90);
+            this.groupBox2.TabIndex = 33;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Opciones de busqueda";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(440, 301);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(243, 78);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 34;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(42, 25);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(205, 66);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 35;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Visible = false;
             // 
             // FormRealidad
             // 
@@ -248,20 +305,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1117, 706);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dataGridView6);
             this.Controls.Add(this.dataGridView5);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.CmbTipo);
             this.Controls.Add(this.Btn_Excel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pBar1);
             this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.BtnFiltro);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.cmb_variedad);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormRealidad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -275,6 +330,10 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,5 +358,9 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.DataGridView dataGridView5;
         private System.Windows.Forms.DataGridView dataGridView6;
+        private System.Windows.Forms.Button Btn_limpiar;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

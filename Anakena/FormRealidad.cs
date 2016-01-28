@@ -29,6 +29,7 @@ namespace Anakena
             traerDistintosProductores();
             rellenar_productores();
             radioButton1.Checked = true;
+            CmbTipo.SelectedIndex = 0;
     
 
         }
@@ -124,8 +125,9 @@ namespace Anakena
                     
                     if ((dataGridView4.Rows[i].Cells["Categorias"].Value.ToString().Trim() == categoria.Trim()) && (dataGridView4.Rows[i].Cells["Cod_Productor"].Value.ToString() == productor)  && (dataGridView4.Rows[i].Cells["Cod_Variedad"].Value.ToString() == variedad))
                     {
-                     acum = acum + Convert.ToDouble(dataGridView4.Rows[i].Cells[2].Value.ToString()); //+ Convert.ToDouble(dataGridView4.Rows[i].Cells[3].Value.ToString()) + Convert.ToDouble(dataGridView4.Rows[i].Cells[4].Value.ToString()) + Convert.ToDouble(dataGridView4.Rows[i].Cells[5].Value.ToString())+ Convert.ToDouble(dataGridView4.Rows[i].Cells[6].Value.ToString())+ Convert.ToDouble(dataGridView4.Rows[i].Cells[7].Value.ToString()) + Convert.ToDouble(dataGridView4.Rows[i].Cells[8].Value.ToString())+ Convert.ToDouble(dataGridView4.Rows[i].Cells[9].Value.ToString());
-                       // MessageBox.Show(acum.ToString());
+                        
+                        acum = acum +( Convert.ToDouble(dataGridView4.Rows[i].Cells[2].Value.ToString())+ Convert.ToDouble(dataGridView4.Rows[i].Cells[3].Value.ToString())+ Convert.ToDouble(dataGridView4.Rows[i].Cells[4].Value.ToString()) + Convert.ToDouble(dataGridView4.Rows[i].Cells[5].Value.ToString())+ Convert.ToDouble(dataGridView4.Rows[i].Cells[6].Value.ToString())+ Convert.ToDouble(dataGridView4.Rows[i].Cells[7].Value.ToString()) + Convert.ToDouble(dataGridView4.Rows[i].Cells[8].Value.ToString())+ Convert.ToDouble(dataGridView4.Rows[i].Cells[9].Value.ToString()));
+                      //  MessageBox.Show(acum.ToString());
                     }
 
                     
@@ -215,10 +217,18 @@ namespace Anakena
         }
         private void BtnFiltro_Click(object sender, EventArgs e)
         {
-            if(radioButton1.Checked == true)
-            { 
+            limpiar();            
             dataGridView2.DataSource = null;
             dataGridView2.Rows.Clear();
+            pictureBox2.Visible = false;
+            pictureBox1.Visible = true;
+            pictureBox1.Show();
+            pictureBox1.Refresh();
+            // label2.Visible = true;
+            pBar1.Visible = true;
+            if(radioButton1.Checked == true)
+            { 
+         
             traerReal();
             traer_estimacion(dataGridView1.Rows[0].Cells[0].Value.ToString(), cmb_variedad.Text);
             rellenar_serr(dataGridView1.Rows[0].Cells[0].Value.ToString());
@@ -226,15 +236,15 @@ namespace Anakena
             pBar1.Maximum = dataGridView2.RowCount * dataGridView2.ColumnCount;
             pBar1.Value = 1;
             pBar1.Step = 1;
-            label2.Visible = true;
-            pBar1.Visible = true;
+       
             proceso();
+            dataGridView2.Visible = true;
+            pBar1.Visible = false;
+                    
             }
            else
             {
-                dataGridView2.Visible = false;
-                dataGridView5.Visible = true;
-                dataGridView6.Visible = true;
+              
                 rellenar_productores_calidad();
                 rellenar_productores_calibre();
                 dataGridView5.Rows.Insert(0,"EXTRA");
@@ -259,7 +269,11 @@ namespace Anakena
                 dataGridView5.Rows[dataGridView5.Rows.Count - 1].DefaultCellStyle.BackColor = Color.SteelBlue;
                 dataGridView5.Rows[dataGridView5.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.White;
                 traerReal();
-                for(int i = 1;i<dataGridView5.Columns.Count;i++)
+                pBar1.Minimum = 1;
+                pBar1.Maximum = (dataGridView5.RowCount * dataGridView5.ColumnCount)+(dataGridView6.RowCount * dataGridView6.ColumnCount);
+                pBar1.Value = 1;
+                pBar1.Step = 1;
+                for (int i = 1;i<dataGridView5.Columns.Count;i++)
                 {
                     double acum = 0;
                     for(int x = 0;x<dataGridView5.Rows.Count;x++)
@@ -267,6 +281,7 @@ namespace Anakena
                         double valor = agrupar_categoria(dataGridView5.Rows[x].Cells[0].Value.ToString(), dataGridView5.Columns[i].Name.ToString(), cmb_variedad.SelectedValue.ToString());
                         acum = acum + valor;
                         dataGridView5.Rows[x].Cells[i].Value = valor;
+                        pBar1.PerformStep();
                     }
                     dataGridView5.Rows[dataGridView5.RowCount - 1].Cells[i].Value = acum;
                 }
@@ -278,6 +293,7 @@ namespace Anakena
                         double valor = agrupar_calibre(dataGridView6.Rows[x].Cells[0].Value.ToString(), dataGridView6.Columns[i].Name.ToString(), cmb_variedad.SelectedValue.ToString());
                         acum = acum + valor;
                         dataGridView6.Rows[x].Cells[i].Value = valor;
+                        pBar1.PerformStep();
                     }
                     dataGridView6.Rows[dataGridView6.RowCount - 1].Cells[i].Value = acum;
                 }
@@ -312,8 +328,12 @@ namespace Anakena
 
                     }
                 }
+                dataGridView2.Visible = false;
+                dataGridView5.Visible = true;
+                dataGridView6.Visible = true;
             }
-
+            pictureBox2.Visible = true;
+           pictureBox1.Visible = false;
         }
         public void proceso()
         {
@@ -425,6 +445,7 @@ namespace Anakena
             ApplicationClass class2 = new ApplicationClass();
             class2.Application.Workbooks.Add(true);
             int num = 0;
+            int numC = 0;
             pBar1.Minimum = 1;
             pBar1.Maximum = dataGridView5.RowCount * dataGridView5.ColumnCount;
             pBar1.Value = 1;
@@ -438,54 +459,39 @@ namespace Anakena
                 class2.get_Range("A1", "FK1").Interior.ColorIndex = 9;
                 class2.get_Range("A1", "FK1").Font.ColorIndex = 2;
             }
-            int num2 = 0;
-            foreach (DataGridViewRow row in (IEnumerable)this.dataGridView5.Rows)
-            {
-                num2++;
-                num = 0;
-                foreach (DataGridViewColumn column2 in this.dataGridView5.Columns)
-                {
-                    num++;
-                    class2.Cells[num2 + 1, num] = row.Cells[column2.Name].Value;
-                    pBar1.PerformStep();
-                    label2.Text = "Proceso :" + pBar1.Value.ToString() + "/" + (dataGridView5.RowCount * dataGridView5.ColumnCount).ToString();
-                }
-            }
-            class2.Visible = true;
-            ((Worksheet)class2.ActiveSheet).Name = cmb_variedad.Text.Trim();
-            ((Worksheet)class2.ActiveSheet).Activate();
-
-        }
-
-        public void exporta_a_excel_calibre()
-        {
-            ApplicationClass class2 = new ApplicationClass();
-            class2.Application.Workbooks.Add(true);
-            int num = 0;
-            pBar1.Minimum = 1;
-            pBar1.Maximum = dataGridView6.RowCount * dataGridView6.ColumnCount;
-            pBar1.Value = 1;
-            pBar1.Step = 1;
 
             foreach (DataGridViewColumn column in this.dataGridView6.Columns)
             {
-                class2.Cells[1, 1] = cmb_variedad.Text.Trim();
-                num++;
-                class2.Cells[1, num] = column.Name;
-                class2.get_Range("A1", "FK1").Interior.ColorIndex = 9;
-                class2.get_Range("A1", "FK1").Font.ColorIndex = 2;
+                class2.Cells[10, 1] = cmb_variedad.Text.Trim();
+                numC++;
+                class2.Cells[10, numC] = column.Name;
+                class2.get_Range("A10", "FK10").Interior.ColorIndex = 9;
+                class2.get_Range("A10", "FK10").Font.ColorIndex = 2;
             }
-            int num2 = 0;
-            foreach (DataGridViewRow row in (IEnumerable)this.dataGridView6.Rows)
+            int num22 = 0;
+            foreach (DataGridViewRow row in (IEnumerable)this.dataGridView5.Rows)
             {
-                num2++;
+                num22++;
                 num = 0;
                 foreach (DataGridViewColumn column2 in this.dataGridView6.Columns)
                 {
                     num++;
-                    class2.Cells[num2 + 1, num] = row.Cells[column2.Name].Value;
+                    class2.Cells[num22 + 1, num] = row.Cells[column2.Name].Value;
                     pBar1.PerformStep();
-                    label2.Text = "Proceso :" + pBar1.Value.ToString() + "/" + (dataGridView6.RowCount * dataGridView6.ColumnCount).ToString();
+                    label2.Text = "Proceso :" + pBar1.Value.ToString() + "/" + (dataGridView5.RowCount * dataGridView5.ColumnCount).ToString();
+                }
+            }
+            int num2 =9;
+            foreach (DataGridViewRow row in (IEnumerable)this.dataGridView6.Rows)
+            {
+                num2++;
+                num= 0;
+                foreach (DataGridViewColumn column2 in this.dataGridView6.Columns)
+                {
+                    num++;
+                    class2.Cells[num2+1, num] = row.Cells[column2.Name].Value;
+                    pBar1.PerformStep();
+
                 }
             }
             class2.Visible = true;
@@ -493,17 +499,25 @@ namespace Anakena
             ((Worksheet)class2.ActiveSheet).Activate();
 
         }
+
+
         private void Btn_Excel_Click(object sender, EventArgs e)
         {
             if (dataGridView2.Visible == true)
-            { 
+            {
+                dataGridView2.Visible = false;
             exporta_a_excel();
             }
+           
             else
             {
-                exporta_a_excel_categoria();
-                exporta_a_excel_calibre();
+                pictureBox1.Visible = true;
+                dataGridView5.Visible = false;
+                dataGridView6.Visible = false;
+
+                    exporta_a_excel_categoria();
             }
+            pBar1.Visible = false; Btn_Excel.Visible = false;
         }
 
         private void dataGridView4_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -550,6 +564,35 @@ namespace Anakena
             {
                 e.CellStyle.Format = "0.00\\";
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            limpiar();
+        }
+        public void limpiar()
+        {
+            dataGridView2.Visible = false;
+            dataGridView2.Rows.Clear();
+            dataGridView2.DataSource = null;
+
+            dataGridView5.Visible = false;
+            dataGridView5.Rows.Clear();
+            dataGridView5.DataSource = null;
+
+            dataGridView6.Visible = false;
+            dataGridView6.Rows.Clear();
+            dataGridView6.DataSource = null;
+
+            Btn_Excel.Visible = false;
+            label2.Visible = false;
+            pBar1.Visible = false;
+            btnCancelar.Visible = false;
+
+         
+         //   CmbTipo.SelectedIndex = 0;
+           // cmb_variedad.SelectedIndex = 0;
+
         }
     }
     

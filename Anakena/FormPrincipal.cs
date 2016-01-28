@@ -68,5 +68,11 @@ namespace Anakena
             FormRealidad s = new FormRealidad();
             s.ShowDialog();
         }
+
+        private void factorProductorVariedadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormFactor s = new FormFactor();
+            s.ShowDialog();
+        }
     }
 }
