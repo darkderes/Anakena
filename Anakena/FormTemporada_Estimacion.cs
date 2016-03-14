@@ -52,10 +52,11 @@ namespace Anakena
 
         }
 
-        public void ingresar_estimacion(string cod, float monto, string  variedad)
+        public void ingresar_estimacion(string cod, double monto, string  variedad)
         {
-         
-                try
+            
+
+            try
                 {
                     // linea de comando de sql
                     SqlCommand cmd = new SqlCommand("spAgregaEstimacion", cn.getConexion());
@@ -64,7 +65,7 @@ namespace Anakena
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@cod", SqlDbType.Char, 10);
                     cmd.Parameters.Add("@monto", SqlDbType.Float);
-                    cmd.Parameters.Add("@variedad", SqlDbType.VarChar,10);
+                    cmd.Parameters.Add("@variedad", SqlDbType.VarChar,20);
           
 
                     cmd.Parameters.Add("@msg", SqlDbType.VarChar, 100);
@@ -150,25 +151,41 @@ namespace Anakena
         }
         private void btn_ingresar_Click(object sender, EventArgs e)
         {
-            eliminar_estimacion();
+           
+            pBar1.Minimum = 1;
+            pBar1.Maximum = (dataGridView1.RowCount * dataGridView1.ColumnCount);
+            pBar1.Value = 1;
+            pBar1.Step = 1;
+            double total = 0;
+            eliminar_estimacion();  
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                    
+                    pBar1.Visible = true;
+                    pBar1.PerformStep();
                     if (col.Index > 1)
                     {
+                       
                        string cod = row.Cells["cod"].Value.ToString();
-                       float monto = Convert.ToSingle(row.Cells[col.Name.ToString()].Value.ToString());
+                       string aux = row.Cells[col.Name.ToString()].Value.ToString();
+                        if (String.IsNullOrEmpty(aux))
+                        {
+                            aux = "0";
+                        }
+                       double monto = Convert.ToDouble(aux);
+                       total = total + monto;
                        string variedad = col.Name.ToString();
-      
-                       ingresar_estimacion(cod,monto,variedad);
+                        ingresar_estimacion(cod, monto, variedad);
+                       
                     }
-           
-               
+
+
+                }
             }
-            }
-            MessageBox.Show("Estimacion ingresada correctamente","Anakena",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            pBar1.Visible = false;
+            //lbl_cargando.Visible = false;
+           MessageBox.Show("Estimacion ingresada correctamente con un total de "+total.ToString("##,##.00")+" Kg","Anakena",MessageBoxButtons.OK,MessageBoxIcon.Information);
             this.Close();
         }
 

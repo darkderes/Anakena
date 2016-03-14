@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEstimacion));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Btn_Excel = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmb_variedad = new System.Windows.Forms.ComboBox();
@@ -55,7 +55,7 @@
             // 
             this.Btn_Excel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Btn_Excel.BackgroundImage")));
             this.Btn_Excel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Btn_Excel.Location = new System.Drawing.Point(673, 682);
+            this.Btn_Excel.Location = new System.Drawing.Point(674, 663);
             this.Btn_Excel.Name = "Btn_Excel";
             this.Btn_Excel.Size = new System.Drawing.Size(50, 51);
             this.Btn_Excel.TabIndex = 13;
@@ -76,7 +76,7 @@
             // cmb_variedad
             // 
             this.cmb_variedad.FormattingEnabled = true;
-            this.cmb_variedad.Location = new System.Drawing.Point(628, 50);
+            this.cmb_variedad.Location = new System.Drawing.Point(576, 51);
             this.cmb_variedad.Name = "cmb_variedad";
             this.cmb_variedad.Size = new System.Drawing.Size(166, 21);
             this.cmb_variedad.TabIndex = 15;
@@ -86,7 +86,7 @@
             this.label1.AutoSize = true;
             this.label1.Cursor = System.Windows.Forms.Cursors.No;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(542, 51);
+            this.label1.Location = new System.Drawing.Point(490, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 16);
             this.label1.TabIndex = 16;
@@ -94,7 +94,7 @@
             // 
             // BtnFiltro
             // 
-            this.BtnFiltro.Location = new System.Drawing.Point(800, 48);
+            this.BtnFiltro.Location = new System.Drawing.Point(748, 49);
             this.BtnFiltro.Name = "BtnFiltro";
             this.BtnFiltro.Size = new System.Drawing.Size(75, 23);
             this.BtnFiltro.TabIndex = 17;
@@ -104,11 +104,12 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.dataGridView3);
             this.tabPage1.Controls.Add(this.dataGridView2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1346, 508);
+            this.tabPage1.Size = new System.Drawing.Size(1208, 519);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "SERR";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -116,27 +117,28 @@
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(6, 18);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(1298, 445);
+            this.dataGridView2.Size = new System.Drawing.Size(1168, 445);
             this.dataGridView2.TabIndex = 1;
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(22, 108);
+            this.tabControl1.Location = new System.Drawing.Point(22, 97);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1354, 534);
+            this.tabControl1.Size = new System.Drawing.Size(1216, 545);
             this.tabControl1.TabIndex = 11;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(337, 23);
             this.dataGridView1.Name = "dataGridView1";
@@ -148,17 +150,16 @@
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(1007, -38);
+            this.dataGridView3.Location = new System.Drawing.Point(864, 41);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(240, 207);
             this.dataGridView3.TabIndex = 19;
-            this.dataGridView3.Visible = false;
             // 
             // pBar1
             // 
-            this.pBar1.Location = new System.Drawing.Point(1168, 727);
+            this.pBar1.Location = new System.Drawing.Point(1062, 663);
             this.pBar1.Name = "pBar1";
-            this.pBar1.Size = new System.Drawing.Size(172, 25);
+            this.pBar1.Size = new System.Drawing.Size(172, 11);
             this.pBar1.TabIndex = 20;
             this.pBar1.Visible = false;
             // 
@@ -189,7 +190,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1375, 764);
-            this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pBar1);
@@ -202,7 +202,8 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "FormEstimacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form2";
+            this.Text = "Formulario estimacion";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage1.ResumeLayout(false);

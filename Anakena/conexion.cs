@@ -12,7 +12,7 @@ namespace Anakena
 {
     class conexion
     {
-        private SqlConnection Con = new SqlConnection("Data Source=localhost;Initial Catalog=prueba;User id=sa;Password=198626;Integrated Security = False"); // Obj Conexion
+        private SqlConnection Con = new SqlConnection("Data Source=SERVIDORERP;Initial Catalog=prueba;User id=sa;Password=Pall2015;Integrated Security = False"); // Obj Conexion
 
         public void  Conexion()
 

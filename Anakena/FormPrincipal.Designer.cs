@@ -37,11 +37,11 @@
             this.estimacionCalibreCategoriaRecepcionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estimacionCalibreCategoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.realToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.factorProductorVariedadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.factorProductorVariedadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -115,11 +115,18 @@
             this.realToolStripMenuItem.Text = "Real";
             this.realToolStripMenuItem.Click += new System.EventHandler(this.realToolStripMenuItem_Click);
             // 
+            // factorProductorVariedadToolStripMenuItem
+            // 
+            this.factorProductorVariedadToolStripMenuItem.Name = "factorProductorVariedadToolStripMenuItem";
+            this.factorProductorVariedadToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.factorProductorVariedadToolStripMenuItem.Text = "Factor Productor - Variedad";
+            this.factorProductorVariedadToolStripMenuItem.Click += new System.EventHandler(this.factorProductorVariedadToolStripMenuItem_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(585, 721);
+            this.label2.Location = new System.Drawing.Point(475, 610);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(352, 16);
             this.label2.TabIndex = 1;
@@ -130,7 +137,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(656, 763);
+            this.label3.Location = new System.Drawing.Point(546, 652);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(193, 13);
             this.label3.TabIndex = 4;
@@ -139,7 +146,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(659, 232);
+            this.pictureBox2.Location = new System.Drawing.Point(565, 244);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(160, 127);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -150,25 +157,18 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(620, 112);
+            this.pictureBox1.Location = new System.Drawing.Point(516, 111);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(239, 92);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // factorProductorVariedadToolStripMenuItem
-            // 
-            this.factorProductorVariedadToolStripMenuItem.Name = "factorProductorVariedadToolStripMenuItem";
-            this.factorProductorVariedadToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
-            this.factorProductorVariedadToolStripMenuItem.Text = "Factor Productor - Variedad";
-            this.factorProductorVariedadToolStripMenuItem.Click += new System.EventHandler(this.factorProductorVariedadToolStripMenuItem_Click);
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1105, 812);
+            this.ClientSize = new System.Drawing.Size(1105, 781);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox2);
@@ -176,7 +176,7 @@
             this.Controls.Add(this.pictureBox1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormPrincipal";
-            this.Text = "FormPrincipal";
+            this.Text = "Menu Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.menuStrip1.ResumeLayout(false);

@@ -25,9 +25,9 @@ namespace Anakena
         private void Form2_Load(object sender, EventArgs e)
         {
             CmbVariedad();
-            traerDistintosProductores();
+           traerDistintosProductores();
             tabControl1.Visible = false;
-           rellenar();
+            rellenar();
         }
 
         public void traerDistintosProductores()
@@ -86,13 +86,13 @@ namespace Anakena
             for (int i = 1; i < dataGridView2.ColumnCount; i++)
             {
                 double acum = 0;
-                traer_estimacion(dataGridView2.Columns[i].Name, cmb_variedad.Text);
+               traer_estimacion(dataGridView2.Columns[i].Name, cmb_variedad.Text);
                 for (int x = 0; x < dataGridView3.Rows.Count; x++)
                 {
-                    dataGridView2.Rows[x].Cells[i].Value = dataGridView3.Rows[x].Cells[3].Value.ToString();
-                    acum = acum + Convert.ToDouble(dataGridView2.Rows[x].Cells[i].Value.ToString());
-                    pBar1.PerformStep();
-                    label2.Text = "Proceso :" + pBar1.Value.ToString() + "/" + (dataGridView2.RowCount * dataGridView2.ColumnCount).ToString();
+                   dataGridView2.Rows[x].Cells[i].Value = dataGridView3.Rows[x].Cells[3].Value.ToString();
+                   acum = acum + Convert.ToDouble(dataGridView2.Rows[x].Cells[i].Value.ToString());
+                   pBar1.PerformStep();
+                   label2.Text = "Proceso :" + pBar1.Value.ToString() + "/" + (dataGridView2.RowCount * dataGridView2.ColumnCount).ToString();
                 }
                 dataGridView2.Rows[dataGridView2.Rows.Count - 1].Cells[i].Value = acum;
                
@@ -164,8 +164,8 @@ namespace Anakena
                 }
                 else
                 {
-                 
-                    for (int i = 1; i<3;i++)
+
+                    for (int i = 1; i < 3; i++)
                     {
                         dataGridView2.Rows.Clear();
                         dataGridView2.DataSource = null;
@@ -174,9 +174,9 @@ namespace Anakena
                         rellenar_serr(dataGridView1.Rows[0].Cells[0].Value.ToString());
                         relleno_Serr();
                         tabControl1.Visible = true;
-                       // Btn_Excel.Visible = true;
+                        // Btn_Excel.Visible = true;
                         tabPage1.Text = cmb_variedad.Text;
-                        exporta_a_excel();               
+                        exporta_a_excel();
                     }
                 }
             }

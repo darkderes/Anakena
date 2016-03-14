@@ -53,7 +53,7 @@ namespace Anakena
             conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
             command = new OleDbCommand("select * from [SERR$]", conn);
             OleDbDataAdapter adap = new OleDbDataAdapter(command);
-            adap.Fill(myds_serr);
+            adap.Fill(myds);
             dataGridView1.DataSource = myds.Tables[0];
 
         }
@@ -638,62 +638,64 @@ namespace Anakena
      
         private void FormFactor_Load(object sender, EventArgs e)
         {
-            traerFactor("2");
-            traerFactor_Chandler("5");
-            traerFactor_HOWARD("9");
-            traerFactor_TULARE("10");
-            traerFactor_SUNDLAND("6");
-            traerFactor_HARTLEY("4");
-            traerFactor_SEMILLA("1");
-            traerFactor_VINA("3");
-            traerFactor_VINA_MEJORADA("15");
-            traerFactor_FRANQUETTE("8");
-            traerFactor_DESPELONADO("16");
-            traerFactor_QUEBRADO("14");
-            dataGridView1.Columns[1].ReadOnly = true;
-            dataGridView1.Columns[2].ReadOnly = true;
-            dataGridView1.Columns["Id"].Visible = false;
+          
+                traerFactor("2");
+                traerFactor_Chandler("5");
+                traerFactor_HOWARD("9");
+                traerFactor_TULARE("10");
+                traerFactor_SUNDLAND("6");
+                traerFactor_HARTLEY("4");
+                traerFactor_SEMILLA("1");
+                traerFactor_VINA("3");
+                traerFactor_VINA_MEJORADA("15");
+                traerFactor_FRANQUETTE("8");
+                traerFactor_DESPELONADO("16");
+                traerFactor_QUEBRADO("14");
+                dataGridView1.Columns[1].ReadOnly = true;
+                dataGridView1.Columns[2].ReadOnly = true;
+                dataGridView1.Columns["Id"].Visible = false;
 
-            dataGridView2.Columns[1].ReadOnly = true;
-            dataGridView2.Columns[2].ReadOnly = true;
-            dataGridView2.Columns["Id"].Visible = false;
+                dataGridView2.Columns[1].ReadOnly = true;
+                dataGridView2.Columns[2].ReadOnly = true;
+                dataGridView2.Columns["Id"].Visible = false;
 
-            dataGridView3.Columns[1].ReadOnly = true;
-            dataGridView3.Columns[2].ReadOnly = true;
-            dataGridView3.Columns["Id"].Visible = false;
+                dataGridView3.Columns[1].ReadOnly = true;
+                dataGridView3.Columns[2].ReadOnly = true;
+                dataGridView3.Columns["Id"].Visible = false;
 
-            dataGridView4.Columns[1].ReadOnly = true;
-            dataGridView4.Columns[2].ReadOnly = true;
-            dataGridView4.Columns["Id"].Visible = false;
+                dataGridView4.Columns[1].ReadOnly = true;
+                dataGridView4.Columns[2].ReadOnly = true;
+                dataGridView4.Columns["Id"].Visible = false;
 
-            dataGridView5.Columns[1].ReadOnly = true;
-            dataGridView5.Columns[2].ReadOnly = true;
-            dataGridView5.Columns["Id"].Visible = false;
+                dataGridView5.Columns[1].ReadOnly = true;
+                dataGridView5.Columns[2].ReadOnly = true;
+                dataGridView5.Columns["Id"].Visible = false;
 
-            dataGridView6.Columns[1].ReadOnly = true;
-            dataGridView6.Columns[2].ReadOnly = true;
-            dataGridView6.Columns["Id"].Visible = false;
+                dataGridView6.Columns[1].ReadOnly = true;
+                dataGridView6.Columns[2].ReadOnly = true;
+                dataGridView6.Columns["Id"].Visible = false;
 
-            dataGridView7.Columns[1].ReadOnly = true;
-            dataGridView7.Columns[2].ReadOnly = true;
-            dataGridView7.Columns["Id"].Visible = false;
+                dataGridView7.Columns[1].ReadOnly = true;
+                dataGridView7.Columns[2].ReadOnly = true;
+                dataGridView7.Columns["Id"].Visible = false;
 
-            dataGridView9.Columns[1].ReadOnly = true;
-            dataGridView9.Columns[2].ReadOnly = true;
-            dataGridView9.Columns["Id"].Visible = false;
+                dataGridView9.Columns[1].ReadOnly = true;
+                dataGridView9.Columns[2].ReadOnly = true;
+                dataGridView9.Columns["Id"].Visible = false;
 
-            dataGridView10.Columns[1].ReadOnly = true;
-            dataGridView10.Columns[2].ReadOnly = true;
-            dataGridView10.Columns["Id"].Visible = false;
+                dataGridView10.Columns[1].ReadOnly = true;
+                dataGridView10.Columns[2].ReadOnly = true;
+                dataGridView10.Columns["Id"].Visible = false;
 
-            dataGridView11.Columns[1].ReadOnly = true;
-            dataGridView11.Columns[2].ReadOnly = true;
-            dataGridView11.Columns["Id"].Visible = false;
+                dataGridView11.Columns[1].ReadOnly = true;
+                dataGridView11.Columns[2].ReadOnly = true;
+                dataGridView11.Columns["Id"].Visible = false;
 
-            dataGridView12.Columns[1].ReadOnly = true;
-            dataGridView12.Columns[2].ReadOnly = true;
-            dataGridView12.Columns["Id"].Visible = false;
-
+                dataGridView12.Columns[1].ReadOnly = true;
+                dataGridView12.Columns[2].ReadOnly = true;
+                dataGridView12.Columns["Id"].Visible = false;
+            
+            
       
 
             CmbProductor();

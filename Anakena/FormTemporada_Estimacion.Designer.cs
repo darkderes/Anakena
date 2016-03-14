@@ -37,6 +37,7 @@
             this.btn_ingresar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Btn_Examinar = new System.Windows.Forms.Button();
+            this.pBar1 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -105,7 +106,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(173, 73);
+            this.pictureBox1.Size = new System.Drawing.Size(173, 60);
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
@@ -124,10 +125,19 @@
             this.Btn_Examinar.UseVisualStyleBackColor = false;
             this.Btn_Examinar.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // pBar1
+            // 
+            this.pBar1.Location = new System.Drawing.Point(12, 74);
+            this.pBar1.Name = "pBar1";
+            this.pBar1.Size = new System.Drawing.Size(173, 12);
+            this.pBar1.TabIndex = 7;
+            this.pBar1.Visible = false;
+            // 
             // FormTemporada_Estimacion
             // 
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1144, 714);
+            this.Controls.Add(this.pBar1);
             this.Controls.Add(this.btn_ingresar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Btn_Cargar);
@@ -156,6 +166,7 @@
         private System.Windows.Forms.Button Btn_Cargar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btn_ingresar;
+        private System.Windows.Forms.ProgressBar pBar1;
     }
 }
 

@@ -35,8 +35,8 @@ namespace Anakena
         }
         public void traerReal()
         {
-            try
-            {
+            //try
+            //{
                 SqlCommand cmd = new SqlCommand("sistema_realidad_all", cn.getConexion());
                 cmd.CommandType = CommandType.StoredProcedure;
            
@@ -46,9 +46,9 @@ namespace Anakena
                 adapter.Fill(myds);
                 dataGridView4.DataSource = myds.Tables[0];
                 cn.Cerrar();
-            }
-            catch
-            { MessageBox.Show("error","Anakena",MessageBoxButtons.OK,MessageBoxIcon.Error); } 
+            //}
+            //catch
+            //{ MessageBox.Show("error","Anakena",MessageBoxButtons.OK,MessageBoxIcon.Error); } 
 
         }
         public void traer_estimacion(string productor, string variedad)
