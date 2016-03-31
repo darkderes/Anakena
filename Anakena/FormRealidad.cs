@@ -35,25 +35,26 @@ namespace Anakena
         }
         public void traerReal()
         {
-            //try
-            //{
+            try
+            {
                 SqlCommand cmd = new SqlCommand("sistema_realidad_all", cn.getConexion());
-                cmd.CommandType = CommandType.StoredProcedure;
-           
-                cn.Abrir();
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                DataSet myds = new DataSet();
-                adapter.Fill(myds);
-                dataGridView4.DataSource = myds.Tables[0];
-                cn.Cerrar();
-            //}
-            //catch
-            //{ MessageBox.Show("error","Anakena",MessageBoxButtons.OK,MessageBoxIcon.Error); } 
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cn.Abrir();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet myds = new DataSet();
+            adapter.Fill(myds);
+            dataGridView4.DataSource = myds.Tables[0];
+            cn.Cerrar();
+            }
+            catch(Exception e)
+            { MessageBox.Show("Base de datos sin informacion :"+e, "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
         }
         public void traer_estimacion(string productor, string variedad)
         {
-            SqlCommand cmd = new SqlCommand("spTraer_Estimacion", ex.getConexion());
+            SqlCommand cmd = new SqlCommand("spTraer_Estimacion2", ex.getConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@productor", SqlDbType.VarChar, 25);
             cmd.Parameters["@productor"].Value = productor;
@@ -368,7 +369,7 @@ namespace Anakena
                         label2.Text = "Proceso :" + pBar1.Value.ToString() + "/" + (dataGridView2.RowCount * dataGridView2.ColumnCount).ToString();
                     }
                 }
-   dataGridView2.Rows[dataGridView2.Rows.Count - 1].Cells[i].Value = acum;
+                 dataGridView2.Rows[dataGridView2.Rows.Count - 1].Cells[i].Value = acum;
                
                 }
              
@@ -419,8 +420,8 @@ namespace Anakena
                 class2.Cells[1, 1] = cmb_variedad.Text.Trim();
                 num++;
                 class2.Cells[1, num] = column.Name;
-                class2.get_Range("A1", "FK1").Interior.ColorIndex = 9;
-                class2.get_Range("A1", "FK1").Font.ColorIndex = 2;
+                class2.get_Range("A1", "GB1").Interior.ColorIndex = 9;
+                class2.get_Range("A1", "GB1").Font.ColorIndex = 2;
             }
             int num2 = 0;
             foreach (DataGridViewRow row in (IEnumerable)this.dataGridView2.Rows)
@@ -456,8 +457,8 @@ namespace Anakena
                 class2.Cells[1, 1] = cmb_variedad.Text.Trim();
                 num++;
                 class2.Cells[1, num] = column.Name;
-                class2.get_Range("A1", "FK1").Interior.ColorIndex = 9;
-                class2.get_Range("A1", "FK1").Font.ColorIndex = 2;
+                class2.get_Range("A1", "GF1").Interior.ColorIndex = 9;
+                class2.get_Range("A1", "GF1").Font.ColorIndex = 2;
             }
 
             foreach (DataGridViewColumn column in this.dataGridView6.Columns)
@@ -465,8 +466,8 @@ namespace Anakena
                 class2.Cells[10, 1] = cmb_variedad.Text.Trim();
                 numC++;
                 class2.Cells[10, numC] = column.Name;
-                class2.get_Range("A10", "FK10").Interior.ColorIndex = 9;
-                class2.get_Range("A10", "FK10").Font.ColorIndex = 2;
+                class2.get_Range("A10", "GF10").Interior.ColorIndex = 9;
+                class2.get_Range("A10", "GF10").Font.ColorIndex = 2;
             }
             int num22 = 0;
             foreach (DataGridViewRow row in (IEnumerable)this.dataGridView5.Rows)
@@ -588,11 +589,6 @@ namespace Anakena
             label2.Visible = false;
             pBar1.Visible = false;
             btnCancelar.Visible = false;
-
-         
-         //   CmbTipo.SelectedIndex = 0;
-           // cmb_variedad.SelectedIndex = 0;
-
         }
     }
     

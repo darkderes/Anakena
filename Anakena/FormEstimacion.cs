@@ -11,6 +11,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using Microsoft.Office.Interop.Excel;
 using System.Collections;
+using System.IO;
 
 namespace Anakena
 {
@@ -25,80 +26,96 @@ namespace Anakena
         private void Form2_Load(object sender, EventArgs e)
         {
             CmbVariedad();
-           traerDistintosProductores();
-            tabControl1.Visible = false;
-            rellenar();
-        }
+            radioButton1.Checked = true;
+          
 
-        public void traerDistintosProductores()
+
+        }
+        public void Estimacion_CalibreKG()
         {
-         
-            SqlCommand cmd = new SqlCommand("spTraerDistintosProductores", cn.getConexion());
-            cmd.CommandType = CommandType.StoredProcedure;   
+            SqlCommand cmd = new SqlCommand("spEstimacionCalibreKilos", cn.getConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@variedad", SqlDbType.Int);
+            cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
             cn.Abrir();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet myds = new DataSet();
             adapter.Fill(myds);
-            dataGridView1.DataSource = myds.Tables[0];
+            dataGridView4.DataSource = myds.Tables[0];
             cn.Cerrar();
-         
+
         }
-        public void traer_estimacion(string productor,string variedad)
+        public void Estimacion_CalibrePORC()
+        {
+            SqlCommand cmd = new SqlCommand("spEstimacionCalibre%", cn.getConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@variedad", SqlDbType.Int);
+            cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
+            cn.Abrir();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet myds = new DataSet();
+            adapter.Fill(myds);
+            dataGridView4.DataSource = myds.Tables[0];
+            cn.Cerrar();
+
+        }
+        public void EstimacionKG()
         {
             SqlCommand cmd = new SqlCommand("spTraer_Estimacion", cn.getConexion());
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@productor", SqlDbType.VarChar, 25);
-            cmd.Parameters["@productor"].Value = productor;
-            cmd.Parameters.Add("@variedad", SqlDbType.VarChar, 25);
-            cmd.Parameters["@variedad"].Value = variedad;
+            cmd.Parameters.Add("@variedad", SqlDbType.Int);
+            cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
             cn.Abrir();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet myds = new DataSet();
             adapter.Fill(myds);
-            dataGridView3.DataSource = myds.Tables[0];
+            dataGridView2.DataSource = myds.Tables[0];
             cn.Cerrar();
 
         }
-        public void rellenar_serr(string columna)
+        public void EstimacionPORC()
         {
-          
-            for(int i = 0;i<dataGridView3.Rows.Count;i++)
-            {
-                if (dataGridView2.Columns[0].HeaderText == "Productores")
-                {
-                    dataGridView2.Rows.Insert(i, dataGridView3.Rows[i].Cells[0].Value.ToString());
-                }         
-            }
-            dataGridView2.Rows.Insert(dataGridView2.Rows.Count,"TOTAL");
-            dataGridView2.Rows[dataGridView2.Rows.Count-1].DefaultCellStyle.BackColor = Color.SteelBlue;
-            dataGridView2.Rows[dataGridView2.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.White;
+            SqlCommand cmd = new SqlCommand("spTraer_Estimacion%", cn.getConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@variedad", SqlDbType.Int);
+            cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
+            cn.Abrir();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet myds = new DataSet();
+            adapter.Fill(myds);
+            dataGridView2.DataSource = myds.Tables[0];
+            cn.Cerrar();
 
         }
-        public void relleno_Serr()
+        public void Estimacion_CategoriaKG()
         {
-            
-            pBar1.Minimum = 1;
-            pBar1.Maximum = dataGridView2.RowCount * dataGridView2.ColumnCount;
-            pBar1.Value = 1;
-            pBar1.Step = 1;
-            label2.Visible = true;
-            pBar1.Visible = true;
-            for (int i = 1; i < dataGridView2.ColumnCount; i++)
-            {
-                double acum = 0;
-               traer_estimacion(dataGridView2.Columns[i].Name, cmb_variedad.Text);
-                for (int x = 0; x < dataGridView3.Rows.Count; x++)
-                {
-                   dataGridView2.Rows[x].Cells[i].Value = dataGridView3.Rows[x].Cells[3].Value.ToString();
-                   acum = acum + Convert.ToDouble(dataGridView2.Rows[x].Cells[i].Value.ToString());
-                   pBar1.PerformStep();
-                   label2.Text = "Proceso :" + pBar1.Value.ToString() + "/" + (dataGridView2.RowCount * dataGridView2.ColumnCount).ToString();
-                }
-                dataGridView2.Rows[dataGridView2.Rows.Count - 1].Cells[i].Value = acum;
-               
-            }
+            SqlCommand cmd = new SqlCommand("spEstimacionCategoriasKilos", cn.getConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@variedad", SqlDbType.Int);
+            cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
+            cn.Abrir();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet myds = new DataSet();
+            adapter.Fill(myds);
+            dataGridView5.DataSource = myds.Tables[0];
+            cn.Cerrar();
+
         }
-       
+        public void Estimacion_CategoriaPORC()
+        {
+            SqlCommand cmd = new SqlCommand("spEstimacionCategorias%", cn.getConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@variedad", SqlDbType.Int);
+            cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
+            cn.Abrir();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet myds = new DataSet();
+            adapter.Fill(myds);
+            dataGridView5.DataSource = myds.Tables[0];
+            cn.Cerrar();
+
+        }
+
         public void CmbVariedad()
         {
             try
@@ -124,19 +141,7 @@ namespace Anakena
             }
         }
   
-        public void  rellenar()
-        {
-            DataGridViewTextBoxColumn col12 = new DataGridViewTextBoxColumn();
-            col12.HeaderText = "Productores";
-            dataGridView2.Columns.Add(col12);
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-                DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();       
-                col.HeaderText = dataGridView1.Rows[i].Cells["productor"].Value.ToString();
-                col.Name = dataGridView1.Rows[i].Cells["productor"].Value.ToString();
-                dataGridView2.Columns.Add(col);  
-            }
-        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             label2.Visible = true;
@@ -147,44 +152,50 @@ namespace Anakena
         }
         private void BtnFiltro_Click(object sender, EventArgs e)
         {
-           try
+            dataGridView2.DataSource = null;
+            dataGridView2.Rows.Clear();
+            dataGridView4.DataSource = null;
+            dataGridView4.Rows.Clear();
+            dataGridView5.DataSource = null;
+            dataGridView5.Rows.Clear();
+
+
+            try
             {
-                if(cmb_variedad.SelectedValue.ToString() != "0")
+                if ((cmb_variedad.SelectedValue.ToString() != "0") && (radioButton1.Checked == true))
                 {
-                dataGridView2.Rows.Clear();
-                dataGridView2.DataSource = null;
-                traer_estimacion(dataGridView1.Rows[0].Cells[0].Value.ToString(), cmb_variedad.Text);
-                rellenar_serr(dataGridView1.Rows[0].Cells[0].Value.ToString());
-                relleno_Serr();
-                tabControl1.Visible = true;
-                Btn_Excel.Visible = true;
-                tabPage1.Text = cmb_variedad.Text;
-                pBar1.Visible = false;
-                label2.Visible = false;
+                    Estimacion_CalibreKG();
+                    Estimacion_CategoriaKG();
+                    EstimacionKG();
+                    dataGridView2.Columns[0].Visible = false;
+                    dataGridView2.Columns[1].Visible = false;
+                    dataGridView4.Columns[0].Visible = false;
+                    dataGridView5.Columns[0].Visible = false;
+                    dataGridView5.Columns[1].Width = 100;
+                    Btn_Excel.Visible = true;
+                    pBar1.Visible = false;
+                    label2.Visible = false;
                 }
                 else
+                if ((cmb_variedad.SelectedValue.ToString() != "0") && (radioButton2.Checked == true))
                 {
+                    Estimacion_CalibrePORC();
+                    Estimacion_CategoriaPORC();
+                    EstimacionPORC();
+                    dataGridView4.Columns[0].Visible = false;
+                    dataGridView5.Columns[0].Visible = false;
+                    dataGridView2.Columns[0].Visible = false;
+                    dataGridView2.Columns[1].Visible = false;
+                    dataGridView4.Columns[0].Visible = false;
+                    dataGridView5.Columns[0].Visible = false;
+                    dataGridView5.Columns[1].Width = 100;
+                    Btn_Excel.Visible = true;
 
-                    for (int i = 1; i < 3; i++)
-                    {
-                        dataGridView2.Rows.Clear();
-                        dataGridView2.DataSource = null;
-                        cmb_variedad.SelectedIndex = i;
-                        traer_estimacion(dataGridView1.Rows[0].Cells[0].Value.ToString(), cmb_variedad.Text);
-                        rellenar_serr(dataGridView1.Rows[0].Cells[0].Value.ToString());
-                        relleno_Serr();
-                        tabControl1.Visible = true;
-                        // Btn_Excel.Visible = true;
-                        tabPage1.Text = cmb_variedad.Text;
-                        exporta_a_excel();
-                    }
+
                 }
             }
-            catch
-            {
-                tabControl1.Visible = false;
-                Btn_Excel.Visible = false;
-                MessageBox.Show("Ocurrio un problema al tratar de mostrar estimulacion de variedad", "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            catch (Exception x) {
+                MessageBox.Show("se produjo un error al tratar de cargar datos  "+ x.ToString());
             }
                 
         }
@@ -193,6 +204,8 @@ namespace Anakena
             ApplicationClass class2 = new ApplicationClass();
             class2.Application.Workbooks.Add(true);
             int num = 0;
+            int numC = 0;
+            int numCC = 0;
             pBar1.Minimum = 1;
             pBar1.Maximum = dataGridView2.RowCount * dataGridView2.ColumnCount ;
             pBar1.Value = 1;
@@ -203,8 +216,26 @@ namespace Anakena
               class2.Cells[1, 1] = cmb_variedad.Text.Trim();
               num++;
               class2.Cells[1, num] = column.Name;
-              class2.get_Range("A1", "FK1").Interior.ColorIndex = 9;
-              class2.get_Range("A1", "FK1").Font.ColorIndex = 2;   
+              class2.get_Range("A1", "GC1").Interior.ColorIndex = 9;
+              class2.get_Range("A1", "GC1").Font.ColorIndex = 2;   
+               
+            }
+
+            foreach (DataGridViewColumn column in this.dataGridView4.Columns)
+            {
+                class2.Cells[32, 1] = cmb_variedad.Text.Trim();
+                numC++;
+                class2.Cells[32, numC] = column.Name;
+                class2.get_Range("A32", "GB32").Interior.ColorIndex = 9;
+                class2.get_Range("A32", "GB32").Font.ColorIndex = 2;
+            }
+            foreach (DataGridViewColumn column in this.dataGridView5.Columns)
+            {
+                class2.Cells[43, 1] = cmb_variedad.Text.Trim();
+                numCC++;
+                class2.Cells[43, numCC] = column.Name;
+                class2.get_Range("A43", "GB43").Interior.ColorIndex = 9;
+                class2.get_Range("A43", "GB43").Font.ColorIndex = 2;
             }
             int num2 = 0;
             foreach (DataGridViewRow row in (IEnumerable)this.dataGridView2.Rows)
@@ -219,10 +250,63 @@ namespace Anakena
                     label2.Text = "Proceso :" +pBar1.Value.ToString() +"/"+ (dataGridView2.RowCount*dataGridView2.ColumnCount).ToString();
                 }
             }
+            int num22 = 31;
+            foreach (DataGridViewRow row in (IEnumerable)this.dataGridView4.Rows)
+            {
+                num22++;
+                num = 0;
+                foreach (DataGridViewColumn column2 in this.dataGridView4.Columns)
+                {
+                    num++;
+                    class2.Cells[num22 + 1, num] = row.Cells[column2.Name].Value;
+                    pBar1.PerformStep();
+
+                }
+            }
+            int num222 = 42;
+            foreach (DataGridViewRow row in (IEnumerable)this.dataGridView5.Rows)
+            {
+                num222++;
+                num = 0;
+                foreach (DataGridViewColumn column2 in this.dataGridView5.Columns)
+                {
+                    num++;
+                    class2.Cells[num222 + 1, num] = row.Cells[column2.Name].Value;
+                    pBar1.PerformStep();
+
+                }
+            }
             class2.Visible = true;
             ((Worksheet)class2.ActiveSheet).Name = cmb_variedad.Text.Trim();
             ((Worksheet)class2.ActiveSheet).Activate();
              
+        }
+
+        private void dataGridView4_Scroll(object sender, ScrollEventArgs e)
+        {
+            dataGridView5.HorizontalScrollingOffset = e.NewValue;
+            dataGridView2.HorizontalScrollingOffset = e.NewValue;
+            dataGridView4.Columns[1].Frozen = true;
+        }
+
+        private void dataGridView5_Scroll(object sender, ScrollEventArgs e)
+        {
+            dataGridView4.HorizontalScrollingOffset = e.NewValue;
+            dataGridView2.HorizontalScrollingOffset = e.NewValue;
+            dataGridView5.Columns[1].Frozen = true;
+        }
+
+        private void dataGridView2_Scroll(object sender, ScrollEventArgs e)
+        {
+            dataGridView2.Columns[2].Frozen = true;
+            dataGridView4.HorizontalScrollingOffset = e.NewValue;
+            dataGridView5.HorizontalScrollingOffset = e.NewValue;
+
+        }
+
+        private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+           
         }
     }
 }

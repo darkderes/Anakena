@@ -29,33 +29,36 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEstimacion));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Btn_Excel = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmb_variedad = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnFiltro = new System.Windows.Forms.Button();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.pBar1 = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Btn_Excel
             // 
             this.Btn_Excel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Btn_Excel.BackgroundImage")));
             this.Btn_Excel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Btn_Excel.Location = new System.Drawing.Point(674, 663);
+            this.Btn_Excel.Location = new System.Drawing.Point(692, 774);
             this.Btn_Excel.Name = "Btn_Excel";
             this.Btn_Excel.Size = new System.Drawing.Size(50, 51);
             this.Btn_Excel.TabIndex = 13;
@@ -76,7 +79,7 @@
             // cmb_variedad
             // 
             this.cmb_variedad.FormattingEnabled = true;
-            this.cmb_variedad.Location = new System.Drawing.Point(576, 51);
+            this.cmb_variedad.Location = new System.Drawing.Point(142, 21);
             this.cmb_variedad.Name = "cmb_variedad";
             this.cmb_variedad.Size = new System.Drawing.Size(166, 21);
             this.cmb_variedad.TabIndex = 15;
@@ -86,7 +89,7 @@
             this.label1.AutoSize = true;
             this.label1.Cursor = System.Windows.Forms.Cursors.No;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(490, 52);
+            this.label1.Location = new System.Drawing.Point(56, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 16);
             this.label1.TabIndex = 16;
@@ -94,7 +97,7 @@
             // 
             // BtnFiltro
             // 
-            this.BtnFiltro.Location = new System.Drawing.Point(748, 49);
+            this.BtnFiltro.Location = new System.Drawing.Point(314, 19);
             this.BtnFiltro.Name = "BtnFiltro";
             this.BtnFiltro.Size = new System.Drawing.Size(75, 23);
             this.BtnFiltro.TabIndex = 17;
@@ -102,58 +105,20 @@
             this.BtnFiltro.UseVisualStyleBackColor = true;
             this.BtnFiltro.Click += new System.EventHandler(this.BtnFiltro_Click);
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.dataGridView3);
-            this.tabPage1.Controls.Add(this.dataGridView2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1208, 519);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "SERR";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 18);
+            this.dataGridView2.Location = new System.Drawing.Point(22, 144);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(1168, 445);
+            this.dataGridView2.Size = new System.Drawing.Size(1376, 206);
             this.dataGridView2.TabIndex = 1;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(22, 97);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1216, 545);
-            this.tabControl1.TabIndex = 11;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(337, 23);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(175, 68);
-            this.dataGridView1.TabIndex = 18;
-            this.dataGridView1.Visible = false;
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.AllowUserToAddRows = false;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(864, 41);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(240, 207);
-            this.dataGridView3.TabIndex = 19;
+            this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView2_CellFormatting);
+            this.dataGridView2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dataGridView2_Scroll);
             // 
             // pBar1
             // 
@@ -184,33 +149,106 @@
             this.label3.Text = "label3";
             this.label3.Visible = false;
             // 
+            // dataGridView4
+            // 
+            this.dataGridView4.AllowUserToAddRows = false;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView4.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Location = new System.Drawing.Point(22, 356);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.Size = new System.Drawing.Size(1372, 240);
+            this.dataGridView4.TabIndex = 23;
+            this.dataGridView4.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dataGridView4_Scroll);
+            // 
+            // dataGridView5
+            // 
+            this.dataGridView5.AllowUserToAddRows = false;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridView5.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView5.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Location = new System.Drawing.Point(26, 602);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.Size = new System.Drawing.Size(1372, 166);
+            this.dataGridView5.TabIndex = 24;
+            this.dataGridView5.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dataGridView5_Scroll);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.BtnFiltro);
+            this.groupBox1.Controls.Add(this.cmb_variedad);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(481, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(453, 126);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(162, 62);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(38, 17);
+            this.radioButton1.TabIndex = 18;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Kg";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(218, 62);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(90, 17);
+            this.radioButton2.TabIndex = 19;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "%(Porcentaje)";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(70, 62);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 16);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Unidad :";
+            // 
             // FormEstimacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1375, 764);
+            this.ClientSize = new System.Drawing.Size(1444, 882);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.dataGridView5);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pBar1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.BtnFiltro);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.cmb_variedad);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Btn_Excel);
-            this.Controls.Add(this.tabControl1);
             this.Name = "FormEstimacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulario estimacion";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,13 +260,15 @@
         private System.Windows.Forms.ComboBox cmb_variedad;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnFiltro;
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.ProgressBar pBar1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridView dataGridView5;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label label4;
     }
 }

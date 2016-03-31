@@ -16,18 +16,12 @@ namespace Anakena
    
     public partial class FormTemporada_Estimacion : Form
     {
+        int i = -2;
         conexion cn = new conexion();
         public FormTemporada_Estimacion()
         {
             InitializeComponent();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-    
-        }
-
         public void importarDatos(string file)
         {
             try {
@@ -49,9 +43,34 @@ namespace Anakena
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-
+            CmbFechas();
+            Estimacion();
         }
-
+        public void CmbFechas()
+        {
+            try
+            {
+                cn.Abrir();
+                SqlCommand command = new SqlCommand("spTraerFechaEstimacion", cn.getConexion());
+                SqlDataAdapter myAdapter = new SqlDataAdapter(command);
+                command.CommandType = CommandType.StoredProcedure;
+                DataSet myds = new DataSet();
+                myAdapter.Fill(myds, "Estimacion");
+                Cmb_Fechas.Refresh();
+                Cmb_Fechas.DataSource = myds.Tables["Estimacion"].DefaultView;
+                Cmb_Fechas.DisplayMember = "fecha";
+                Cmb_Fechas.ValueMember = "fecha";
+                cn.Cerrar();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Ocurrio un problema al cargar fechas :"+e, "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                
+            }
+        }
         public void ingresar_estimacion(string cod, double monto, string  variedad)
         {
             
@@ -194,6 +213,45 @@ namespace Anakena
             if (e.Value.ToString() != "0")
             {
                 e.CellStyle.Format = "##,##.00";
+            }
+            else
+            if(e.Value.ToString() == "")
+            {
+                e.Value = "S/R";
+            }
+        }
+        public void Estimacion()
+        {
+            try
+            {
+
+            SqlCommand cmd = new SqlCommand("spEstimacionporfecha", cn.getConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@fecha", SqlDbType.Date);
+            cmd.Parameters["@fecha"].Value = Cmb_Fechas.Text;
+             cn.Abrir();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet myds = new DataSet();
+            adapter.Fill(myds);
+            dataGridView1.DataSource = myds.Tables[0];        
+            cn.Cerrar(); 
+         
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Error :"+e,"Anakena",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+  
+        }
+
+        private void Cmb_Fechas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+             i++;
+            if(i > 0)
+            { 
+            Estimacion();
+            MessageBox.Show("Datos cargados con fecha "+Cmb_Fechas.Text,"Anakena",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                
             }
         }
     }

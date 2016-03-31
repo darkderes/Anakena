@@ -25,8 +25,10 @@ namespace Anakena
 
         private void estimacionCalibreToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             FormCalibre_Estimacion s = new FormCalibre_Estimacion();
             s.ShowDialog();
+            Cursor = Cursors.Default;
         }
 
         private void estimacionesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,8 +38,10 @@ namespace Anakena
 
         private void estimacionCategoriasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             FormCategoria_Estimacion s = new FormCategoria_Estimacion();
             s.ShowDialog();
+            Cursor = Cursors.Default;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -73,6 +77,11 @@ namespace Anakena
         {
             FormFactor s = new FormFactor();
             s.ShowDialog();
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
