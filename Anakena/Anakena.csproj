@@ -104,6 +104,12 @@
     <Compile Include="FormRealidad.Designer.cs">
       <DependentUpon>FormRealidad.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRealidadVSEstimacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRealidadVSEstimacion.Designer.cs">
+      <DependentUpon>FormRealidadVSEstimacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTemporada_Estimacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRealidad.resx">
       <DependentUpon>FormRealidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRealidadVSEstimacion.resx">
+      <DependentUpon>FormRealidadVSEstimacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTemporada_Estimacion.resx">
       <DependentUpon>FormTemporada_Estimacion.cs</DependentUpon>

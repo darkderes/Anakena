@@ -31,18 +31,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.estimacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.estimacionTemporadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estimacionCalibreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estimacionCategoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estimacionCalibreCategoriaRecepcionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estimacionCalibreCategoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.estimacionTemporadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.realToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.factorProductorVariedadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.estimacionVSRealidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -68,19 +69,13 @@
             this.estimacionCalibreCategoriaToolStripMenuItem,
             this.realToolStripMenuItem,
             this.factorProductorVariedadToolStripMenuItem,
+            this.estimacionVSRealidadToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.estimacionesToolStripMenuItem.Name = "estimacionesToolStripMenuItem";
             this.estimacionesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.estimacionesToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.estimacionesToolStripMenuItem.Text = "Estimaciones";
             this.estimacionesToolStripMenuItem.Click += new System.EventHandler(this.estimacionesToolStripMenuItem_Click);
-            // 
-            // estimacionTemporadaToolStripMenuItem
-            // 
-            this.estimacionTemporadaToolStripMenuItem.Name = "estimacionTemporadaToolStripMenuItem";
-            this.estimacionTemporadaToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
-            this.estimacionTemporadaToolStripMenuItem.Text = "Estimación Kg";
-            this.estimacionTemporadaToolStripMenuItem.Click += new System.EventHandler(this.estimacionTemporadaToolStripMenuItem_Click);
             // 
             // estimacionCalibreToolStripMenuItem
             // 
@@ -110,6 +105,13 @@
             this.estimacionCalibreCategoriaToolStripMenuItem.Text = "Resumen Variedad";
             this.estimacionCalibreCategoriaToolStripMenuItem.Click += new System.EventHandler(this.estimacionCalibreCategoriaToolStripMenuItem_Click);
             // 
+            // estimacionTemporadaToolStripMenuItem
+            // 
+            this.estimacionTemporadaToolStripMenuItem.Name = "estimacionTemporadaToolStripMenuItem";
+            this.estimacionTemporadaToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.estimacionTemporadaToolStripMenuItem.Text = "Estimación Kg";
+            this.estimacionTemporadaToolStripMenuItem.Click += new System.EventHandler(this.estimacionTemporadaToolStripMenuItem_Click);
+            // 
             // realToolStripMenuItem
             // 
             this.realToolStripMenuItem.Name = "realToolStripMenuItem";
@@ -123,6 +125,20 @@
             this.factorProductorVariedadToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
             this.factorProductorVariedadToolStripMenuItem.Text = "Factor Productor - Variedad";
             this.factorProductorVariedadToolStripMenuItem.Click += new System.EventHandler(this.factorProductorVariedadToolStripMenuItem_Click);
+            // 
+            // estimacionVSRealidadToolStripMenuItem
+            // 
+            this.estimacionVSRealidadToolStripMenuItem.Name = "estimacionVSRealidadToolStripMenuItem";
+            this.estimacionVSRealidadToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.estimacionVSRealidadToolStripMenuItem.Text = "Estimacion V/S Realidad";
+            this.estimacionVSRealidadToolStripMenuItem.Click += new System.EventHandler(this.estimacionVSRealidadToolStripMenuItem_Click);
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // label2
             // 
@@ -165,13 +181,6 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // salirToolStripMenuItem
-            // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
-            this.salirToolStripMenuItem.Text = "Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
-            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -213,5 +222,6 @@
         private System.Windows.Forms.ToolStripMenuItem realToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem factorProductorVariedadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem estimacionVSRealidadToolStripMenuItem;
     }
 }

@@ -37,9 +37,8 @@ namespace Anakena
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("sistema_realidad_all", cn.getConexion());
+            SqlCommand cmd = new SqlCommand("sistema_realidad_all", cn.getConexion());
             cmd.CommandType = CommandType.StoredProcedure;
-
             cn.Abrir();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet myds = new DataSet();
@@ -149,8 +148,6 @@ namespace Anakena
                         acum = acum + Convert.ToDouble(dataGridView4.Rows[i].Cells[calibre].Value.ToString()); //+ Convert.ToDouble(dataGridView4.Rows[i].Cells[3].Value.ToString()) + Convert.ToDouble(dataGridView4.Rows[i].Cells[4].Value.ToString()) + Convert.ToDouble(dataGridView4.Rows[i].Cells[5].Value.ToString())+ Convert.ToDouble(dataGridView4.Rows[i].Cells[6].Value.ToString())+ Convert.ToDouble(dataGridView4.Rows[i].Cells[7].Value.ToString()) + Convert.ToDouble(dataGridView4.Rows[i].Cells[8].Value.ToString())+ Convert.ToDouble(dataGridView4.Rows[i].Cells[9].Value.ToString());
                                                                                                          // MessageBox.Show(acum.ToString());
                     }
-
-
                 }
                 catch { }
             }

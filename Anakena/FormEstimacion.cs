@@ -164,6 +164,7 @@ namespace Anakena
             {
                 if ((cmb_variedad.SelectedValue.ToString() != "0") && (radioButton1.Checked == true))
                 {
+                    Cursor = Cursors.WaitCursor;
                     Estimacion_CalibreKG();
                     Estimacion_CategoriaKG();
                     EstimacionKG();
@@ -175,6 +176,7 @@ namespace Anakena
                     Btn_Excel.Visible = true;
                     pBar1.Visible = false;
                     label2.Visible = false;
+                    Cursor = Cursors.Default;
                 }
                 else
                 if ((cmb_variedad.SelectedValue.ToString() != "0") && (radioButton2.Checked == true))

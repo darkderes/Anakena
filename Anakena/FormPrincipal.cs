@@ -83,5 +83,11 @@ namespace Anakena
         {
             this.Close();
         }
+
+        private void estimacionVSRealidadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormRealidadVSEstimacion s = new FormRealidadVSEstimacion();
+            s.ShowDialog();
+        }
     }
 }
