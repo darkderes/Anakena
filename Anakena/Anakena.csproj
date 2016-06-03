@@ -98,6 +98,12 @@
     <Compile Include="FormFactor.Designer.cs">
       <DependentUpon>FormFactor.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLoading.Designer.cs">
+      <DependentUpon>FormLoading.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRealidad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,12 @@
     </Compile>
     <Compile Include="FormRealidadVSEstimacion.Designer.cs">
       <DependentUpon>FormRealidadVSEstimacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReport.Designer.cs">
+      <DependentUpon>FormReport.cs</DependentUpon>
     </Compile>
     <Compile Include="FormTemporada_Estimacion.cs">
       <SubType>Form</SubType>
@@ -154,11 +166,17 @@
     <EmbeddedResource Include="FormFactor.resx">
       <DependentUpon>FormFactor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormLoading.resx">
+      <DependentUpon>FormLoading.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRealidad.resx">
       <DependentUpon>FormRealidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRealidadVSEstimacion.resx">
       <DependentUpon>FormRealidadVSEstimacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReport.resx">
+      <DependentUpon>FormReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTemporada_Estimacion.resx">
       <DependentUpon>FormTemporada_Estimacion.cs</DependentUpon>

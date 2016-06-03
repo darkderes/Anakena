@@ -17,6 +17,7 @@ namespace Anakena
     {
         conexion ex = new conexion();
         conexionERP cn = new conexionERP();
+        int cantidad = 0;
         public FormRealidadVSEstimacion()
         {
             InitializeComponent();
@@ -26,11 +27,26 @@ namespace Anakena
         {
             CmbVariedad();
             CmbTipo.SelectedIndex = 0;
-            radioButton1.Checked = true;
-           
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.WorkerSupportsCancellation = true;
+            //radioButton1.Checked = true;
+
         }
-      
-      
+        //public void Estimacion_CalibrePORC()
+        //{
+        //    SqlCommand cmd = new SqlCommand("spEstimacionCalibre%", ex.getConexion());
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.Add("@variedad", SqlDbType.Int);
+        //    cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
+        //    cn.Abrir();
+        //    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+        //    DataSet myds = new DataSet();
+        //    adapter.Fill(myds);
+        //    dataGridView4.DataSource = myds.Tables[0];
+        //    cn.Cerrar();
+
+        //}
+
         public void CmbVariedad()
         {
             try
@@ -55,23 +71,56 @@ namespace Anakena
                 ex.Cerrar();
             }
         }
-        public void EstimacionKG()
+
+        private void BtnFiltro_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("spTraer_Estimacion", ex.getConexion());
+            //System.Threading.Thread.Sleep(2000);
+            //
+            // FormLoading s = new FormLoading();
+            //if(backgroundWorker1.IsBusy != true)
+            //{
+            //backgroundWorker1.RunWorkerAsync();
+            //}
+            Cursor = Cursors.WaitCursor;
+            Grilla_total();
+            Grilla_Calibre();
+            Grilla_Categoria();
+            tabControl1.Visible = true;
+            Cursor = Cursors.Default;
+            //dataGridView1.Columns[0].Visible = false;
+            //dataGridView2.Columns[0].Visible = false;
+            //dataGridView3.Columns[0].Visible = false;
+
+            
+           // s.ShowDialog();
+           //   
+       
+  
+            //
+            //  pictureBox1.Visible = false;
+
+
+        }
+
+        public void Grilla_total()
+        {
+         
+            SqlCommand cmd = new SqlCommand("spTraer_RealMasEstimado", ex.getConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@variedad", SqlDbType.Int);
             cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
+
             ex.Abrir();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet myds = new DataSet();
             adapter.Fill(myds);
             dataGridView1.DataSource = myds.Tables[0];
             ex.Cerrar();
-
         }
-        public void EstimacionKG2()
+        
+        public void Grilla_Calibre()
         {
-            SqlCommand cmd = new SqlCommand("spTraer_Estimacion", ex.getConexion());
+            SqlCommand cmd = new SqlCommand("spTraer_RealMasEstimadoCalibre", ex.getConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@variedad", SqlDbType.Int);
             cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
@@ -79,100 +128,263 @@ namespace Anakena
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet myds = new DataSet();
             adapter.Fill(myds);
+            dataGridView2.DataSource = myds.Tables[0];
+            ex.Cerrar();
+        }
+        public void Grilla_Categoria()
+        {
+            SqlCommand cmd = new SqlCommand("spTraer_RealMasEstimadoCategoria", ex.getConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@variedad", SqlDbType.Int);
+            cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet myds = new DataSet();
+            adapter.Fill(myds);
             dataGridView3.DataSource = myds.Tables[0];
             ex.Cerrar();
-
         }
 
-        public void traerReal()
+        private void dataGridView1_Scroll(object sender, ScrollEventArgs e)
+        {
+            dataGridView1.Columns[1].Frozen = true;
+            dataGridView2.HorizontalScrollingOffset = e.NewValue;
+            dataGridView3.HorizontalScrollingOffset = e.NewValue;
+        }
+
+        private void dataGridView2_Scroll(object sender, ScrollEventArgs e)
+        {
+            dataGridView2.Columns[1].Frozen = true;
+            dataGridView1.HorizontalScrollingOffset = e.NewValue;
+            dataGridView3.HorizontalScrollingOffset = e.NewValue;
+        }
+
+        private void dataGridView3_Scroll(object sender, ScrollEventArgs e)
+        {
+            dataGridView3.Columns[1].Frozen = true;
+            dataGridView1.HorizontalScrollingOffset = e.NewValue;
+            dataGridView2.HorizontalScrollingOffset = e.NewValue;
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+           try
+            {
+
+                int variedad = 2;
+               
+            }
+            catch ( Exception ef)
+            {
+                MessageBox.Show(ef.Message);
+             }
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            pictureBox1.Visible = false;
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("spTraer_Estimacion2", ex.getConexion());
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@variedad", SqlDbType.VarChar, 25);
-                cmd.Parameters["@variedad"].Value =cmb_variedad.SelectedValue.ToString();
-                cn.Abrir();
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                DataSet myds = new DataSet();
-                adapter.Fill(myds);
-                dataGridView2.DataSource = myds.Tables[0];
-                cn.Cerrar();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Base de datos sin informacion :" + e, "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-        }
-   
-        private void BtnFiltro_Click(object sender, EventArgs e)
-        {
-        
-            try
-            {
-                if ((cmb_variedad.SelectedValue.ToString() != "0") && (radioButton1.Checked == true))
+                if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "")
                 {
-                    Cursor = Cursors.WaitCursor;
-                    EstimacionKG();
-                    EstimacionKG2();
-                    traerReal();
-                    dataGridView1.Columns[0].Visible = false;
-                    dataGridView1.Columns[1].Visible = false;
-                    dataGridView2.Columns[1].Visible = false;
-                    dataGridView2.Columns[2].Visible = false;
-                   
-                    Cursor = Cursors.Default;
-                  for (int x = 3; x < dataGridView3.ColumnCount - 1; x++)
-                    {
-                        for (int i = 0; i < dataGridView3.RowCount - 1; i++)
-                        {
-                            try
-                            { 
-                            dataGridView3.Rows[i].Cells[x].Value = 0;
-                            dataGridView3.Rows[i].Cells[x].Value = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[x].Value) - Convert.ToDouble(dataGridView2.Rows[i].Cells[x].Value)),2);
-                                if(Convert.ToDouble(dataGridView3.Rows[i].Cells[x].Value.ToString()) < 0)
-                                    {
-                                  
-                                 
-                                }
-                            }
-                            catch { }
-                        }
-
-                    }
-                      dataGridView3.Columns[0].Visible = false;
-                      dataGridView3.Columns[1].Visible = false;
+                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 0;
                 }
-         
             }
-            catch (Exception x)
-            {
-                MessageBox.Show("se produjo un error al tratar de cargar datos  " + x.ToString());
-            }  
+            catch
+            { }
         }
 
         private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-         if(dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "")
+            try
             {
-                dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 0;
+                if (dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "")
+                {
+                    dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 0;
+                }
             }
-           
-          
+            catch
+            { }
         }
 
         private void dataGridView3_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             try
             {
-                if (Convert.ToDouble(dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) < 0)
+                if (dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "")
                 {
-                    dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.SteelBlue;
-                    dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.White;
+                    dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 0;
                 }
             }
-            catch { }
+            catch
+            { }
         }
-    }
+        //public void EstimacionKG()
+        //{
+        //    SqlCommand cmd = new SqlCommand("spTraer_Estimacion", ex.getConexion());
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.Add("@variedad", SqlDbType.Int);
+        //    cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
+        //    ex.Abrir();
+        //    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+        //    DataSet myds = new DataSet();
+        //    adapter.Fill(myds);
+        //    dataGridView1.DataSource = myds.Tables[0];
+        //    ex.Cerrar();
+
+        //}
+        //public void EstimacionKG2()
+        //{
+        //    SqlCommand cmd = new SqlCommand("spTraer_Estimacion", ex.getConexion());
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.Add("@variedad", SqlDbType.Int);
+        //    cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
+        //    ex.Abrir();
+        //    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+        //    DataSet myds = new DataSet();
+        //    adapter.Fill(myds);
+        //    dataGridView3.DataSource = myds.Tables[0];
+        //    ex.Cerrar();
+
+        //}
+
+        //public void traerReal()
+        //{
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand("spTraer_Estimacion2", ex.getConexion());
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.Parameters.Add("@variedad", SqlDbType.VarChar, 25);
+        //        cmd.Parameters["@variedad"].Value =cmb_variedad.SelectedValue.ToString();
+        //        cn.Abrir();
+        //        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+        //        DataSet myds = new DataSet();
+        //        adapter.Fill(myds);
+        //        dataGridView2.DataSource = myds.Tables[0];
+        //        cn.Cerrar();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MessageBox.Show("Base de datos sin informacion :" + e, "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    }
+
+        //}
+
+        //private void BtnFiltro_Click(object sender, EventArgs e)
+        //{
+
+        //    try
+        //    {
+        //        if ((cmb_variedad.SelectedValue.ToString() != "0") && (radioButton1.Checked == true))
+        //        {
+        //            Cursor = Cursors.WaitCursor;Estimacion_CalibrePORC();
+        //            EstimacionKG();
+        //            EstimacionKG2();
+
+        //            traerReal();
+        //            dataGridView1.Columns[0].Visible = false;
+        //            dataGridView1.Columns[1].Visible = false;
+        //            dataGridView2.Columns[1].Visible = false;
+        //            dataGridView2.Columns[2].Visible = false;
+
+
+        //            for (int x = 3; x < dataGridView3.ColumnCount - 1; x++)
+        //            {
+        //                double acum = 0;
+        //                dataGridView3.Rows[dataGridView3.Rows.Count-1].Cells[x].Value = 0;
+        //                for (int i = 0; i < dataGridView3.RowCount - 1; i++)
+        //                {//dataGridView3.Rows[i].Cells[x].Value = 0;
+
+        //                    try
+        //                    {
+        //                        dataGridView3.Rows[i].Cells[x].Value = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[x].Value) - Convert.ToDouble(dataGridView2.Rows[i].Cells[x].Value)), 2);
+        //                        acum = Math.Round((acum + (Convert.ToDouble(dataGridView1.Rows[i].Cells[x].Value) - Convert.ToDouble(dataGridView2.Rows[i].Cells[x].Value))), 2);
+        //                        if (Convert.ToDouble(dataGridView3.Rows[i].Cells[x].Value.ToString()) < 0)
+        //                        {
+        //                            dataGridView3.Rows[i].Cells[x].Style.BackColor = Color.SteelBlue;
+        //                            dataGridView3.Rows[i].Cells[x].Style.ForeColor = Color.White;
+        //                            cantidad++;
+        //                        }
+        //                    }
+        //                    catch { }
+
+        //            }
+        //                   dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells[x].Value = acum;
+        //            }
+
+
+        //            dataGridView3.Columns[0].Visible = false;
+        //                   dataGridView3.Columns[1].Visible = false;
+        //                   Cursor = Cursors.Default;
+        //                   tabControl1.Visible = true;
+        //        }
+        //        if(cantidad > 0)
+        //        {
+        //            MessageBox.Show("Necesita actualizar planillas de estimacion" + Environment.NewLine + "Debido a :" + Environment.NewLine +
+        //                " " + Environment.NewLine
+        //                + " * Se encuentran productos procesados mayor a su estimación.", "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        }
+
+        //    }           
+
+        //    catch (Exception x)
+        //    {
+        //        MessageBox.Show("se produjo un error al tratar de cargar datos  " + x.ToString());
+        //    }  
+        //}
+
+        //private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //{
+
+        //    if (dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "")
+        //    {
+        //        dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 0;
+        //    }
+
+        //}
+
+        //        private void dataGridView3_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //        {
+        //            try
+        //            {
+        //                if (Convert.ToDouble(dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) < 0)
+        //                {
+        //                    dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.SteelBlue;
+        //                    dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.White;
+
+
+        //                }
+        //                if ((Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) == 0) && ( (dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()=="")||(Convert.ToDouble(dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) == 0) ) )//(Convert.ToDouble(dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) == 0)||
+        //                {
+        //                    dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.OrangeRed;
+        //                    dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.White;
+        //                }
+        //                if ((Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) > 0) && ((dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "") || (Convert.ToDouble(dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) == 0)))
+        //                {
+        //                    dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Olive;
+        //                    dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.White;
+        //                }
+        //            }
+        //            catch { }
+        //        }
+
+        //        private void dataGridView2_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        //        {
+        //  if (dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "")
+        //            {
+        //                dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 0;
+        //            }
+        //}
+
+        //        private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e) 
+        //        {
+        //            if (dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "")
+        //            {
+        //                dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 0;
+        //            }
+        //        }
+    }  
 }
