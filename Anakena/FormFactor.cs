@@ -16,6 +16,7 @@ namespace Anakena
         conexion cn = new conexion();
         DataSet myds = new DataSet();
         DataSet myds_serr = new DataSet();
+
         public FormFactor()
         {
             InitializeComponent();
@@ -47,14 +48,15 @@ namespace Anakena
         }
         public void importarDatosSERR(string file)
         {
-
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
             OleDbCommand command = new OleDbCommand();
             OleDbConnection conn = new OleDbConnection();
             conn.ConnectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + file + "';Extended Properties=Excel 8.0;";
             command = new OleDbCommand("select * from [SERR$]", conn);
             OleDbDataAdapter adap = new OleDbDataAdapter(command);
-            adap.Fill(myds);
-            dataGridView1.DataSource = myds.Tables[0];
+            adap.Fill(myds_serr);
+            dataGridView1.DataSource = myds_serr.Tables[0];
 
         }
         public void importarDatosCHANDLER(string file)
@@ -209,11 +211,11 @@ namespace Anakena
             {
                 try
                 {
-                    string productor = dataGridView1.Rows[i].Cells["productor"].Value.ToString();
-                    string variedad = dataGridView1.Rows[i].Cells["Variedad"].Value.ToString();
-                    double estimacion = Convert.ToDouble(dataGridView1.Rows[i].Cells["Porcentaje_estimacion"].Value.ToString());
-                    double realidad = Convert.ToDouble(dataGridView1.Rows[i].Cells["Porcentaje_Realidad"].Value.ToString());
-                    ingresarFactor(productor, variedad, estimacion, realidad);
+                    //string productor = dataGridView1.Rows[i].Cells["productor"].Value.ToString();
+                    //string variedad = dataGridView1.Rows[i].Cells["Variedad"].Value.ToString();
+                    //double estimacion = Convert.ToDouble(dataGridView1.Rows[i].Cells["Porcentaje_estimacion"].Value.ToString());
+                    //double realidad = Convert.ToDouble(dataGridView1.Rows[i].Cells["Porcentaje_Realidad"].Value.ToString());
+                    ingresarFactor(dataGridView1.Rows[i].Cells["productor"].Value.ToString(), dataGridView1.Rows[i].Cells["Variedad"].Value.ToString(), Convert.ToDouble(dataGridView1.Rows[i].Cells["Porcentaje_estimacion"].Value.ToString()), Convert.ToDouble(dataGridView1.Rows[i].Cells["Porcentaje_Realidad"].Value.ToString()));
                     ingresarFactor(dataGridView2.Rows[i].Cells["productor"].Value.ToString(), dataGridView2.Rows[i].Cells["Variedad"].Value.ToString(), Convert.ToDouble(dataGridView2.Rows[i].Cells["Porcentaje_estimacion"].Value.ToString()), Convert.ToDouble(dataGridView2.Rows[i].Cells["Porcentaje_Realidad"].Value.ToString()));
                     ingresarFactor(dataGridView3.Rows[i].Cells["productor"].Value.ToString(), dataGridView3.Rows[i].Cells["Variedad"].Value.ToString(), Convert.ToDouble(dataGridView3.Rows[i].Cells["Porcentaje_estimacion"].Value.ToString()), Convert.ToDouble(dataGridView3.Rows[i].Cells["Porcentaje_Realidad"].Value.ToString()));
                     ingresarFactor(dataGridView4.Rows[i].Cells["productor"].Value.ToString(), dataGridView4.Rows[i].Cells["Variedad"].Value.ToString(), Convert.ToDouble(dataGridView4.Rows[i].Cells["Porcentaje_estimacion"].Value.ToString()), Convert.ToDouble(dataGridView4.Rows[i].Cells["Porcentaje_Realidad"].Value.ToString()));
@@ -679,6 +681,10 @@ namespace Anakena
                 dataGridView7.Columns[2].ReadOnly = true;
                 dataGridView7.Columns["Id"].Visible = false;
 
+                dataGridView8.Columns[1].ReadOnly = true;
+                dataGridView8.Columns[2].ReadOnly = true;
+                dataGridView8.Columns["Id"].Visible = false;
+
                 dataGridView9.Columns[1].ReadOnly = true;
                 dataGridView9.Columns[2].ReadOnly = true;
                 dataGridView9.Columns["Id"].Visible = false;
@@ -711,43 +717,43 @@ namespace Anakena
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
 
-            DialogResult dialogResult = MessageBox.Show("Seguro que desea modificar este dato ??", "Anakena", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
-            {
+            //DialogResult dialogResult = MessageBox.Show("Seguro que desea modificar este dato ??", "Anakena", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            //if (dialogResult == DialogResult.Yes)
+            //{
 
-                if((Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells["% Estimacion"].Value.ToString())+Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells["% Real"].Value.ToString())) <= 100)
-                { 
-                ModificarFactor(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value.ToString(),Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells["% Estimacion"].Value.ToString()),Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells["% Real"].Value.ToString()));
-                MessageBox.Show("Dato modificado correctamente", "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    if((Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells["% Estimacion"].Value.ToString())+Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells["% Real"].Value.ToString())) <= 100)
+            //    { 
+            //    ModificarFactor(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value.ToString(),Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells["% Estimacion"].Value.ToString()),Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells["% Real"].Value.ToString()));
+            //    MessageBox.Show("Dato modificado correctamente", "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information);
                
-                }
-                else
-                {
-                    MessageBox.Show("La suma del porcentaje estimacion mas el real no pueden sumar mas de 100 % ??", "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                traerFactor("2");
-                traerFactor_Chandler("5");
-                traerFactor_HOWARD("9");
-                traerFactor_TULARE("10");
-                traerFactor_SUNDLAND("6");
-                traerFactor_HARTLEY("4");
-                traerFactor_SEMILLA("1");
-                traerFactor_VINA("3");
-                traerFactor_VINA_MEJORADA("15");
-                traerFactor_FRANQUETTE("8");
-                traerFactor_DESPELONADO("16");
-                traerFactor_QUEBRADO("14");
-            }
-            else if (dialogResult == DialogResult.No)
-            {
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("La suma del porcentaje estimacion mas el real no pueden sumar mas de 100 % ??", "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //    traerFactor("2");
+            //    traerFactor_Chandler("5");
+            //    traerFactor_HOWARD("9");
+            //    traerFactor_TULARE("10");
+            //    traerFactor_SUNDLAND("6");
+            //    traerFactor_HARTLEY("4");
+            //    traerFactor_SEMILLA("1");
+            //    traerFactor_VINA("3");
+            //    traerFactor_VINA_MEJORADA("15");
+            //    traerFactor_FRANQUETTE("8");
+            //    traerFactor_DESPELONADO("16");
+            //    traerFactor_QUEBRADO("14");
+            //}
+            //else if (dialogResult == DialogResult.No)
+            //{
               
-            }
+            //}
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
 
-            tabControl1.Visible = false;
+            tabControl1.Visible = true;
             traerFactor_filtro(Txt_Codigo.Text);
            
             dataGridView13.Visible = true;

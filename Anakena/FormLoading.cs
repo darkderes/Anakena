@@ -21,5 +21,10 @@ namespace Anakena
         {
 
         }
+
+        private void FormLoading_Load(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Image.FromFile("C:/spin.gif");
+        }
     }
 }

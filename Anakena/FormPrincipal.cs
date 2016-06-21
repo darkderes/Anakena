@@ -89,5 +89,51 @@ namespace Anakena
             FormRealidadVSEstimacion s = new FormRealidadVSEstimacion();
             s.ShowDialog();
         }
+
+        private void resumenEstimacionRealidadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormResumenEstimacionMasReal s = new FormResumenEstimacionMasReal();
+            s.ShowDialog();
+        }
+
+        private void calibradoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            FormCalibrado s = new FormCalibrado();
+            s.acceso = 0;
+            s.ShowDialog(); 
+                
+        }
+
+        private void calibradorealEstimadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCalibrado s = new FormCalibrado();
+            s.acceso = 1;
+            s.ShowDialog();
+        }
+
+        private void kGCATCALToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormKGcat_cal s = new FormKGcat_cal();
+            s.ShowDialog();
+        }
+
+        private void tarifasPorCalibreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormTarifas_Calibre c = new FormTarifas_Calibre();
+            c.ShowDialog();
+        }
+
+        private void tarifasPCCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormProceso_CC c = new FormProceso_CC();
+            c.ShowDialog();
+        }
+
+        private void tarifasPSCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormProceso_SC c = new FormProceso_SC();
+            c.ShowDialog();
+        }
     }
 }

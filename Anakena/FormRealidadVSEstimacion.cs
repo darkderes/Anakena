@@ -26,9 +26,9 @@ namespace Anakena
         private void FormRealidadVSEstimacion_Load(object sender, EventArgs e)
         {
             CmbVariedad();
-            CmbTipo.SelectedIndex = 0;
             backgroundWorker1.WorkerReportsProgress = true;
             backgroundWorker1.WorkerSupportsCancellation = true;
+            radioButton1.Checked = true;
             //radioButton1.Checked = true;
 
         }
@@ -74,32 +74,39 @@ namespace Anakena
 
         private void BtnFiltro_Click(object sender, EventArgs e)
         {
-            //System.Threading.Thread.Sleep(2000);
-            //
-            // FormLoading s = new FormLoading();
-            //if(backgroundWorker1.IsBusy != true)
-            //{
-            //backgroundWorker1.RunWorkerAsync();
-            //}
+            try
+
+            {
+            dataGridView1.Columns[1].Frozen = false;
+            dataGridView2.Columns[1].Frozen = false;
+            dataGridView3.Columns[1].Frozen = false;
+            }
+            catch { }
+
+            if (radioButton1.Checked == true)
+            { 
             Cursor = Cursors.WaitCursor;
             Grilla_total();
             Grilla_Calibre();
-            Grilla_Categoria();
-            tabControl1.Visible = true;
+            Grilla_Categoria();           
             Cursor = Cursors.Default;
-            //dataGridView1.Columns[0].Visible = false;
-            //dataGridView2.Columns[0].Visible = false;
-            //dataGridView3.Columns[0].Visible = false;
+            }
+            else
+            {
+                Cursor = Cursors.WaitCursor;
+                Grilla_Calibre_porc();
+                Grilla_Categoria_porc();
+                Cursor = Cursors.Default;
+            }
 
-            
-           // s.ShowDialog();
-           //   
-       
-  
-            //
-            //  pictureBox1.Visible = false;
-
-
+            tabControl1.Visible = true;
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView2.Columns[0].Visible = false;
+            dataGridView3.Columns[0].Visible = false;
+            pictureBox3.Visible = false;
+            pictureBox4.Visible = false;
+            pictureBox2.Visible = true;
+            Btn_Excel.Visible = true;
         }
 
         public void Grilla_total()
@@ -109,7 +116,6 @@ namespace Anakena
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@variedad", SqlDbType.Int);
             cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
-
             ex.Abrir();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet myds = new DataSet();
@@ -131,9 +137,34 @@ namespace Anakena
             dataGridView2.DataSource = myds.Tables[0];
             ex.Cerrar();
         }
+        public void Grilla_Calibre_porc()
+        {
+            SqlCommand cmd = new SqlCommand("spTraer_RealMasEstimadoCalibre%", ex.getConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@variedad", SqlDbType.Int);
+            cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
+            ex.Abrir();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet myds = new DataSet();
+            adapter.Fill(myds);
+            dataGridView2.DataSource = myds.Tables[0];
+            ex.Cerrar();
+        }
         public void Grilla_Categoria()
         {
             SqlCommand cmd = new SqlCommand("spTraer_RealMasEstimadoCategoria", ex.getConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@variedad", SqlDbType.Int);
+            cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet myds = new DataSet();
+            adapter.Fill(myds);
+            dataGridView3.DataSource = myds.Tables[0];
+            ex.Cerrar();
+        }
+        public void Grilla_Categoria_porc()
+        {
+            SqlCommand cmd = new SqlCommand("spTraer_RealMasEstimadoCategoria%", ex.getConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@variedad", SqlDbType.Int);
             cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
@@ -222,6 +253,94 @@ namespace Anakena
             catch
             { }
         }
+
+        private void Btn_Excel_Click(object sender, EventArgs e)
+        {
+            exporta_a_excel();
+        }
+        public void exporta_a_excel()
+        {
+            ApplicationClass class2 = new ApplicationClass();
+            class2.Application.Workbooks.Add(true);
+            int num = 0;
+            int numC = 0;
+            int numCC = 0;
+            //pBar1.Minimum = 1;
+            //pBar1.Maximum = dataGridView2.RowCount * dataGridView2.ColumnCount;
+            //pBar1.Value = 1;
+            //pBar1.Step = 1;
+
+            foreach (DataGridViewColumn column in this.dataGridView1.Columns)
+            {
+                class2.Cells[1, 1] = cmb_variedad.Text.Trim();
+                num++;
+                class2.Cells[1, num] = column.Name;
+                class2.get_Range("A1", "GC1").Interior.ColorIndex = 9;
+                class2.get_Range("A1", "GC1").Font.ColorIndex = 2;
+
+            }
+
+            foreach (DataGridViewColumn column in this.dataGridView2.Columns)
+            {
+                class2.Cells[8, 1] = cmb_variedad.Text.Trim();
+                numC++;
+                class2.Cells[8, numC] = column.Name;
+                class2.get_Range("A40", "GB40").Interior.ColorIndex = 9;
+                class2.get_Range("A40", "GB40").Font.ColorIndex = 2;
+            }
+            foreach (DataGridViewColumn column in this.dataGridView3.Columns)
+            {
+                class2.Cells[19, 1] = cmb_variedad.Text.Trim();
+                numCC++;
+                class2.Cells[19, numCC] = column.Name;
+                class2.get_Range("A54", "GB54").Interior.ColorIndex = 9;
+                class2.get_Range("A54", "GB54").Font.ColorIndex = 2;
+            }
+            int num2 = 0;
+            foreach (DataGridViewRow row in (IEnumerable)this.dataGridView1.Rows)
+            {
+                num2++;
+                num = 0;
+                foreach (DataGridViewColumn column2 in this.dataGridView1.Columns)
+                {
+                    num++;
+                    class2.Cells[num2 + 1, num] = row.Cells[column2.Name].Value;
+                    //pBar1.PerformStep();
+                    //label2.Text = "Proceso :" + pBar1.Value.ToString() + "/" + (dataGridView2.RowCount * dataGridView2.ColumnCount).ToString();
+                }
+            }
+            int num22 = 39;
+            foreach (DataGridViewRow row in (IEnumerable)this.dataGridView2.Rows)
+            {
+                num22++;
+                num = 0;
+                foreach (DataGridViewColumn column2 in this.dataGridView2.Columns)
+                {
+                    num++;
+                    class2.Cells[num22 + 1, num] = row.Cells[column2.Name].Value;
+                    //pBar1.PerformStep();
+
+                }
+            }
+            int num222 = 53;
+            foreach (DataGridViewRow row in (IEnumerable)this.dataGridView3.Rows)
+            {
+                num222++;
+                num = 0;
+                foreach (DataGridViewColumn column2 in this.dataGridView3.Columns)
+                {
+                    num++;
+                    class2.Cells[num222 + 1, num] = row.Cells[column2.Name].Value;
+                    //pBar1.PerformStep();
+
+                }
+            }
+            class2.Visible = true;
+            ((Worksheet)class2.ActiveSheet).Name = cmb_variedad.Text.Trim();
+            ((Worksheet)class2.ActiveSheet).Activate();
+
+        }
+
         //public void EstimacionKG()
         //{
         //    SqlCommand cmd = new SqlCommand("spTraer_Estimacion", ex.getConexion());
@@ -386,5 +505,5 @@ namespace Anakena
         //                dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 0;
         //            }
         //        }
-    }  
+    }
 }

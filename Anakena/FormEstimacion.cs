@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using Microsoft.Office.Interop.Excel;
 using System.Collections;
 using System.IO;
+using System.Threading;
 
 namespace Anakena
 {
@@ -33,6 +34,7 @@ namespace Anakena
         }
         public void Estimacion_CalibreKG()
         {
+            System.Windows.Forms.Application.DoEvents();
             SqlCommand cmd = new SqlCommand("spEstimacionCalibreKilos", cn.getConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@variedad", SqlDbType.Int);
@@ -47,6 +49,7 @@ namespace Anakena
         }
         public void Estimacion_CalibrePORC()
         {
+          
             SqlCommand cmd = new SqlCommand("spEstimacionCalibre%", cn.getConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@variedad", SqlDbType.Int);
@@ -61,6 +64,7 @@ namespace Anakena
         }
         public void EstimacionKG()
         {
+           
             SqlCommand cmd = new SqlCommand("spTraer_Estimacion", cn.getConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@variedad", SqlDbType.Int);
@@ -152,6 +156,13 @@ namespace Anakena
         }
         private void BtnFiltro_Click(object sender, EventArgs e)
         {
+
+        
+            pictureBox4.Image = Image.FromFile("C:/spin.gif");
+            pictureBox4.Visible = true;
+         
+            
+
             dataGridView2.DataSource = null;
             dataGridView2.Rows.Clear();
             dataGridView4.DataSource = null;
@@ -159,21 +170,31 @@ namespace Anakena
             dataGridView5.DataSource = null;
             dataGridView5.Rows.Clear();
 
-
             try
             {
                 if ((cmb_variedad.SelectedValue.ToString() != "0") && (radioButton1.Checked == true))
                 {
+                  
                     Cursor = Cursors.WaitCursor;
+                    System.Windows.Forms.Application.DoEvents();
                     Estimacion_CalibreKG();
+                    System.Windows.Forms.Application.DoEvents();
                     Estimacion_CategoriaKG();
+                    System.Windows.Forms.Application.DoEvents();
                     EstimacionKG();
+                    System.Windows.Forms.Application.DoEvents();
                     dataGridView2.Columns[0].Visible = false;
                     dataGridView2.Columns[1].Visible = false;
                     dataGridView4.Columns[0].Visible = false;
                     dataGridView5.Columns[0].Visible = false;
                     dataGridView5.Columns[1].Width = 100;
                     Btn_Excel.Visible = true;
+                    dataGridView2.Visible = true;
+                    dataGridView4.Visible = true;
+                    dataGridView5.Visible = true;
+                    pictureBox1.Visible = true;
+                    pictureBox2.Visible = false;
+                    pictureBox3.Visible = false;
                     pBar1.Visible = false;
                     label2.Visible = false;
                     Cursor = Cursors.Default;
@@ -199,7 +220,9 @@ namespace Anakena
             catch (Exception x) {
                 MessageBox.Show("se produjo un error al tratar de cargar datos  "+ x.ToString());
             }
-                
+            pictureBox4.Visible = false;
+            System.Windows.Forms.Application.DoEvents();
+
         }
         public void exporta_a_excel()
         {
@@ -225,19 +248,19 @@ namespace Anakena
 
             foreach (DataGridViewColumn column in this.dataGridView4.Columns)
             {
-                class2.Cells[32, 1] = cmb_variedad.Text.Trim();
+                class2.Cells[40, 1] = cmb_variedad.Text.Trim();
                 numC++;
-                class2.Cells[32, numC] = column.Name;
-                class2.get_Range("A32", "GB32").Interior.ColorIndex = 9;
-                class2.get_Range("A32", "GB32").Font.ColorIndex = 2;
+                class2.Cells[40, numC] = column.Name;
+                class2.get_Range("A40", "GB40").Interior.ColorIndex = 9;
+                class2.get_Range("A40", "GB40").Font.ColorIndex = 2;
             }
             foreach (DataGridViewColumn column in this.dataGridView5.Columns)
             {
-                class2.Cells[43, 1] = cmb_variedad.Text.Trim();
+                class2.Cells[54, 1] = cmb_variedad.Text.Trim();
                 numCC++;
-                class2.Cells[43, numCC] = column.Name;
-                class2.get_Range("A43", "GB43").Interior.ColorIndex = 9;
-                class2.get_Range("A43", "GB43").Font.ColorIndex = 2;
+                class2.Cells[54, numCC] = column.Name;
+                class2.get_Range("A54", "GB54").Interior.ColorIndex = 9;
+                class2.get_Range("A54", "GB54").Font.ColorIndex = 2;
             }
             int num2 = 0;
             foreach (DataGridViewRow row in (IEnumerable)this.dataGridView2.Rows)
@@ -252,7 +275,7 @@ namespace Anakena
                     label2.Text = "Proceso :" +pBar1.Value.ToString() +"/"+ (dataGridView2.RowCount*dataGridView2.ColumnCount).ToString();
                 }
             }
-            int num22 = 31;
+            int num22 = 39;
             foreach (DataGridViewRow row in (IEnumerable)this.dataGridView4.Rows)
             {
                 num22++;
@@ -265,7 +288,7 @@ namespace Anakena
 
                 }
             }
-            int num222 = 42;
+            int num222 = 53;
             foreach (DataGridViewRow row in (IEnumerable)this.dataGridView5.Rows)
             {
                 num222++;
@@ -309,6 +332,16 @@ namespace Anakena
         private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
            
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,31 +1,30 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using Microsoft.Office.Interop.Excel;
-using System.Collections;
 
 namespace Anakena
 {
-    public partial class FormCC_Estimacion : Form
+    public partial class FormResumenEstimacionMasReal : Form
     {
         conexion cn = new conexion();
-        public FormCC_Estimacion()
+        public FormResumenEstimacionMasReal()
         {
             InitializeComponent();
         }
 
-        private void FormCC_Estimacion_Load(object sender, EventArgs e)
+        private void FormResumenEstimacionMasReal_Load(object sender, EventArgs e)
         {
-            CmbVariedad();  
+            CmbVariedad();
         }
-     
         public void CmbVariedad()
         {
             try
@@ -51,10 +50,22 @@ namespace Anakena
             }
 
         }
-  
+
+        private void BtnFiltro_Click(object sender, EventArgs e)
+        {
+            if (cmb_variedad.SelectedValue.ToString() != "0")
+            {
+                Estimacion();
+            }
+            pictureBox1.Visible = true;
+            pictureBox2.Visible = false;
+            pictureBox3.Visible = false;
+            dataGridView4.Visible = true;
+            Btn_Excel.Visible = true;
+        }
         public void Estimacion()
         {
-            SqlCommand cmd = new SqlCommand("spEstimacion_CalibreCategoria", cn.getConexion());
+            SqlCommand cmd = new SqlCommand("spRealmasEstimado_CalibreCategoria", cn.getConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@variedad", SqlDbType.Int);
             cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
@@ -67,27 +78,20 @@ namespace Anakena
             dataGridView4.Columns[0].Visible = false;
 
         }
-   
-        private void BtnFiltro_Click(object sender, EventArgs e)
-        {
-       
-            if (cmb_variedad.SelectedValue.ToString() != "0")
-            {
-                Estimacion();
-            }
-            pictureBox1.Visible = true;
-            dataGridView4.Visible = true;
-            Btn_Excel.Visible = true;
-            pictureBox2.Visible = false;
-            pictureBox3.Visible = false;
-           
-        }
 
+        private void dataGridView4_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value.ToString() != "0")
+            {
+                e.CellStyle.Format = "##,##.00";
+            }
+        }
         public void exporta_a_excel()
         {
-            pBar1.Visible = true;
+          
             ApplicationClass class2 = new ApplicationClass();
             class2.Application.Workbooks.Add(true);
+        
             int num = 0;
             pBar1.Minimum = 1;
             pBar1.Maximum = dataGridView4.RowCount * dataGridView4.ColumnCount;
@@ -96,13 +100,20 @@ namespace Anakena
 
             foreach (DataGridViewColumn column in this.dataGridView4.Columns)
             {
-              
-                class2.Cells[1, 1] = cmb_variedad.Text.Trim();
-                num++;
+               // class2.Cells[1, 1] = cmb_variedad.Text.Trim();
+               
+                if(column.Name.ToString() != "cod")
+                {  num++;
                 class2.Cells[1, num] = column.Name;
                 class2.get_Range("A1", "H1").Interior.ColorIndex = 9;
                 class2.get_Range("A1", "H1").Font.ColorIndex = 2;
-                
+                class2.get_Range("A10", "H10").Interior.ColorIndex = 56;
+                class2.get_Range("A10", "H10").Font.ColorIndex = 2;
+                class2.get_Range("H1", "H10").Interior.ColorIndex = 56;
+                class2.get_Range("H1", "H10").Font.ColorIndex = 2;
+                class2.get_Range("A1", "H1").Borders.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
+              
+                }
             }
             int num2 = 0;
             foreach (DataGridViewRow row in (IEnumerable)this.dataGridView4.Rows)
@@ -111,44 +122,30 @@ namespace Anakena
                 num = 0;
                 foreach (DataGridViewColumn column2 in this.dataGridView4.Columns)
                 {
-                  
-                        num++;
+                    if(column2.Name.ToString() != "cod")
+                    {
+                    num++;
                     class2.Cells[num2 + 1, num] = row.Cells[column2.Name].Value;
+                      
                     pBar1.PerformStep();
+                    }
                   
                 }
             }
             class2.Visible = true;
+          
             ((Worksheet)class2.ActiveSheet).Name = cmb_variedad.Text.Trim();
-            ((Worksheet)class2.ActiveSheet).Activate();
+      
+           ((Worksheet)class2.ActiveSheet).Activate();
+            
 
         }
 
         private void Btn_Excel_Click(object sender, EventArgs e)
         {
+            pBar1.Visible = true;
             exporta_a_excel();
-        }
-
-        private void dataGridView4_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.Value.ToString() != "0")
-            {
-                e.CellStyle.Format = "##,##.00";
-            }
-            try
-            {
-                if (dataGridView4.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "")
-                {
-                    dataGridView4.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 0;
-                }
-            }
-            catch
-            { }
-        }
-
-        private void FormCC_Estimacion_Load_1(object sender, EventArgs e)
-        {
-            CmbVariedad();
+            pBar1.Visible = false;
         }
     }
 }

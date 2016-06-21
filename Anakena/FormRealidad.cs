@@ -161,7 +161,13 @@ namespace Anakena
         }
         private void BtnFiltro_Click(object sender, EventArgs e)
         {
-            if(radioButton1.Checked == true)
+            try
+                {
+            dataGridView6.Columns[2].Frozen = false;
+            dataGridView5.Columns[2].Frozen = false;
+            dataGridView4.Columns[2].Frozen = false; }  catch { }
+            if (radioButton1.Checked == true)
+          
             {
                 traer_estimacion();  
                 Estimacion_CalibreKG();       
@@ -381,6 +387,11 @@ namespace Anakena
             dataGridView4.Columns[1].Frozen = true;
             dataGridView5.HorizontalScrollingOffset = e.NewValue;
             dataGridView6.HorizontalScrollingOffset = e.NewValue;
+        }
+
+        private void Btn_Excel_Click(object sender, EventArgs e)
+        {
+
         }
     }
     

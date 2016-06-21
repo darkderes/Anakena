@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publicar\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -80,6 +80,12 @@
     <Compile Include="FormBusquedaProductor.Designer.cs">
       <DependentUpon>FormBusquedaProductor.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCalibrado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCalibrado.Designer.cs">
+      <DependentUpon>FormCalibrado.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCC_Estimacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,11 +104,29 @@
     <Compile Include="FormFactor.Designer.cs">
       <DependentUpon>FormFactor.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormKGcat_cal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormKGcat_cal.Designer.cs">
+      <DependentUpon>FormKGcat_cal.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLoading.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormLoading.Designer.cs">
       <DependentUpon>FormLoading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProceso_CC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProceso_CC.Designer.cs">
+      <DependentUpon>FormProceso_CC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProceso_SC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProceso_SC.Designer.cs">
+      <DependentUpon>FormProceso_SC.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRealidad.cs">
       <SubType>Form</SubType>
@@ -121,6 +145,18 @@
     </Compile>
     <Compile Include="FormReport.Designer.cs">
       <DependentUpon>FormReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormResumenEstimacionMasReal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormResumenEstimacionMasReal.Designer.cs">
+      <DependentUpon>FormResumenEstimacionMasReal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTarifas_Calibre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTarifas_Calibre.Designer.cs">
+      <DependentUpon>FormTarifas_Calibre.cs</DependentUpon>
     </Compile>
     <Compile Include="FormTemporada_Estimacion.cs">
       <SubType>Form</SubType>
@@ -157,6 +193,9 @@
     <EmbeddedResource Include="FormBusquedaProductor.resx">
       <DependentUpon>FormBusquedaProductor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCalibrado.resx">
+      <DependentUpon>FormCalibrado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCC_Estimacion.resx">
       <DependentUpon>FormCC_Estimacion.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,8 +205,17 @@
     <EmbeddedResource Include="FormFactor.resx">
       <DependentUpon>FormFactor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormKGcat_cal.resx">
+      <DependentUpon>FormKGcat_cal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLoading.resx">
       <DependentUpon>FormLoading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProceso_CC.resx">
+      <DependentUpon>FormProceso_CC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProceso_SC.resx">
+      <DependentUpon>FormProceso_SC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRealidad.resx">
       <DependentUpon>FormRealidad.cs</DependentUpon>
@@ -177,6 +225,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReport.resx">
       <DependentUpon>FormReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormResumenEstimacionMasReal.resx">
+      <DependentUpon>FormResumenEstimacionMasReal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTarifas_Calibre.resx">
+      <DependentUpon>FormTarifas_Calibre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTemporada_Estimacion.resx">
       <DependentUpon>FormTemporada_Estimacion.cs</DependentUpon>
