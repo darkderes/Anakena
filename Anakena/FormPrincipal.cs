@@ -98,11 +98,9 @@ namespace Anakena
 
         private void calibradoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             FormCalibrado s = new FormCalibrado();
             s.acceso = 0;
-            s.ShowDialog(); 
-                
+            s.ShowDialog();                
         }
 
         private void calibradorealEstimadoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -134,6 +132,24 @@ namespace Anakena
         {
             FormProceso_SC c = new FormProceso_SC();
             c.ShowDialog();
+        }
+
+        private void preciosNCCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPrecioNCC s = new FormPrecioNCC();
+            s.ShowDialog();
+        }
+
+        private void preciosSCCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPrecioNSC s = new FormPrecioNSC();
+            s.ShowDialog();
+        }
+
+        private void prePorVarNCCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPor_Var v = new FormPor_Var();
+            v.ShowDialog();
         }
     }
 }

@@ -11,17 +11,31 @@ using System.Windows.Forms;
 
 namespace Anakena
 {
-    public partial class FormProceso_CC : Form
+    public partial class FormPrecioNCC : Form
     {
         conexion cn = new conexion();
-        public FormProceso_CC()
+        public FormPrecioNCC()
         {
             InitializeComponent();
         }
 
-        private void FormProceso_CC_Load(object sender, EventArgs e)
+        private void FormPrecioNCC_Load(object sender, EventArgs e)
         {
             CmbVariedad();
+        }
+        public void traer_estimacion()
+        {
+            SqlCommand cmd = new SqlCommand("spTraer_PrecioNCC", cn.getConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@variedad", SqlDbType.VarChar, 25);
+            cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue;
+            cn.Abrir();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet myds = new DataSet();
+            adapter.Fill(myds);
+            dataGridView1.DataSource = myds.Tables[0];
+            cn.Cerrar();
+
         }
         public void CmbVariedad()
         {
@@ -51,70 +65,40 @@ namespace Anakena
         private void BtnFiltro_Click(object sender, EventArgs e)
         {
             traer_estimacion();
-            if(dataGridView1.RowCount > 0)
+            if (dataGridView1.RowCount>0)
             {
-                pictureBox2.Visible = false;
-                pictureBox3.Visible = false;
                 dataGridView1.Visible = true;
                 pictureBox1.Visible = true;
+                pictureBox2.Visible = false;
+                pictureBox3.Visible = false;
                 btn_ingresar.Visible = true;
-
             }
-        }
-        public void traer_estimacion()
-        {
-            SqlCommand cmd = new SqlCommand("spTarifas_PCC", cn.getConexion());
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@variedad", SqlDbType.VarChar, 25);
-            cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue;
-            cn.Abrir();
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataSet myds = new DataSet();
-            adapter.Fill(myds);
-            dataGridView1.DataSource = myds.Tables[0];
-            dataGridView1.Columns[0].Visible = false;
-            cn.Cerrar();
-
-        }
-        public void cargar()
-        {
-            for (int x = 2; x < dataGridView1.Columns.Count; x++)
+            else
             {
-                for (int i = 0; i < dataGridView1.RowCount; i++)
-                {
-                    Update_Tarifas(dataGridView1.Columns[x].Name, dataGridView1.Rows[i].Cells[0].Value.ToString(), Convert.ToSingle(dataGridView1.Rows[i].Cells[x].Value.ToString()));
-
-                }
+                MessageBox.Show("No se encontraron datos ingresados para esta variedad", "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            MessageBox.Show("Tarifas actualizadas correctamente", "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        public void Update_Tarifas(string calibre, string categoria, float monto)
+        public void Update_Precios(string calibre, float monto)
         {
             try
             {
                 // linea de comando de sql
-                SqlCommand cmd = new SqlCommand("UpdateTarifa_PCC", cn.getConexion());
+                SqlCommand cmd = new SqlCommand("UpdatePrecio_NCC", cn.getConexion());
 
                 // adhrsion de parametros 
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("@Calibre", SqlDbType.VarChar, 10);
-                cmd.Parameters.Add("@Categoria", SqlDbType.Char, 2);
                 cmd.Parameters.Add("@monto", SqlDbType.Float);
                 cmd.Parameters.Add("@variedad", SqlDbType.Char, 2);
-
-
 
                 cmd.Parameters.Add("@msg", SqlDbType.VarChar, 100);
 
                 // ingreso de parametros
 
                 cmd.Parameters["@Calibre"].Value = calibre;
-                cmd.Parameters["@Categoria"].Value = categoria;
                 cmd.Parameters["@monto"].Value = monto;
                 cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
-
-
 
 
                 cmd.Parameters["@msg"].Value = 1;
@@ -133,18 +117,34 @@ namespace Anakena
             }
 
         }
-
-        private void btn_ingresar_Click(object sender, EventArgs e)
+        public void cargar()
         {
-            cargar();
-        }
+            try
+            {
+             
+                    for (int i = 0; i < dataGridView1.RowCount; i++)
+                    {
+                      
+                        Update_Precios(dataGridView1.Rows[i].Cells[0].Value.ToString(), Convert.ToSingle(dataGridView1.Rows[i].Cells[1].Value.ToString()));
 
+                    }
+                
+                MessageBox.Show("Precios actualizados correctamente", "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                traer_estimacion();
+            }
+            catch { }
+        }
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.Value.ToString() != "0")
             {
-                e.CellStyle.Format = "0.0000";
+                e.CellStyle.Format = "##.##";
             }
+        }
+
+        private void btn_ingresar_Click(object sender, EventArgs e)
+        {
+            cargar();
         }
     }
 }

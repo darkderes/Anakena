@@ -11,7 +11,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Collections.Generic;
 using System.Drawing.Imaging;
 
 namespace Anakena
@@ -103,7 +102,6 @@ namespace Anakena
             foreach (DataGridViewColumn column in this.dataGridView4.Columns)
             {
                 class2.Cells[1, 1] = cmb_variedad.Text.Trim();
-
                 if (column.Name.ToString() != "cod")
                 {
                     num++;
@@ -115,7 +113,6 @@ namespace Anakena
                     class2.get_Range("H1", "H10").Interior.ColorIndex = 56;
                     class2.get_Range("H1", "H10").Font.ColorIndex = 2;
                     class2.get_Range("A1", "H1").Borders.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
-
                 }
             }
             int num2 = 0;
@@ -132,18 +129,11 @@ namespace Anakena
 
                         pBar1.PerformStep();
                     }
-
                 }
             }
-
-            class2.Visible = true;
-
-         
+            class2.Visible = true;       
             ((Worksheet)class2.ActiveSheet).Name = cmb_variedad.Text.Trim();
             ((Worksheet)class2.ActiveSheet).Activate();
-  
-
-
         }
        
         private void Btn_Excel_Click(object sender, EventArgs e)
@@ -163,22 +153,9 @@ namespace Anakena
             dataGridView1.DataSource = myds.Tables[0];
             cn.Cerrar();
             dataGridView1.Columns[0].Visible = false;
-
         }
-
         private void BtnFiltro_Click(object sender, EventArgs e)
         {
-           
-
-
-            //Microsoft.Office.Interop.Excel.Worksheet newWorksheet;
-            //newWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)this.Application.Worksheets.Add(
-            //    missing, missing, missing, missing);
-
-
-
-
-
             if (acceso == 0)
             {
                 if (cmb_variedad.SelectedValue.ToString() != "0")
@@ -190,7 +167,6 @@ namespace Anakena
                 pictureBox3.Visible = false;
                 dataGridView4.Visible = true;
                 Btn_Excel.Visible = true;
-
             }
             else
             {
@@ -202,11 +178,8 @@ namespace Anakena
                 pictureBox1.Visible = true;
                 pictureBox2.Visible = false;
                 pictureBox3.Visible = false;
-                dataGridView4.Visible = true;
-                //   dataGridView1.Visible = true;
+                dataGridView4.Visible = true;             
                 Btn_Excel.Visible = true;
-
-                // MessageBox.Show("muestra");
             }
             try
             {

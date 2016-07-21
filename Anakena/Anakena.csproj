@@ -116,6 +116,30 @@
     <Compile Include="FormLoading.Designer.cs">
       <DependentUpon>FormLoading.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPasoProcesos_Repetidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPasoProcesos_Repetidos.Designer.cs">
+      <DependentUpon>FormPasoProcesos_Repetidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPor_Var.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPor_Var.Designer.cs">
+      <DependentUpon>FormPor_Var.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrecioNCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrecioNCC.Designer.cs">
+      <DependentUpon>FormPrecioNCC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrecioNSC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrecioNSC.Designer.cs">
+      <DependentUpon>FormPrecioNSC.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormProceso_CC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +234,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormLoading.resx">
       <DependentUpon>FormLoading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPasoProcesos_Repetidos.resx">
+      <DependentUpon>FormPasoProcesos_Repetidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPor_Var.resx">
+      <DependentUpon>FormPor_Var.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrecioNCC.resx">
+      <DependentUpon>FormPrecioNCC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrecioNSC.resx">
+      <DependentUpon>FormPrecioNSC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProceso_CC.resx">
       <DependentUpon>FormProceso_CC.cs</DependentUpon>

@@ -47,11 +47,16 @@
             this.tarifasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tarifasPorCalibreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tarifasPCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tarifasPSCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.preciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.preciosNCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.preciosSCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tarifasPSCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prePorVarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prePorVarNCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -61,7 +66,9 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.estimacionesToolStripMenuItem,
-            this.tarifasToolStripMenuItem});
+            this.tarifasToolStripMenuItem,
+            this.preciosToolStripMenuItem,
+            this.prePorVarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1105, 24);
@@ -205,6 +212,36 @@
             this.tarifasPCCToolStripMenuItem.Text = "Tarifas PCC";
             this.tarifasPCCToolStripMenuItem.Click += new System.EventHandler(this.tarifasPCCToolStripMenuItem_Click);
             // 
+            // tarifasPSCToolStripMenuItem
+            // 
+            this.tarifasPSCToolStripMenuItem.Name = "tarifasPSCToolStripMenuItem";
+            this.tarifasPSCToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.tarifasPSCToolStripMenuItem.Text = "Tarifas PSC";
+            this.tarifasPSCToolStripMenuItem.Click += new System.EventHandler(this.tarifasPSCToolStripMenuItem_Click);
+            // 
+            // preciosToolStripMenuItem
+            // 
+            this.preciosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.preciosNCCToolStripMenuItem,
+            this.preciosSCCToolStripMenuItem});
+            this.preciosToolStripMenuItem.Name = "preciosToolStripMenuItem";
+            this.preciosToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.preciosToolStripMenuItem.Text = "Precios";
+            // 
+            // preciosNCCToolStripMenuItem
+            // 
+            this.preciosNCCToolStripMenuItem.Name = "preciosNCCToolStripMenuItem";
+            this.preciosNCCToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.preciosNCCToolStripMenuItem.Text = "Precios NCC";
+            this.preciosNCCToolStripMenuItem.Click += new System.EventHandler(this.preciosNCCToolStripMenuItem_Click);
+            // 
+            // preciosSCCToolStripMenuItem
+            // 
+            this.preciosSCCToolStripMenuItem.Name = "preciosSCCToolStripMenuItem";
+            this.preciosSCCToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.preciosSCCToolStripMenuItem.Text = "Precios NSC";
+            this.preciosSCCToolStripMenuItem.Click += new System.EventHandler(this.preciosSCCToolStripMenuItem_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -246,12 +283,20 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // tarifasPSCToolStripMenuItem
+            // prePorVarToolStripMenuItem
             // 
-            this.tarifasPSCToolStripMenuItem.Name = "tarifasPSCToolStripMenuItem";
-            this.tarifasPSCToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.tarifasPSCToolStripMenuItem.Text = "Tarifas PSC";
-            this.tarifasPSCToolStripMenuItem.Click += new System.EventHandler(this.tarifasPSCToolStripMenuItem_Click);
+            this.prePorVarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.prePorVarNCCToolStripMenuItem});
+            this.prePorVarToolStripMenuItem.Name = "prePorVarToolStripMenuItem";
+            this.prePorVarToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.prePorVarToolStripMenuItem.Text = "PrePorVar ";
+            // 
+            // prePorVarNCCToolStripMenuItem
+            // 
+            this.prePorVarNCCToolStripMenuItem.Name = "prePorVarNCCToolStripMenuItem";
+            this.prePorVarNCCToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.prePorVarNCCToolStripMenuItem.Text = "PrePorVar  NCC";
+            this.prePorVarNCCToolStripMenuItem.Click += new System.EventHandler(this.prePorVarNCCToolStripMenuItem_Click);
             // 
             // FormPrincipal
             // 
@@ -303,5 +348,10 @@
         private System.Windows.Forms.ToolStripMenuItem tarifasPorCalibreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tarifasPCCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tarifasPSCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem preciosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem preciosNCCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem preciosSCCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prePorVarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prePorVarNCCToolStripMenuItem;
     }
 }

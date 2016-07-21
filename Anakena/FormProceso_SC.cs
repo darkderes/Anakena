@@ -51,6 +51,13 @@ namespace Anakena
         private void BtnFiltro_Click(object sender, EventArgs e)
         {
             traer_Tarifa();
+            if (dataGridView1.RowCount > 0)
+            {
+                dataGridView1.Visible = true;
+                pictureBox1.Visible = true;
+                pictureBox2.Visible = false;
+                pictureBox3.Visible = false;
+                btn_ingresar.Visible = true;            }
         }
 
         public void traer_Tarifa()

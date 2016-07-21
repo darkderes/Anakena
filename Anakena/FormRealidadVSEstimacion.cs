@@ -17,7 +17,6 @@ namespace Anakena
     {
         conexion ex = new conexion();
         conexionERP cn = new conexionERP();
-        int cantidad = 0;
         public FormRealidadVSEstimacion()
         {
             InitializeComponent();
@@ -29,23 +28,7 @@ namespace Anakena
             backgroundWorker1.WorkerReportsProgress = true;
             backgroundWorker1.WorkerSupportsCancellation = true;
             radioButton1.Checked = true;
-            //radioButton1.Checked = true;
-
         }
-        //public void Estimacion_CalibrePORC()
-        //{
-        //    SqlCommand cmd = new SqlCommand("spEstimacionCalibre%", ex.getConexion());
-        //    cmd.CommandType = CommandType.StoredProcedure;
-        //    cmd.Parameters.Add("@variedad", SqlDbType.Int);
-        //    cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
-        //    cn.Abrir();
-        //    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-        //    DataSet myds = new DataSet();
-        //    adapter.Fill(myds);
-        //    dataGridView4.DataSource = myds.Tables[0];
-        //    cn.Cerrar();
-
-        //}
 
         public void CmbVariedad()
         {
@@ -71,11 +54,9 @@ namespace Anakena
                 ex.Cerrar();
             }
         }
-
         private void BtnFiltro_Click(object sender, EventArgs e)
         {
             try
-
             {
             dataGridView1.Columns[1].Frozen = false;
             dataGridView2.Columns[1].Frozen = false;
@@ -98,7 +79,6 @@ namespace Anakena
                 Grilla_Categoria_porc();
                 Cursor = Cursors.Default;
             }
-
             tabControl1.Visible = true;
             dataGridView1.Columns[0].Visible = false;
             dataGridView2.Columns[0].Visible = false;
@@ -108,10 +88,8 @@ namespace Anakena
             pictureBox2.Visible = true;
             Btn_Excel.Visible = true;
         }
-
         public void Grilla_total()
-        {
-         
+        {         
             SqlCommand cmd = new SqlCommand("spTraer_RealMasEstimado", ex.getConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@variedad", SqlDbType.Int);
@@ -122,8 +100,7 @@ namespace Anakena
             adapter.Fill(myds);
             dataGridView1.DataSource = myds.Tables[0];
             ex.Cerrar();
-        }
-        
+        }      
         public void Grilla_Calibre()
         {
             SqlCommand cmd = new SqlCommand("spTraer_RealMasEstimadoCalibre", ex.getConexion());
@@ -174,7 +151,6 @@ namespace Anakena
             dataGridView3.DataSource = myds.Tables[0];
             ex.Cerrar();
         }
-
         private void dataGridView1_Scroll(object sender, ScrollEventArgs e)
         {
             dataGridView1.Columns[1].Frozen = true;
@@ -198,16 +174,7 @@ namespace Anakena
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-           try
-            {
-
-                int variedad = 2;
-               
-            }
-            catch ( Exception ef)
-            {
-                MessageBox.Show(ef.Message);
-             }
+          
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -227,7 +194,6 @@ namespace Anakena
             catch
             { }
         }
-
         private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             try
@@ -240,7 +206,6 @@ namespace Anakena
             catch
             { }
         }
-
         private void dataGridView3_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             try
@@ -253,7 +218,6 @@ namespace Anakena
             catch
             { }
         }
-
         private void Btn_Excel_Click(object sender, EventArgs e)
         {
             exporta_a_excel();
