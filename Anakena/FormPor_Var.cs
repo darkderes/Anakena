@@ -184,7 +184,6 @@ namespace Anakena
 
         private void BtnFiltro_Click(object sender, EventArgs e)
         {
-
             try
             {
                 Actualizar_Temporal_Lavado();
@@ -200,6 +199,16 @@ namespace Anakena
                 }
                 traer_pre_PorVar();
                 traer_pre_PorVar2();
+                traer_pre_PorVar3();
+                if(dataGridView3.RowCount > 0)
+                {
+                    dataGridView3.Columns[0].Visible = false;
+                    dataGridView3.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No existen datos de blanqueado", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 dataGridView1.Visible = true;
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView2.Visible = true;
@@ -271,7 +280,6 @@ namespace Anakena
                 dataGridView2.Visible = false;
             }
         }
-
         public void Pre_Porvar()
         {
             for (int i = 2; i < dataGridView2.ColumnCount; i++)
@@ -354,7 +362,6 @@ namespace Anakena
             dataGridView1.DataSource = myds.Tables[0];
             cn.Cerrar();
         }
-
         public void traer_pre_PorVar2()
         {
             SqlCommand cmd = new SqlCommand("sp_PrePorVar", cn.getConexion());
@@ -368,6 +375,19 @@ namespace Anakena
             dataGridView2.DataSource = myds.Tables[0];
             dataGridView2.Rows[0].Visible = false;
             dataGridView2.Rows[1].Visible = false;
+            cn.Cerrar();
+        }
+        public void traer_pre_PorVar3()
+        {
+            SqlCommand cmd = new SqlCommand("sp_PrePorVar_Blan", cn.getConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@variedad", SqlDbType.VarChar, 25);
+            cmd.Parameters["@variedad"].Value = cmb_variedad.SelectedValue.ToString();
+            cn.Abrir();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet myds = new DataSet();
+            adapter.Fill(myds);
+            dataGridView3.DataSource = myds.Tables[0];
             cn.Cerrar();
         }
 
@@ -400,6 +420,5 @@ namespace Anakena
             dataGridView2.Columns[1].Frozen = true;
             dataGridView1.HorizontalScrollingOffset = e.NewValue;
         }
-    }
-  
+    } 
 }

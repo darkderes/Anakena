@@ -51,12 +51,14 @@
             this.preciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preciosNCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preciosSCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prePorVarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.porNCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.prePorVarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.prePorVarNCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -242,6 +244,35 @@
             this.preciosSCCToolStripMenuItem.Text = "Precios NSC";
             this.preciosSCCToolStripMenuItem.Click += new System.EventHandler(this.preciosSCCToolStripMenuItem_Click);
             // 
+            // prePorVarToolStripMenuItem
+            // 
+            this.prePorVarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.porNCCToolStripMenuItem,
+            this.pOToolStripMenuItem,
+            this.toolStripMenuItem1});
+            this.prePorVarToolStripMenuItem.Name = "prePorVarToolStripMenuItem";
+            this.prePorVarToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.prePorVarToolStripMenuItem.Text = "PrePorVar ";
+            // 
+            // porNCCToolStripMenuItem
+            // 
+            this.porNCCToolStripMenuItem.Name = "porNCCToolStripMenuItem";
+            this.porNCCToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.porNCCToolStripMenuItem.Text = "Por_NCC";
+            this.porNCCToolStripMenuItem.Click += new System.EventHandler(this.porNCCToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            // 
+            // pOToolStripMenuItem
+            // 
+            this.pOToolStripMenuItem.Name = "pOToolStripMenuItem";
+            this.pOToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pOToolStripMenuItem.Text = "Por_NSC";
+            this.pOToolStripMenuItem.Click += new System.EventHandler(this.pOToolStripMenuItem_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -282,21 +313,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(239, 92);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // prePorVarToolStripMenuItem
-            // 
-            this.prePorVarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.prePorVarNCCToolStripMenuItem});
-            this.prePorVarToolStripMenuItem.Name = "prePorVarToolStripMenuItem";
-            this.prePorVarToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
-            this.prePorVarToolStripMenuItem.Text = "PrePorVar ";
-            // 
-            // prePorVarNCCToolStripMenuItem
-            // 
-            this.prePorVarNCCToolStripMenuItem.Name = "prePorVarNCCToolStripMenuItem";
-            this.prePorVarNCCToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.prePorVarNCCToolStripMenuItem.Text = "PrePorVar  NCC";
-            this.prePorVarNCCToolStripMenuItem.Click += new System.EventHandler(this.prePorVarNCCToolStripMenuItem_Click);
             // 
             // FormPrincipal
             // 
@@ -352,6 +368,8 @@
         private System.Windows.Forms.ToolStripMenuItem preciosNCCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preciosSCCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem prePorVarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem prePorVarNCCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem porNCCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem pOToolStripMenuItem;
     }
 }

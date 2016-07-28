@@ -151,5 +151,17 @@ namespace Anakena
             FormPor_Var v = new FormPor_Var();
             v.ShowDialog();
         }
+
+        private void porNCCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPor_NCC s = new FormPor_NCC();
+            s.ShowDialog();
+        }
+
+        private void pOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPor_NSC s = new FormPor_NSC();
+            s.ShowDialog();
+        }
     }
 }

@@ -122,6 +122,18 @@
     <Compile Include="FormPasoProcesos_Repetidos.Designer.cs">
       <DependentUpon>FormPasoProcesos_Repetidos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPor_NCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPor_NCC.Designer.cs">
+      <DependentUpon>FormPor_NCC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPor_NSC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPor_NSC.Designer.cs">
+      <DependentUpon>FormPor_NSC.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPor_Var.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +249,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPasoProcesos_Repetidos.resx">
       <DependentUpon>FormPasoProcesos_Repetidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPor_NCC.resx">
+      <DependentUpon>FormPor_NCC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPor_NSC.resx">
+      <DependentUpon>FormPor_NSC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPor_Var.resx">
       <DependentUpon>FormPor_Var.cs</DependentUpon>
