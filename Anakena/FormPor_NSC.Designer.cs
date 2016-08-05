@@ -32,6 +32,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cmb_variedad = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pBar1 = new System.Windows.Forms.ProgressBar();
+            this.Lbl_Proceso = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,11 +77,33 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Variedad :";
             // 
+            // pBar1
+            // 
+            this.pBar1.BackColor = System.Drawing.Color.DarkOrange;
+            this.pBar1.Location = new System.Drawing.Point(45, 127);
+            this.pBar1.Name = "pBar1";
+            this.pBar1.Size = new System.Drawing.Size(186, 22);
+            this.pBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.pBar1.TabIndex = 19;
+            this.pBar1.Visible = false;
+            // 
+            // Lbl_Proceso
+            // 
+            this.Lbl_Proceso.AutoSize = true;
+            this.Lbl_Proceso.Location = new System.Drawing.Point(76, 106);
+            this.Lbl_Proceso.Name = "Lbl_Proceso";
+            this.Lbl_Proceso.Size = new System.Drawing.Size(66, 13);
+            this.Lbl_Proceso.TabIndex = 20;
+            this.Lbl_Proceso.Text = "Lbl_Proceso";
+            this.Lbl_Proceso.Visible = false;
+            // 
             // FormPor_NSC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 112);
+            this.ClientSize = new System.Drawing.Size(288, 161);
+            this.Controls.Add(this.Lbl_Proceso);
+            this.Controls.Add(this.pBar1);
             this.Controls.Add(this.cmb_variedad);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
@@ -98,7 +122,9 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ComboBox cmb_variedad;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ProgressBar pBar1;
+        private System.Windows.Forms.Label Lbl_Proceso;
+        public System.Windows.Forms.ComboBox cmb_variedad;
     }
 }

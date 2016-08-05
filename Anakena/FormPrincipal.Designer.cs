@@ -53,7 +53,6 @@
             this.preciosSCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prePorVarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.porNCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -248,8 +247,7 @@
             // 
             this.prePorVarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.porNCCToolStripMenuItem,
-            this.pOToolStripMenuItem,
-            this.toolStripMenuItem1});
+            this.pOToolStripMenuItem});
             this.prePorVarToolStripMenuItem.Name = "prePorVarToolStripMenuItem";
             this.prePorVarToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.prePorVarToolStripMenuItem.Text = "PrePorVar ";
@@ -260,11 +258,6 @@
             this.porNCCToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.porNCCToolStripMenuItem.Text = "Por_NCC";
             this.porNCCToolStripMenuItem.Click += new System.EventHandler(this.porNCCToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             // 
             // pOToolStripMenuItem
             // 
@@ -369,7 +362,6 @@
         private System.Windows.Forms.ToolStripMenuItem preciosSCCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem prePorVarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem porNCCToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem pOToolStripMenuItem;
     }
 }
