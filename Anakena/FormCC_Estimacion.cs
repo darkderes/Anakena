@@ -100,8 +100,8 @@ namespace Anakena
                 class2.Cells[1, 1] = cmb_variedad.Text.Trim();
                 num++;
                 class2.Cells[1, num] = column.Name;
-                class2.get_Range("A1", "H1").Interior.ColorIndex = 9;
-                class2.get_Range("A1", "H1").Font.ColorIndex = 2;
+                class2.get_Range("A1", "L1").Interior.ColorIndex = 9;
+                class2.get_Range("A1", "L1").Font.ColorIndex = 2;
                 
             }
             int num2 = 0;

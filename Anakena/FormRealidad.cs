@@ -54,6 +54,7 @@ namespace Anakena
         }
         public void traer_estimacion()
         {
+        
             SqlCommand cmd = new SqlCommand("spTraer_Estimacion2", ex.getConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@variedad", SqlDbType.VarChar, 25);
@@ -64,7 +65,7 @@ namespace Anakena
             adapter.Fill(myds);
             dataGridView6.DataSource = myds.Tables[0];
             ex.Cerrar();
-
+       
         }
         public void RealPORC()
         {
@@ -161,11 +162,7 @@ namespace Anakena
         }
         private void BtnFiltro_Click(object sender, EventArgs e)
         {
-            try
-                {
-            dataGridView6.Columns[2].Frozen = false;
-            dataGridView5.Columns[2].Frozen = false;
-            dataGridView4.Columns[2].Frozen = false; }  catch { }
+       
             if (radioButton1.Checked == true)
           
             {
@@ -185,11 +182,18 @@ namespace Anakena
             pictureBox2.Visible = true;
             pictureBox3.Visible = false;
             pictureBox1.Visible = false;
-            dataGridView6.Columns[0].Visible = false;
-            dataGridView6.Columns[1].Visible = false;
-            dataGridView5.Columns[0].Visible = false;
-            dataGridView4.Columns[0].Visible = false;
-
+           
+            try
+            {
+                dataGridView6.Columns[2].Frozen = false;
+                dataGridView5.Columns[2].Frozen = false;
+                dataGridView4.Columns[2].Frozen = false;
+                dataGridView6.Columns[0].Visible = false;
+                dataGridView6.Columns[1].Visible = false;
+                dataGridView5.Columns[0].Visible = false;
+                dataGridView4.Columns[0].Visible = false;
+            }
+            catch { }
         }
         public void Update_Real()
         {
@@ -198,7 +202,7 @@ namespace Anakena
                 // linea de comando de sql
                 SqlCommand cmd = new SqlCommand("spExtraer_Pall", ex.getConexion());
 
-                // adhrsion de parametros 
+                // adhesion de parametros 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@msg", SqlDbType.VarChar, 100);
                 cmd.Parameters["@msg"].Value = 1;
@@ -359,9 +363,10 @@ namespace Anakena
             try
             {
                 Update_Real();
-                Traer_Fecha();
                 MessageBox.Show("Datos actualizados correctamente","Anakena",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                
+                lblActuallizacion.Text = "";
+                lblActuallizacion.Text = "Datos actualizados hasta "+ Traer_Fecha();
+
             }
             catch {
                 MessageBox.Show("Ocurrio un problema al tratar de actualizar datos", "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Error);

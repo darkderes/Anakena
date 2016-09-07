@@ -202,6 +202,7 @@ namespace Anakena
                 else
                 if ((cmb_variedad.SelectedValue.ToString() != "0") && (radioButton2.Checked == true))
                 {
+                    Cursor = Cursors.WaitCursor;
                     Estimacion_CalibrePORC();
                     Estimacion_CategoriaPORC();
                     EstimacionPORC();
@@ -212,7 +213,14 @@ namespace Anakena
                     dataGridView4.Columns[0].Visible = false;
                     dataGridView5.Columns[0].Visible = false;
                     dataGridView5.Columns[1].Width = 100;
+                    dataGridView2.Visible = true;
+                    dataGridView4.Visible = true;
+                    dataGridView5.Visible = true;
+                    pictureBox1.Visible = true;
+                    pictureBox2.Visible = false;
+                    pictureBox3.Visible = false;
                     Btn_Excel.Visible = true;
+                    Cursor = Cursors.Default;
 
 
                 }
@@ -248,19 +256,19 @@ namespace Anakena
 
             foreach (DataGridViewColumn column in this.dataGridView4.Columns)
             {
-                class2.Cells[40, 1] = cmb_variedad.Text.Trim();
+                class2.Cells[63, 1] = cmb_variedad.Text.Trim();
                 numC++;
-                class2.Cells[40, numC] = column.Name;
-                class2.get_Range("A40", "GB40").Interior.ColorIndex = 9;
-                class2.get_Range("A40", "GB40").Font.ColorIndex = 2;
+                class2.Cells[63, numC] = column.Name;
+                class2.get_Range("A63", "GB63").Interior.ColorIndex = 9;
+                class2.get_Range("A63", "GB63").Font.ColorIndex = 2;
             }
             foreach (DataGridViewColumn column in this.dataGridView5.Columns)
             {
-                class2.Cells[54, 1] = cmb_variedad.Text.Trim();
+                class2.Cells[74, 1] = cmb_variedad.Text.Trim();
                 numCC++;
-                class2.Cells[54, numCC] = column.Name;
-                class2.get_Range("A54", "GB54").Interior.ColorIndex = 9;
-                class2.get_Range("A54", "GB54").Font.ColorIndex = 2;
+                class2.Cells[74, numCC] = column.Name;
+                class2.get_Range("A74", "GB74").Interior.ColorIndex = 9;
+                class2.get_Range("A74", "GB74").Font.ColorIndex = 2;
             }
             int num2 = 0;
             foreach (DataGridViewRow row in (IEnumerable)this.dataGridView2.Rows)
@@ -275,7 +283,7 @@ namespace Anakena
                     label2.Text = "Proceso :" +pBar1.Value.ToString() +"/"+ (dataGridView2.RowCount*dataGridView2.ColumnCount).ToString();
                 }
             }
-            int num22 = 39;
+            int num22 = 62;
             foreach (DataGridViewRow row in (IEnumerable)this.dataGridView4.Rows)
             {
                 num22++;
@@ -288,7 +296,7 @@ namespace Anakena
 
                 }
             }
-            int num222 = 53;
+            int num222 = 73;
             foreach (DataGridViewRow row in (IEnumerable)this.dataGridView5.Rows)
             {
                 num222++;

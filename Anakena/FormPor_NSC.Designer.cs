@@ -34,7 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pBar1 = new System.Windows.Forms.ProgressBar();
             this.Lbl_Proceso = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -80,7 +82,7 @@
             // pBar1
             // 
             this.pBar1.BackColor = System.Drawing.Color.DarkOrange;
-            this.pBar1.Location = new System.Drawing.Point(45, 127);
+            this.pBar1.Location = new System.Drawing.Point(45, 122);
             this.pBar1.Name = "pBar1";
             this.pBar1.Size = new System.Drawing.Size(186, 22);
             this.pBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -97,11 +99,21 @@
             this.Lbl_Proceso.Text = "Lbl_Proceso";
             this.Lbl_Proceso.Visible = false;
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(12, 175);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(245, 170);
+            this.dataGridView2.TabIndex = 21;
+            this.dataGridView2.Visible = false;
+            // 
             // FormPor_NSC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 161);
+            this.ClientSize = new System.Drawing.Size(290, 159);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.Lbl_Proceso);
             this.Controls.Add(this.pBar1);
             this.Controls.Add(this.cmb_variedad);
@@ -113,6 +125,7 @@
             this.Text = "FormPor_NSC";
             this.Load += new System.EventHandler(this.FormPor_NSC_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,5 +139,6 @@
         private System.Windows.Forms.ProgressBar pBar1;
         private System.Windows.Forms.Label Lbl_Proceso;
         public System.Windows.Forms.ComboBox cmb_variedad;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }

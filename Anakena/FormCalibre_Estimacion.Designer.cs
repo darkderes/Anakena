@@ -103,7 +103,7 @@
             // 
             // TxtFile
             // 
-            this.TxtFile.Location = new System.Drawing.Point(556, 12);
+            this.TxtFile.Location = new System.Drawing.Point(607, 29);
             this.TxtFile.Name = "TxtFile";
             this.TxtFile.Size = new System.Drawing.Size(243, 20);
             this.TxtFile.TabIndex = 1;

@@ -376,7 +376,6 @@ namespace Anakena
                 cmd.Parameters.Add("@msg", SqlDbType.VarChar, 100);
 
                 // ingreso de parametros
-
                 cmd.Parameters["@msg"].Value = 1;
                 //abre coneccion a base de datos
                 cn.Abrir();

@@ -185,12 +185,16 @@ namespace Anakena
             {
                 for (int i = 0; i < dataGridView4.Rows.Count; i++)
                 {
+                    dataGridView4.Rows[i].Cells["SUPER EXTRA"].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells["SUPER EXTRA"].Value.ToString()) - Convert.ToDouble(dataGridView4.Rows[i].Cells["SUPER EXTRA"].Value.ToString());
                     dataGridView4.Rows[i].Cells["EXTRA"].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells["EXTRA"].Value.ToString()) - Convert.ToDouble(dataGridView4.Rows[i].Cells["EXTRA"].Value.ToString());
                     dataGridView4.Rows[i].Cells["CAT I"].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells["CAT I"].Value.ToString()) - Convert.ToDouble(dataGridView4.Rows[i].Cells["CAT I"].Value.ToString());
-                    dataGridView4.Rows[i].Cells["CAT II"].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells["CAT II"].Value.ToString()) - Convert.ToDouble(dataGridView4.Rows[i].Cells["CAT II"].Value.ToString());
-                    dataGridView4.Rows[i].Cells["CAT III"].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells["CAT III"].Value.ToString()) - Convert.ToDouble(dataGridView4.Rows[i].Cells["CAT III"].Value.ToString());
+                    dataGridView4.Rows[i].Cells["CAT II A"].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells["CAT II A"].Value.ToString()) - Convert.ToDouble(dataGridView4.Rows[i].Cells["CAT II A"].Value.ToString());
+                    dataGridView4.Rows[i].Cells["CAT II B"].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells["CAT II B"].Value.ToString()) - Convert.ToDouble(dataGridView4.Rows[i].Cells["CAT II B"].Value.ToString());
+                    dataGridView4.Rows[i].Cells["CAT III A"].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells["CAT III A"].Value.ToString()) - Convert.ToDouble(dataGridView4.Rows[i].Cells["CAT III A"].Value.ToString());
+                    dataGridView4.Rows[i].Cells["CAT III B"].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells["CAT III B"].Value.ToString()) - Convert.ToDouble(dataGridView4.Rows[i].Cells["CAT III B"].Value.ToString());
                     dataGridView4.Rows[i].Cells["BAJO CAT III"].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells["BAJO CAT III"].Value.ToString()) - Convert.ToDouble(dataGridView4.Rows[i].Cells["BAJO CAT III"].Value.ToString());
                     dataGridView4.Rows[i].Cells["CAT IV"].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells["CAT IV"].Value.ToString()) - Convert.ToDouble(dataGridView4.Rows[i].Cells["CAT IV"].Value.ToString());
+                    dataGridView4.Rows[i].Cells["CAT X"].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells["CAT X"].Value.ToString()) - Convert.ToDouble(dataGridView4.Rows[i].Cells["CAT X"].Value.ToString());
                     dataGridView4.Rows[i].Cells["TOTAL"].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells["TOTAL"].Value.ToString()) - Convert.ToDouble(dataGridView4.Rows[i].Cells["TOTAL"].Value.ToString());
                 }
             }
