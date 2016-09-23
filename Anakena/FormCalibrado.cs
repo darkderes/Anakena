@@ -97,8 +97,7 @@ namespace Anakena
             pBar1.Minimum = 1;
             pBar1.Maximum = dataGridView4.RowCount * dataGridView4.ColumnCount;
             pBar1.Value = 1;
-            pBar1.Step = 1;
-   
+            pBar1.Step = 1;  
             foreach (DataGridViewColumn column in this.dataGridView4.Columns)
             {
                 class2.Cells[1, 1] = cmb_variedad.Text.Trim();

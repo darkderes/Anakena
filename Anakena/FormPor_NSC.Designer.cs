@@ -98,6 +98,7 @@
             this.Lbl_Proceso.TabIndex = 20;
             this.Lbl_Proceso.Text = "Lbl_Proceso";
             this.Lbl_Proceso.Visible = false;
+            this.Lbl_Proceso.Click += new System.EventHandler(this.Lbl_Proceso_Click);
             // 
             // dataGridView2
             // 
@@ -106,13 +107,12 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(245, 170);
             this.dataGridView2.TabIndex = 21;
-            this.dataGridView2.Visible = false;
             // 
             // FormPor_NSC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(290, 159);
+            this.ClientSize = new System.Drawing.Size(264, 151);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.Lbl_Proceso);
             this.Controls.Add(this.pBar1);
