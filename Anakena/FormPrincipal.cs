@@ -163,5 +163,17 @@ namespace Anakena
             FormPor_NSC s = new FormPor_NSC();
             s.ShowDialog();
         }
+
+        private void rendimientosPartidoMecanicoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormRendimiento_PCM S = new FormRendimiento_PCM();
+            S.ShowDialog();
+        }
+
+        private void rendimientosDescarteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormRendimiento_Descarte s = new FormRendimiento_Descarte();
+            s.ShowDialog();
+        }
     }
 }

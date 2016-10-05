@@ -176,6 +176,18 @@
     <Compile Include="FormRealidadVSEstimacion.Designer.cs">
       <DependentUpon>FormRealidadVSEstimacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRendimiento_Descarte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRendimiento_Descarte.Designer.cs">
+      <DependentUpon>FormRendimiento_Descarte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRendimiento_PCM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRendimiento_PCM.Designer.cs">
+      <DependentUpon>FormRendimiento_PCM.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +288,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRealidadVSEstimacion.resx">
       <DependentUpon>FormRealidadVSEstimacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRendimiento_Descarte.resx">
+      <DependentUpon>FormRendimiento_Descarte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRendimiento_PCM.resx">
+      <DependentUpon>FormRendimiento_PCM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReport.resx">
       <DependentUpon>FormReport.cs</DependentUpon>

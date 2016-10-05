@@ -56,8 +56,11 @@
             this.pOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.rendimientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rendimientosPartidoMecanicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.rendimientosDescarteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -69,7 +72,8 @@
             this.estimacionesToolStripMenuItem,
             this.tarifasToolStripMenuItem,
             this.preciosToolStripMenuItem,
-            this.prePorVarToolStripMenuItem});
+            this.prePorVarToolStripMenuItem,
+            this.rendimientosToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1105, 24);
@@ -255,14 +259,14 @@
             // porNCCToolStripMenuItem
             // 
             this.porNCCToolStripMenuItem.Name = "porNCCToolStripMenuItem";
-            this.porNCCToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.porNCCToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.porNCCToolStripMenuItem.Text = "Por_NCC";
             this.porNCCToolStripMenuItem.Click += new System.EventHandler(this.porNCCToolStripMenuItem_Click);
             // 
             // pOToolStripMenuItem
             // 
             this.pOToolStripMenuItem.Name = "pOToolStripMenuItem";
-            this.pOToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pOToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.pOToolStripMenuItem.Text = "Por_NSC";
             this.pOToolStripMenuItem.Click += new System.EventHandler(this.pOToolStripMenuItem_Click);
             // 
@@ -287,6 +291,22 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Jorge Darderes 2015 Version 1.0";
             // 
+            // rendimientosToolStripMenuItem
+            // 
+            this.rendimientosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rendimientosPartidoMecanicoToolStripMenuItem,
+            this.rendimientosDescarteToolStripMenuItem});
+            this.rendimientosToolStripMenuItem.Name = "rendimientosToolStripMenuItem";
+            this.rendimientosToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
+            this.rendimientosToolStripMenuItem.Text = "Rendimientos";
+            // 
+            // rendimientosPartidoMecanicoToolStripMenuItem
+            // 
+            this.rendimientosPartidoMecanicoToolStripMenuItem.Name = "rendimientosPartidoMecanicoToolStripMenuItem";
+            this.rendimientosPartidoMecanicoToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.rendimientosPartidoMecanicoToolStripMenuItem.Text = "Rendimientos Partido Mecanico";
+            this.rendimientosPartidoMecanicoToolStripMenuItem.Click += new System.EventHandler(this.rendimientosPartidoMecanicoToolStripMenuItem_Click);
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
@@ -306,6 +326,13 @@
             this.pictureBox1.Size = new System.Drawing.Size(239, 92);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // rendimientosDescarteToolStripMenuItem
+            // 
+            this.rendimientosDescarteToolStripMenuItem.Name = "rendimientosDescarteToolStripMenuItem";
+            this.rendimientosDescarteToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.rendimientosDescarteToolStripMenuItem.Text = "Rendimientos Descarte";
+            this.rendimientosDescarteToolStripMenuItem.Click += new System.EventHandler(this.rendimientosDescarteToolStripMenuItem_Click);
             // 
             // FormPrincipal
             // 
@@ -363,5 +390,8 @@
         private System.Windows.Forms.ToolStripMenuItem prePorVarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem porNCCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rendimientosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rendimientosPartidoMecanicoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rendimientosDescarteToolStripMenuItem;
     }
 }

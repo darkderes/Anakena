@@ -25,7 +25,8 @@ namespace Anakena
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {          
+        {
+            Lbl_Proceso.Text = "Actualizando Tablas de datos";  
             Excel.Application xlApp = new Excel.Application();
             Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"C:\Planilla_Pos", 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
             Excel._Worksheet xlWorksheet_36_SUPEREXTRA = (Excel._Worksheet)xlWorkbook.Sheets[1];
@@ -78,7 +79,9 @@ namespace Anakena
             Excel._Worksheet xlWorksheet_28_30_B_CATIII = (Excel._Worksheet)xlWorkbook.Sheets[48];
             Excel._Worksheet xlWorksheet_28_30_CATIV = (Excel._Worksheet)xlWorkbook.Sheets[49];
             Excel._Worksheet xlWorksheet_28_30_CATX= (Excel._Worksheet)xlWorkbook.Sheets[50];
-            Excel._Worksheet xlWorksheet_Porcentajes = (Excel._Worksheet)xlWorkbook.Sheets[51];
+            Excel._Worksheet xlWorksheet_Descarte = (Excel._Worksheet)xlWorkbook.Sheets[51];
+            Excel._Worksheet xlWorksheet_Descalibre = (Excel._Worksheet)xlWorkbook.Sheets[52];
+            // Excel._Worksheet xlWorksheet_Porcentajes = (Excel._Worksheet)xlWorkbook.Sheets[51];
             int y = 2;
             Traer_Porvar_por();
             //try
@@ -309,7 +312,6 @@ namespace Anakena
             //        myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
             //        myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             //        myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
-
 
 
             //        xlWorksheet_36_SUPEREXTRA.Cells[24, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString())), 1);
@@ -8072,7 +8074,1992 @@ namespace Anakena
             }
             catch (Exception E) { MessageBox.Show("Error al generar reporte 36+/BAJO CATIII : " + E, "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information); }
 
+            try
+            {
+                Lbl_Proceso.Visible = true;
+                Lbl_Proceso.Text = "Generando: Descarte";
+                Traer_Por_NSC(230, 420, 457, 494, 531);
+                Double acum_fila24 = 0;
+                Double acum_fila25 = 0;
+                Double acum_fila26 = 0;
+                Double acum_fila27 = 0;
+                Double acum_fila28 = 0;
+                Double acum_fila29 = 0;
+                Double acum_fila30 = 0;
+                Double acum_fila31 = 0;
+                Double acum_fila32 = 0;
+                Double acum_fila33 = 0;
+                Double acum_fila34 = 0;
+                Double acum_fila35 = 0;
+                Double acum_fila36 = 0;
+                Double acum_fila37 = 0;
+                Double acum_fila38 = 0;
+                Double acum_fila39 = 0;
+                Double acum_fila40 = 0;
+                Double acum_fila41 = 0;
+                Double acum_fila42 = 0;
+                Double acum_fila43 = 0;
+                Double acum_fila44 = 0;
+                Double acum_fila45 = 0;
+                Double acum_fila46 = 0;
+                Double acum_fila47 = 0;
+                Double acum_fila48 = 0;
+                Double acum_fila49 = 0;
+                Double acum_fila50 = 0;
+                Double acum_fila51 = 0;
+                Double acum_fila52 = 0;
+                Double acum_fila53 = 0;
+                Double acum_fila54 = 0;
+                Double acum_fila55 = 0;
+                Double acum_fila56 = 0;
+                Double acum_fila57 = 0;
+                Double acum_fila58 = 0;
+                Double acum_fila59 = 0;
+                Double acum_fila60 = 0;
+                Double acum_fila61 = 0;
+                Double acum_fila62 = 0;
+                Double acum_fila63 = 0;
+                Double acum_fila64 = 0;
+                Double acum_fila65 = 0;
+                Double acum_fila66 = 0;
+                Double acum_fila69 = 0;
+                Double acum_fila70 = 0;
+                Double acum_fila71 = 0;
+                Double acum_fila72 = 0;
+                Double acum_fila73 = 0;
+                Double acum_fila74 = 0;
+                Double acum_fila75 = 0;
+                Double acum_fila76 = 0;
+                Double acum_fila77 = 0;
+                Double acum_fila78 = 0;
+                Double acum_fila79 = 0;
+                Double acum_fila80 = 0;
+                Double acum_fila81 = 0;
+                Double acum_fila82 = 0;
+                Double acum_fila83 = 0;
+                Double acum_fila84 = 0;
+                Double acum_fila85 = 0;
+                Double acum_fila86 = 0;
+                Double acum_fila87 = 0;
+                Double acum_cascara = 0;
+                Double acum_pepa = 0;
+                Double acum_mariposa = 0;
+                Double halves = 0;
+                Double large = 0;
+                Double medium = 0;
+                Double descarte = 0;
+                Double acum_extra = 0;
+                Double acum_light = 0;
+                Double acum_ambar = 0;
+                Double acum_amarillo = 0;
+                Double acum_descarte = 0;
+                y = 2;
+                pBar1.Minimum = 0;
+                pBar1.Maximum = (dataGridView1.RowCount);
 
+                xlWorksheet_Descarte.Cells[1, 1] = cmb_variedad.Text;
+                pBar1.Visible = true;
+
+
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    Double ACUM = 0;
+                    DateTime date = DateTime.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString());
+                    if (date.ToString() != " ")
+                    xlWorksheet_Descarte.Cells[3, y] = date.ToShortDateString();
+                    Excel.Range myRange = (Excel.Range)xlWorksheet_Descarte.Cells[3, y];
+                    myRange.Font.Bold = true;
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[4, y] = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[4, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    xlWorksheet_Descarte.Cells[5, y] = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[5, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[6, y] = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[6, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[7, y] = dataGridView1.Rows[i].Cells[4].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[7, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[8, y] = dataGridView1.Rows[i].Cells[5].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[8, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    acum_cascara = acum_cascara + Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString());
+                    xlWorksheet_Descarte.Cells[8, dataGridView1.RowCount + 2] = acum_cascara;
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[8, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[11, y] = dataGridView1.Rows[i].Cells[7].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[11, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[12, y] = dataGridView1.Rows[i].Cells[8].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[12, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[13, y] = dataGridView1.Rows[i].Cells[9].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[13, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[14, y] = dataGridView1.Rows[i].Cells[10].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[14, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[15, y] = dataGridView1.Rows[i].Cells[11].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[15, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[16, y] = dataGridView1.Rows[i].Cells[12].Value.ToString();
+                    ACUM = Convert.ToDouble(dataGridView1.Rows[i].Cells[7].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[8].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[9].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[10].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[11].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[12].Value.ToString());
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[16, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    xlWorksheet_Descarte.Cells[19, y] = ACUM;
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[19, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    acum_pepa = acum_pepa + ACUM;
+                    xlWorksheet_Descarte.Cells[19, dataGridView1.RowCount + 2] = acum_pepa;
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[19, dataGridView1.RowCount + 2];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[20, y] = Math.Round((ACUM / Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString())) * 100, 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[20, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[20, dataGridView1.RowCount + 2] = Math.Round((acum_pepa / acum_cascara) * 100, 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[20, dataGridView1.RowCount + 2];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+
+                    xlWorksheet_Descarte.Cells[21, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[7].Value.ToString()) / ACUM) * 100, 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[21, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+
+                    acum_mariposa = acum_mariposa + (Convert.ToDouble(dataGridView1.Rows[i].Cells[7].Value.ToString()));
+                    xlWorksheet_Descarte.Cells[21, dataGridView1.RowCount + 2] = Math.Round((acum_mariposa / acum_pepa) * 100, 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[21, dataGridView1.RowCount + 2];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[24, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[24, y];
+                    acum_fila24 = acum_fila24 + Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString());
+                    xlWorksheet_Descarte.Cells[24, dataGridView1.RowCount + 2] = acum_fila24;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[25, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[25, y];
+                    acum_fila25 = acum_fila25 + Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString());
+                    xlWorksheet_Descarte.Cells[25, dataGridView1.RowCount + 2] = acum_fila25;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[26, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[26, y];
+                    acum_fila26 = acum_fila26 + Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString());
+                    xlWorksheet_Descarte.Cells[26, dataGridView1.RowCount + 2] = acum_fila26;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[27, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[27, y];
+                    acum_fila27 = acum_fila27 + Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString());
+                    xlWorksheet_Descarte.Cells[27, dataGridView1.RowCount + 2] = acum_fila27;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[28, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[28, y];
+                    acum_fila28 = acum_fila28 + Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString());
+                    xlWorksheet_Descarte.Cells[28, dataGridView1.RowCount + 2] = acum_fila28;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[29, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[29, y];
+                    acum_fila29 = acum_fila29 + Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString());
+                    xlWorksheet_Descarte.Cells[29, dataGridView1.RowCount + 2] = acum_fila29;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[30, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[30, y];
+                    acum_fila30 = acum_fila30 + Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString());
+                    xlWorksheet_Descarte.Cells[30, dataGridView1.RowCount + 2] = acum_fila30;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[31, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[31, y];
+                    acum_fila31 = acum_fila31 + Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString());
+                    xlWorksheet_Descarte.Cells[31, dataGridView1.RowCount + 2] = acum_fila31;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    //BIG HALVES & PIECES 80 - 20 EL
+                    xlWorksheet_Descarte.Cells[32, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[32, y];
+                    acum_fila32 = acum_fila32 + Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString());
+                    xlWorksheet_Descarte.Cells[32, dataGridView1.RowCount + 2] = acum_fila32;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG HALVES & PIECES 70 - 30 EL
+                    xlWorksheet_Descarte.Cells[33, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[33, y];
+                    acum_fila33 = acum_fila33 + Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString());
+                    xlWorksheet_Descarte.Cells[33, dataGridView1.RowCount + 2] = acum_fila33;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG HALVES &PIECES 60 - 40 EL
+                    xlWorksheet_Descarte.Cells[34, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[34, y];
+                    acum_fila34 = acum_fila34 + Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString());
+                    xlWorksheet_Descarte.Cells[34, dataGridView1.RowCount + 2] = acum_fila34;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG HALVES &PIECES 80 - 20 L
+                    xlWorksheet_Descarte.Cells[35, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[35, y];
+                    acum_fila35 = acum_fila35 + Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString());
+                    xlWorksheet_Descarte.Cells[35, dataGridView1.RowCount + 2] = acum_fila35;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG HALVES &PIECES 70 - 30 L
+                    xlWorksheet_Descarte.Cells[36, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[36, y];
+                    acum_fila36 = acum_fila36 + Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString());
+                    xlWorksheet_Descarte.Cells[36, dataGridView1.RowCount + 2] = acum_fila36;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG HALVES &PIECES 55 - 45 L
+                    xlWorksheet_Descarte.Cells[37, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[37, y];
+                    acum_fila37 = acum_fila37 + Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString());
+                    xlWorksheet_Descarte.Cells[37, dataGridView1.RowCount + 2] = acum_fila37;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG HALVES &PIECES 50 - 50 L
+                    xlWorksheet_Descarte.Cells[38, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[38, y];
+                    acum_fila38 = acum_fila38 + Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString());
+                    xlWorksheet_Descarte.Cells[38, dataGridView1.RowCount + 2] = acum_fila38;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG PIECES &HALVES 80 - 20 EL
+                    xlWorksheet_Descarte.Cells[39, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[39, y];
+                    acum_fila39 = acum_fila39 + Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString());
+                    xlWorksheet_Descarte.Cells[39, dataGridView1.RowCount + 2] = acum_fila39;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG PIECES &HALVES 70 - 30 EL
+                    xlWorksheet_Descarte.Cells[40, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[40, y];
+                    acum_fila40 = acum_fila40 + Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString());
+                    xlWorksheet_Descarte.Cells[40, dataGridView1.RowCount + 2] = acum_fila40;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG PIECES &HALVES 60 - 40 EL
+                    xlWorksheet_Descarte.Cells[41, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[41, y];
+                    acum_fila41 = acum_fila41 + Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString());
+                    xlWorksheet_Descarte.Cells[41, dataGridView1.RowCount + 2] = acum_fila41;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG PIECES &HALVES 50 - 50 EL
+                    xlWorksheet_Descarte.Cells[42, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[42, y];
+                    acum_fila42 = acum_fila42 + Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString());
+                    xlWorksheet_Descarte.Cells[42, dataGridView1.RowCount + 2] = acum_fila42;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG PIECES &HALVES 80 - 20 L
+                    xlWorksheet_Descarte.Cells[43, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[43, y];
+                    acum_fila43 = acum_fila43 + Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString());
+                    xlWorksheet_Descarte.Cells[43, dataGridView1.RowCount + 2] = acum_fila43;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG PIECES &HALVES 60 - 40 L
+                    xlWorksheet_Descarte.Cells[44, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[44, y];
+                    acum_fila44 = acum_fila44 + Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString());
+                    xlWorksheet_Descarte.Cells[44, dataGridView1.RowCount + 2] = acum_fila44;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 80 - 20 EL
+                    xlWorksheet_Descarte.Cells[45, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[45, y];
+                    acum_fila45 = acum_fila45 + Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString());
+                    xlWorksheet_Descarte.Cells[45, dataGridView1.RowCount + 2] = acum_fila45;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 70 - 30 EL
+                    xlWorksheet_Descarte.Cells[46, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[46, y];
+                    acum_fila46 = acum_fila46 + Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString());
+                    xlWorksheet_Descarte.Cells[46, dataGridView1.RowCount + 2] = acum_fila46;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 60 - 40 EL
+                    xlWorksheet_Descarte.Cells[47, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[47, y];
+                    acum_fila47 = acum_fila47 + Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString());
+                    xlWorksheet_Descarte.Cells[47, dataGridView1.RowCount + 2] = acum_fila47;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 80 - 20 L
+                    xlWorksheet_Descarte.Cells[48, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[48, y];
+                    acum_fila48 = acum_fila48 + Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString());
+                    xlWorksheet_Descarte.Cells[48, dataGridView1.RowCount + 2] = acum_fila48;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 60 - 40 L
+                    xlWorksheet_Descarte.Cells[49, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[49, y];
+                    acum_fila49 = acum_fila49 + Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString());
+                    xlWorksheet_Descarte.Cells[49, dataGridView1.RowCount + 2] = acum_fila49;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 55 - 45 L
+                    xlWorksheet_Descarte.Cells[50, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[50, y];
+                    acum_fila50 = acum_fila50 + Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString());
+                    xlWorksheet_Descarte.Cells[50, dataGridView1.RowCount + 2] = acum_fila50;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 50 - 50 L
+                    xlWorksheet_Descarte.Cells[51, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[51, y];
+                    acum_fila51 = acum_fila51 + Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString());
+                    xlWorksheet_Descarte.Cells[51, dataGridView1.RowCount + 2] = acum_fila51;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES & HALVES 80-20 EL
+                    xlWorksheet_Descarte.Cells[52, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[52, y];
+                    acum_fila52 = acum_fila52 + Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString());
+                    xlWorksheet_Descarte.Cells[52, dataGridView1.RowCount + 2] = acum_fila52;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES &HALVES 70 - 30 EL
+                    xlWorksheet_Descarte.Cells[53, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[53, y];
+                    acum_fila53 = acum_fila53 + Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString());
+                    xlWorksheet_Descarte.Cells[53, dataGridView1.RowCount + 2] = acum_fila53;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES &HALVES 60 - 40 EL
+                    xlWorksheet_Descarte.Cells[54, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[54, y];
+                    acum_fila54 = acum_fila54 + Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString());
+                    xlWorksheet_Descarte.Cells[54, dataGridView1.RowCount + 2] = acum_fila54;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES &HALVES 50 - 50 EL 
+                    xlWorksheet_Descarte.Cells[55, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[55, y];
+                    acum_fila55 = acum_fila55 + Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString());
+                    xlWorksheet_Descarte.Cells[55, dataGridView1.RowCount + 2] = acum_fila55;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES & HALVES 80-20 L
+                    xlWorksheet_Descarte.Cells[56, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[56, y];
+                    acum_fila56 = acum_fila56 + Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString());
+                    xlWorksheet_Descarte.Cells[56, dataGridView1.RowCount + 2] = acum_fila56;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES &HALVES 60 - 40 L
+                    xlWorksheet_Descarte.Cells[57, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[57, y];
+                    acum_fila57 = acum_fila57 + Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString());
+                    xlWorksheet_Descarte.Cells[57, dataGridView1.RowCount + 2] = acum_fila57;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES LIGTH AMBAR 70 - 30
+                    xlWorksheet_Descarte.Cells[58, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[58, y];
+                    acum_fila58 = acum_fila58 + Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString());
+                    xlWorksheet_Descarte.Cells[58, dataGridView1.RowCount + 2] = acum_fila58;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //LARGE PIECES EL
+                    xlWorksheet_Descarte.Cells[59, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[59, y];
+                    acum_fila59 = acum_fila59 + Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString());
+                    xlWorksheet_Descarte.Cells[59, dataGridView1.RowCount + 2] = acum_fila59;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //LARGE PIECES L
+                    xlWorksheet_Descarte.Cells[60, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[60, y];
+                    acum_fila60 = acum_fila60 + Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString());
+                    xlWorksheet_Descarte.Cells[60, dataGridView1.RowCount + 2] = acum_fila60;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //LARGE PIECES LA
+                    xlWorksheet_Descarte.Cells[61, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[61, y];
+                    acum_fila61 = acum_fila61 + Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString());
+                    xlWorksheet_Descarte.Cells[61, dataGridView1.RowCount + 2] = acum_fila61;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES EL
+                    xlWorksheet_Descarte.Cells[62, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[62, y];
+                    acum_fila62 = acum_fila62 + Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString());
+                    xlWorksheet_Descarte.Cells[62, dataGridView1.RowCount + 2] = acum_fila62;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES L
+                    xlWorksheet_Descarte.Cells[63, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[63, y];
+                    acum_fila63 = acum_fila63 + Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString());
+                    xlWorksheet_Descarte.Cells[63, dataGridView1.RowCount + 2] = acum_fila63;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES LA
+                    xlWorksheet_Descarte.Cells[64, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[64, y];
+                    acum_fila64 = acum_fila64 + Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString());
+                    xlWorksheet_Descarte.Cells[64, dataGridView1.RowCount + 2] = acum_fila64;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //SMALL PIECES LA
+                    xlWorksheet_Descarte.Cells[65, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[54].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[65, y];
+                    acum_fila65 = acum_fila65 + Convert.ToDouble(dataGridView1.Rows[i].Cells[54].Value.ToString());
+                    xlWorksheet_Descarte.Cells[65, dataGridView1.RowCount + 2] = acum_fila65;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[66, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[55].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[66, y];
+                    acum_fila66 = acum_fila66 + Convert.ToDouble(dataGridView1.Rows[i].Cells[55].Value.ToString());
+                    xlWorksheet_Descarte.Cells[66, dataGridView1.RowCount + 2] = acum_fila66;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    //DESCARTE 
+                    xlWorksheet_Descarte.Cells[69, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[69, y];
+                    acum_fila69 = acum_fila69 + Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString());
+                    xlWorksheet_Descarte.Cells[69, dataGridView1.RowCount + 2] = acum_fila69;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[70, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[70, y];
+                    acum_fila70 = acum_fila70 + Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString());
+                    xlWorksheet_Descarte.Cells[70, dataGridView1.RowCount + 2] = acum_fila70;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[71, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[71, y];
+                    acum_fila71 = acum_fila71 + Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString());
+                    xlWorksheet_Descarte.Cells[71, dataGridView1.RowCount + 2] = acum_fila71;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[72, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[59].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[72, y];
+                    acum_fila72 = acum_fila72 + Convert.ToDouble(dataGridView1.Rows[i].Cells[59].Value.ToString());
+                    xlWorksheet_Descarte.Cells[72, dataGridView1.RowCount + 2] = acum_fila72;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[73, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[73, y];
+                    acum_fila73 = acum_fila73 + Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString());
+                    xlWorksheet_Descarte.Cells[73, dataGridView1.RowCount + 2] = acum_fila73;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[74, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[74, y];
+                    acum_fila74 = acum_fila74 + Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString());
+                    xlWorksheet_Descarte.Cells[74, dataGridView1.RowCount + 2] = acum_fila74;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[75, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[75, y];
+                    acum_fila75 = acum_fila75 + Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString());
+                    xlWorksheet_Descarte.Cells[75, dataGridView1.RowCount + 2] = acum_fila75;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[76, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[76, y];
+                    acum_fila76 = acum_fila76 + Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString());
+                    xlWorksheet_Descarte.Cells[76, dataGridView1.RowCount + 2] = acum_fila76;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[77, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[77, y];
+                    acum_fila77 = acum_fila77 + Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString());
+                    xlWorksheet_Descarte.Cells[77, dataGridView1.RowCount + 2] = acum_fila77;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[78, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[78, y];
+                    acum_fila78 = acum_fila78 + Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString());
+                    xlWorksheet_Descarte.Cells[78, dataGridView1.RowCount + 2] = acum_fila78;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[79, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[79, y];
+                    acum_fila79 = acum_fila79 + Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString());
+                    xlWorksheet_Descarte.Cells[79, dataGridView1.RowCount + 2] = acum_fila79;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[80, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[80, y];
+                    acum_fila80 = acum_fila80 + Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString());
+                    xlWorksheet_Descarte.Cells[80, dataGridView1.RowCount + 2] = acum_fila80;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[81, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[81, y];
+                    acum_fila81 = acum_fila81 + Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString());
+                    xlWorksheet_Descarte.Cells[81, dataGridView1.RowCount + 2] = acum_fila81;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[82, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[69].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[82, y];
+                    acum_fila82 = acum_fila82 + Convert.ToDouble(dataGridView1.Rows[i].Cells[69].Value.ToString());
+                    xlWorksheet_Descarte.Cells[82, dataGridView1.RowCount + 2] = acum_fila82;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[83, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[83, y];
+                    acum_fila83 = acum_fila83 + Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString());
+                    xlWorksheet_Descarte.Cells[83, dataGridView1.RowCount + 2] = acum_fila83;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[84, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[84, y];
+                    acum_fila84 = acum_fila84 + Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString());
+                    xlWorksheet_Descarte.Cells[84, dataGridView1.RowCount + 2] = acum_fila84;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[85, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[85, y];
+                    acum_fila85 = acum_fila85 + Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString());
+                    xlWorksheet_Descarte.Cells[85, dataGridView1.RowCount + 2] = acum_fila85;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[86, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[86, y];
+                    acum_fila86 = acum_fila86 + Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString());
+                    xlWorksheet_Descarte.Cells[86, dataGridView1.RowCount + 2] = acum_fila86;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[87, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString())), 1);
+
+                    acum_fila87 = acum_fila87 + Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString());
+                    xlWorksheet_Descarte.Cells[87, dataGridView1.RowCount + 2] = acum_fila87;
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[87, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descarte.Cells[23, dataGridView1.RowCount + 2] = "Totales";
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[23, dataGridView1.RowCount + 2];
+                    myRange.Font.Bold = true;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[24, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[25, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[26, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[27, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[28, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[29, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[30, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[31, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[32, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[33, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[34, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[35, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[36, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[37, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[38, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[39, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[40, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[41, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[42, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[43, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[44, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[45, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[46, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[47, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[48, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[49, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[50, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[51, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[52, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[53, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[54, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[55, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[56, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[57, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[58, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[59, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[60, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[61, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[62, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[63, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[64, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[65, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[66, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[67, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[69, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[70, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[71, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[72, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[73, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[74, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[75, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[76, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[77, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[78, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[79, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[80, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[81, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[82, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[83, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[84, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[85, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[86, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[87, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[88, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[23, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange.Font.Bold = true;
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[24, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[25, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[26, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[27, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[28, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[29, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[30, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[31, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[32, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[33, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[34, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[35, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[36, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[37, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[38, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[39, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[40, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[41, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[42, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[43, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[44, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[45, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[46, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[47, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[48, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[49, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[50, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[51, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[52, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[53, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[54, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[55, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[56, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[57, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[58, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[59, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[60, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[61, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[62, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[63, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[64, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[65, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[66, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[67, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[69, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[70, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[71, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[72, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[73, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[74, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[75, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[76, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[77, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[78, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[79, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[80, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[81, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[82, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[83, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[84, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[85, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[86, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[87, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[88, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descarte.Cells[23, dataGridView1.RowCount + 3] = "Productos Puros";
+                    xlWorksheet_Descarte.Cells[24, dataGridView1.RowCount + 3] = (acum_fila24 * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila34 * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila32 * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila33 * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila39 * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila40 * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila41 * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila42 * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Mariposa"].Value.ToString()) / 100));//big halves extra light
+                    xlWorksheet_Descarte.Cells[28, dataGridView1.RowCount + 3] = (acum_fila28 * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila35 * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila36 * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila37 * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila38 * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila43 * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila44 * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Mariposa"].Value.ToString()) / 100));//big halves light
+                    xlWorksheet_Descarte.Cells[25, dataGridView1.RowCount + 3] = (acum_fila25 * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila45 * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila46 * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila47 * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila52 * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila53 * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila54 * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila55 * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Mariposa"].Value.ToString()) / 100));//medium halves extra light
+                    xlWorksheet_Descarte.Cells[29, dataGridView1.RowCount + 3] = (acum_fila29 * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila48 * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila49 * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila50 * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila51 * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila56 * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila57 * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Mariposa"].Value.ToString()) / 100));//medium halves light
+                    xlWorksheet_Descarte.Cells[27, dataGridView1.RowCount + 3] = (acum_fila27 * (Convert.ToSingle(dataGridView2.Rows[3].Cells["Mariposa"].Value.ToString()) / 100));
+                    xlWorksheet_Descarte.Cells[26, dataGridView1.RowCount + 3] = (acum_fila26 * (Convert.ToSingle(dataGridView2.Rows[2].Cells["Mariposa"].Value.ToString()) / 100));
+                    xlWorksheet_Descarte.Cells[30, dataGridView1.RowCount + 3] = (acum_fila30 * (Convert.ToSingle(dataGridView2.Rows[6].Cells["Mariposa"].Value.ToString()) / 100));
+                    xlWorksheet_Descarte.Cells[31, dataGridView1.RowCount + 3] = (acum_fila31 * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Mariposa"].Value.ToString()) / 100)) + acum_fila58 * (Convert.ToSingle(dataGridView2.Rows[25].Cells["Mariposa"].Value.ToString()));
+                    xlWorksheet_Descarte.Cells[32, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[33, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[34, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[35, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[36, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[37, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[38, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[39, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[40, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[41, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[42, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[43, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[44, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[45, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[46, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[47, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[48, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[49, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[50, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[51, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[52, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[53, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[54, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[55, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[56, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[57, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[58, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descarte.Cells[59, dataGridView1.RowCount + 3] = acum_fila59 + (acum_fila24 * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila34 * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila32 * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila33 * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila39 * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila40 * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila41 * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila42 * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila25 * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila45 * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila46 * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila47 * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila52 * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila53 * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila54 * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila55 * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Large_Pieces"].Value.ToString()) / 100));
+                    xlWorksheet_Descarte.Cells[60, dataGridView1.RowCount + 3] = acum_fila60 + (acum_fila28 * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila35 * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila36 * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila37 * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila38 * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila43 * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila44 * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila29 * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila48 * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila49 * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila50 * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila51 * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila56 * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila57 * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Large_Pieces"].Value.ToString()) / 100));
+                    xlWorksheet_Descarte.Cells[61, dataGridView1.RowCount + 3] = acum_fila61 + (acum_fila31 * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Large_Pieces"].Value.ToString()) / 100));
+                    xlWorksheet_Descarte.Cells[62, dataGridView1.RowCount + 3] = acum_fila62;
+                    xlWorksheet_Descarte.Cells[63, dataGridView1.RowCount + 3] = acum_fila63;
+                    xlWorksheet_Descarte.Cells[64, dataGridView1.RowCount + 3] = acum_fila64;
+                    xlWorksheet_Descarte.Cells[65, dataGridView1.RowCount + 3] = acum_fila65;
+                    xlWorksheet_Descarte.Cells[66, dataGridView1.RowCount + 3] = acum_fila66;
+                    xlWorksheet_Descarte.Cells[69, dataGridView1.RowCount + 3] = (acum_fila69 * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Mariposa"].Value.ToString()) / 100));
+                    xlWorksheet_Descarte.Cells[70, dataGridView1.RowCount + 3] = (acum_fila70 * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Mariposa"].Value.ToString()) / 100));
+                    xlWorksheet_Descarte.Cells[71, dataGridView1.RowCount + 3] = (acum_fila71 * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Mariposa"].Value.ToString()) / 100));
+                    xlWorksheet_Descarte.Cells[72, dataGridView1.RowCount + 3] = acum_fila72;
+                    xlWorksheet_Descarte.Cells[73, dataGridView1.RowCount + 3] = acum_fila73 + (acum_fila71 * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila70 * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila69 * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Large_Pieces"].Value.ToString()) / 100));
+                    xlWorksheet_Descarte.Cells[74, dataGridView1.RowCount + 3] = acum_fila74;
+                    xlWorksheet_Descarte.Cells[75, dataGridView1.RowCount + 3] = acum_fila75;
+                    xlWorksheet_Descarte.Cells[76, dataGridView1.RowCount + 3] = acum_fila76;
+                    xlWorksheet_Descarte.Cells[77, dataGridView1.RowCount + 3] = acum_fila77;
+                    xlWorksheet_Descarte.Cells[78, dataGridView1.RowCount + 3] = acum_fila78;
+                    xlWorksheet_Descarte.Cells[79, dataGridView1.RowCount + 3] = acum_fila79;
+                    xlWorksheet_Descarte.Cells[80, dataGridView1.RowCount + 3] = acum_fila80;
+                    xlWorksheet_Descarte.Cells[81, dataGridView1.RowCount + 3] = acum_fila81;
+                    xlWorksheet_Descarte.Cells[82, dataGridView1.RowCount + 3] = acum_fila82;
+                    xlWorksheet_Descarte.Cells[83, dataGridView1.RowCount + 3] = acum_fila83;
+                    xlWorksheet_Descarte.Cells[84, dataGridView1.RowCount + 3] = acum_fila84;
+                    xlWorksheet_Descarte.Cells[85, dataGridView1.RowCount + 3] = acum_fila85;
+                    xlWorksheet_Descarte.Cells[86, dataGridView1.RowCount + 3] = acum_fila86;
+                    xlWorksheet_Descarte.Cells[87, dataGridView1.RowCount + 3] = acum_fila87;
+                    xlWorksheet_Descarte.Cells[67, y] = Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[54].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[55].Value.ToString());
+                    xlWorksheet_Descarte.Cells[88, y] = Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[59].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString());
+                    xlWorksheet_Descarte.Cells[91, y] = Math.Round(((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[2].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[3].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[6].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[25].Cells["Mariposa"].Value.ToString()) / 100)) + Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Mariposa"].Value.ToString()) / 100)) / ACUM * 100, 2);
+                    xlWorksheet_Descarte.Cells[92, y] = Math.Round(((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Large_Pieces"].Value.ToString()) / 100) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString())) + Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[2].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[3].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[6].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[25].Cells["Large_Pieces"].Value.ToString()) / 100)) + Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Large_Pieces"].Value.ToString()) / 100)) / ACUM * 100, 2);
+                    xlWorksheet_Descarte.Cells[93, y] = Math.Round(((Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString())) / ACUM) * 100, 2);
+                    xlWorksheet_Descarte.Cells[94, y] = Math.Round(((Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[69].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString())) / ACUM) * 100, 2);
+                    xlWorksheet_Descarte.Cells[95, y] = 100;
+                    xlWorksheet_Descarte.Cells[98, y] = Math.Round((((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString()))) / ACUM) * 100, 2);
+                    xlWorksheet_Descarte.Cells[99, y] = Math.Round((((Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[54].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[55].Value.ToString()))) / ACUM) * 100, 2);
+                    xlWorksheet_Descarte.Cells[100, y] = Math.Round((((Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString()))) / ACUM) * 100, 2);
+                    xlWorksheet_Descarte.Cells[101, y] = Math.Round((((Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[59].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString()))) / ACUM) * 100, 2);
+                    xlWorksheet_Descarte.Cells[102, y] = Math.Round((((Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[69].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString()))) / ACUM) * 100, 2);
+                    xlWorksheet_Descarte.Cells[103, y] = 100;
+
+
+                    xlWorksheet_Descarte.Cells[67, dataGridView1.RowCount + 2] = acum_fila24 + acum_fila25 + acum_fila26 + acum_fila27 + acum_fila28 + acum_fila29 + acum_fila30 + acum_fila31 + acum_fila32 + acum_fila33 + acum_fila34 + acum_fila35 + acum_fila36 + acum_fila37 + acum_fila38 + acum_fila39 + acum_fila40 + acum_fila41 + acum_fila42 + acum_fila43 + acum_fila44 + acum_fila45 + acum_fila46 + acum_fila47 + acum_fila48 + acum_fila49 + acum_fila50 + acum_fila51 + acum_fila52 + acum_fila53 + acum_fila54 + acum_fila55 + acum_fila56 + acum_fila57 + acum_fila58 + acum_fila59 + acum_fila60 + acum_fila61 + acum_fila62 + acum_fila63 + acum_fila64 + acum_fila65 + acum_fila66;
+                    xlWorksheet_Descarte.Cells[67, dataGridView1.RowCount + 3] = (acum_fila24 * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila34 * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila32 * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila33 * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila39 * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila40 * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila41 * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila42 * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila28 * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila35 * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila36 * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila37 * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila38 * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila43 * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila44 * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila25 * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila45 * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila46 * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila47 * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila52 * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila53 * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila54 * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila55 * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila29 * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila48 * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila49 * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila50 * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila51 * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila56 * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila57 * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila27 * (Convert.ToSingle(dataGridView2.Rows[3].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila26 * (Convert.ToSingle(dataGridView2.Rows[2].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila30 * (Convert.ToSingle(dataGridView2.Rows[6].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila31 * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Mariposa"].Value.ToString()) / 100)) + acum_fila58 * (Convert.ToSingle(dataGridView2.Rows[25].Cells["Mariposa"].Value.ToString())) + acum_fila59 + (acum_fila24 * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila34 * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila32 * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila33 * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila39 * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila40 * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila41 * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila42 * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila25 * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila45 * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila46 * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila47 * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila52 * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila53 * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila54 * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila55 * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Large_Pieces"].Value.ToString()) / 100)) + acum_fila60 + (acum_fila28 * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila35 * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila36 * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila37 * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila38 * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila43 * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila44 * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila29 * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila48 * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila49 * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila50 * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila51 * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila56 * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila57 * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Large_Pieces"].Value.ToString()) / 100)) + acum_fila61 + (acum_fila31 * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Large_Pieces"].Value.ToString()) / 100)) + acum_fila62 + acum_fila63 + acum_fila64 + acum_fila65 + acum_fila66;
+                    xlWorksheet_Descarte.Cells[88, dataGridView1.RowCount + 2] = acum_fila69 + acum_fila70 + acum_fila71 + acum_fila72 + acum_fila73 + acum_fila74 + acum_fila75 + acum_fila76 + acum_fila77 + acum_fila78 + acum_fila79 + acum_fila80 + acum_fila81 + acum_fila82 + acum_fila83 + acum_fila84 + acum_fila85 + acum_fila86 + acum_fila87;
+                    xlWorksheet_Descarte.Cells[88, dataGridView1.RowCount + 3] = (acum_fila69 * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila70 * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila71 * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Mariposa"].Value.ToString()) / 100)) + acum_fila72 + acum_fila73 + (acum_fila71 * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila70 * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila69 * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Large_Pieces"].Value.ToString()) / 100)) + acum_fila74 + acum_fila75 + acum_fila76 + acum_fila77 + acum_fila78 + acum_fila79 + acum_fila80 + acum_fila81 + acum_fila82 + acum_fila83 + acum_fila84 + acum_fila85 + acum_fila86 + acum_fila87;
+
+                    halves = halves + ((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[2].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[3].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[6].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[25].Cells["Mariposa"].Value.ToString()) / 100)) + Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Mariposa"].Value.ToString()) / 100));
+                    large = large + ((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Large_Pieces"].Value.ToString()) / 100) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString())) + Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[2].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[3].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[6].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[25].Cells["Large_Pieces"].Value.ToString()) / 100)) + Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Large_Pieces"].Value.ToString()) / 100));
+                    medium = medium + ((Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString())));
+                    descarte = descarte + ((Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[69].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString())));
+
+                    acum_extra = acum_extra + (((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString()))));
+                    acum_light = acum_light + (((Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[54].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[55].Value.ToString()))));
+                    acum_ambar = acum_ambar + (((Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString()))));
+                    acum_amarillo = acum_amarillo + (((Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[59].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString()))));
+                    acum_descarte = acum_descarte + (((Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[69].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString()))));
+
+                    xlWorksheet_Descarte.Cells[91, dataGridView1.RowCount + 2] = Math.Round((halves / acum_pepa) * 100, 2);
+                    xlWorksheet_Descarte.Cells[92, dataGridView1.RowCount + 2] = Math.Round((large / acum_pepa) * 100, 2);
+                    xlWorksheet_Descarte.Cells[93, dataGridView1.RowCount + 2] = Math.Round((medium / acum_pepa) * 100, 2);
+                    xlWorksheet_Descarte.Cells[94, dataGridView1.RowCount + 2] = Math.Round((descarte / acum_pepa) * 100, 2);
+                    xlWorksheet_Descarte.Cells[95, dataGridView1.RowCount + 2] = 100;
+
+                    xlWorksheet_Descarte.Cells[98, dataGridView1.RowCount + 2] = Math.Round((acum_extra / acum_pepa) * 100, 2);
+                    xlWorksheet_Descarte.Cells[99, dataGridView1.RowCount + 2] = Math.Round((acum_light / acum_pepa) * 100, 2);
+                    xlWorksheet_Descarte.Cells[100, dataGridView1.RowCount + 2] = Math.Round((acum_ambar / acum_pepa) * 100, 2);
+                    xlWorksheet_Descarte.Cells[101, dataGridView1.RowCount + 2] = Math.Round((acum_amarillo / acum_pepa) * 100, 2);
+                    xlWorksheet_Descarte.Cells[102, dataGridView1.RowCount + 2] = Math.Round((acum_descarte / acum_pepa) * 100, 2);
+                    xlWorksheet_Descarte.Cells[103, dataGridView1.RowCount + 2] = Math.Round((acum_extra / acum_pepa) * 100 + (acum_light / acum_pepa) * 100 + (acum_ambar / acum_pepa) * 100 + (acum_amarillo / acum_pepa) * 100 + (acum_descarte / acum_pepa) * 100, 1);
+
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[91, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[92, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[93, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[94, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[95, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[98, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[99, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[100, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[101, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[102, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[103, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[67, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[88, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[91, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[92, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[93, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[94, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[95, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[98, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[99, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[100, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[101, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[102, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descarte.Cells[103, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    y++;
+                }
+            }
+            catch (Exception E) { MessageBox.Show("Error al generar reporte Descarte : " + E, "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+
+
+
+            try
+            {
+                Lbl_Proceso.Visible = true;
+                Lbl_Proceso.Text = "Generando: Descalibre";
+                Traer_Por_NSC_Descalibre(230, 420, 457, 494, 531);
+               // Traer_Por_NSC_des
+                Double acum_fila24 = 0;
+                Double acum_fila25 = 0;
+                Double acum_fila26 = 0;
+                Double acum_fila27 = 0;
+                Double acum_fila28 = 0;
+                Double acum_fila29 = 0;
+                Double acum_fila30 = 0;
+                Double acum_fila31 = 0;
+                Double acum_fila32 = 0;
+                Double acum_fila33 = 0;
+                Double acum_fila34 = 0;
+                Double acum_fila35 = 0;
+                Double acum_fila36 = 0;
+                Double acum_fila37 = 0;
+                Double acum_fila38 = 0;
+                Double acum_fila39 = 0;
+                Double acum_fila40 = 0;
+                Double acum_fila41 = 0;
+                Double acum_fila42 = 0;
+                Double acum_fila43 = 0;
+                Double acum_fila44 = 0;
+                Double acum_fila45 = 0;
+                Double acum_fila46 = 0;
+                Double acum_fila47 = 0;
+                Double acum_fila48 = 0;
+                Double acum_fila49 = 0;
+                Double acum_fila50 = 0;
+                Double acum_fila51 = 0;
+                Double acum_fila52 = 0;
+                Double acum_fila53 = 0;
+                Double acum_fila54 = 0;
+                Double acum_fila55 = 0;
+                Double acum_fila56 = 0;
+                Double acum_fila57 = 0;
+                Double acum_fila58 = 0;
+                Double acum_fila59 = 0;
+                Double acum_fila60 = 0;
+                Double acum_fila61 = 0;
+                Double acum_fila62 = 0;
+                Double acum_fila63 = 0;
+                Double acum_fila64 = 0;
+                Double acum_fila65 = 0;
+                Double acum_fila66 = 0;
+                Double acum_fila69 = 0;
+                Double acum_fila70 = 0;
+                Double acum_fila71 = 0;
+                Double acum_fila72 = 0;
+                Double acum_fila73 = 0;
+                Double acum_fila74 = 0;
+                Double acum_fila75 = 0;
+                Double acum_fila76 = 0;
+                Double acum_fila77 = 0;
+                Double acum_fila78 = 0;
+                Double acum_fila79 = 0;
+                Double acum_fila80 = 0;
+                Double acum_fila81 = 0;
+                Double acum_fila82 = 0;
+                Double acum_fila83 = 0;
+                Double acum_fila84 = 0;
+                Double acum_fila85 = 0;
+                Double acum_fila86 = 0;
+                Double acum_fila87 = 0;
+                Double acum_cascara = 0;
+                Double acum_pepa = 0;
+                Double acum_mariposa = 0;
+                Double halves = 0;
+                Double large = 0;
+                Double medium = 0;
+                Double descarte = 0;
+                Double acum_extra = 0;
+                Double acum_light = 0;
+                Double acum_ambar = 0;
+                Double acum_amarillo = 0;
+                Double acum_descarte = 0;
+                y = 2;
+                pBar1.Minimum = 0;
+                pBar1.Maximum = (dataGridView1.RowCount);
+
+                xlWorksheet_Descalibre.Cells[1, 1] = cmb_variedad.Text;
+                pBar1.Visible = true;
+
+
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    Double ACUM = 0;
+                    DateTime date = DateTime.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString());
+                    if (date.ToString() != " ")
+                        xlWorksheet_Descalibre.Cells[3, y] = date.ToShortDateString();
+                    Excel.Range myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[3, y];
+                    myRange.Font.Bold = true;
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[4, y] = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[4, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    xlWorksheet_Descalibre.Cells[5, y] = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[5, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[6, y] = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[6, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[7, y] = dataGridView1.Rows[i].Cells[4].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[7, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[8, y] = dataGridView1.Rows[i].Cells[5].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[8, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    acum_cascara = acum_cascara + Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[8, dataGridView1.RowCount + 2] = acum_cascara;
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[8, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[11, y] = dataGridView1.Rows[i].Cells[7].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[11, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[12, y] = dataGridView1.Rows[i].Cells[8].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[12, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[13, y] = dataGridView1.Rows[i].Cells[9].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[13, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[14, y] = dataGridView1.Rows[i].Cells[10].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[14, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[15, y] = dataGridView1.Rows[i].Cells[11].Value.ToString();
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[15, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[16, y] = dataGridView1.Rows[i].Cells[12].Value.ToString();
+                    ACUM = Convert.ToDouble(dataGridView1.Rows[i].Cells[7].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[8].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[9].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[10].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[11].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[12].Value.ToString());
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[16, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    xlWorksheet_Descalibre.Cells[19, y] = ACUM;
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[19, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    acum_pepa = acum_pepa + ACUM;
+                    xlWorksheet_Descalibre.Cells[19, dataGridView1.RowCount + 2] = acum_pepa;
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[19, dataGridView1.RowCount + 2];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[20, y] = Math.Round((ACUM / Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString())) * 100, 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[20, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[20, dataGridView1.RowCount + 2] = Math.Round((acum_pepa / acum_cascara) * 100, 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[20, dataGridView1.RowCount + 2];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+
+                    xlWorksheet_Descalibre.Cells[21, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[7].Value.ToString()) / ACUM) * 100, 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[21, y];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+
+                    acum_mariposa = acum_mariposa + (Convert.ToDouble(dataGridView1.Rows[i].Cells[7].Value.ToString()));
+                    xlWorksheet_Descalibre.Cells[21, dataGridView1.RowCount + 2] = Math.Round((acum_mariposa / acum_pepa) * 100, 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[21, dataGridView1.RowCount + 2];
+                    myRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    myRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[24, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[24, y];
+                    acum_fila24 = acum_fila24 + Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[24, dataGridView1.RowCount + 2] = acum_fila24;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[25, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[25, y];
+                    acum_fila25 = acum_fila25 + Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[25, dataGridView1.RowCount + 2] = acum_fila25;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[26, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[26, y];
+                    acum_fila26 = acum_fila26 + Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[26, dataGridView1.RowCount + 2] = acum_fila26;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[27, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[27, y];
+                    acum_fila27 = acum_fila27 + Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[27, dataGridView1.RowCount + 2] = acum_fila27;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[28, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[28, y];
+                    acum_fila28 = acum_fila28 + Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[28, dataGridView1.RowCount + 2] = acum_fila28;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[29, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[29, y];
+                    acum_fila29 = acum_fila29 + Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[29, dataGridView1.RowCount + 2] = acum_fila29;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[30, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[30, y];
+                    acum_fila30 = acum_fila30 + Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[30, dataGridView1.RowCount + 2] = acum_fila30;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[31, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[31, y];
+                    acum_fila31 = acum_fila31 + Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[31, dataGridView1.RowCount + 2] = acum_fila31;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    //BIG HALVES & PIECES 80 - 20 EL
+                    xlWorksheet_Descalibre.Cells[32, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[32, y];
+                    acum_fila32 = acum_fila32 + Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[32, dataGridView1.RowCount + 2] = acum_fila32;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG HALVES & PIECES 70 - 30 EL
+                    xlWorksheet_Descalibre.Cells[33, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[33, y];
+                    acum_fila33 = acum_fila33 + Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[33, dataGridView1.RowCount + 2] = acum_fila33;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG HALVES &PIECES 60 - 40 EL
+                    xlWorksheet_Descalibre.Cells[34, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[34, y];
+                    acum_fila34 = acum_fila34 + Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[34, dataGridView1.RowCount + 2] = acum_fila34;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG HALVES &PIECES 80 - 20 L
+                    xlWorksheet_Descalibre.Cells[35, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[35, y];
+                    acum_fila35 = acum_fila35 + Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[35, dataGridView1.RowCount + 2] = acum_fila35;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG HALVES &PIECES 70 - 30 L
+                    xlWorksheet_Descalibre.Cells[36, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[36, y];
+                    acum_fila36 = acum_fila36 + Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[36, dataGridView1.RowCount + 2] = acum_fila36;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG HALVES &PIECES 55 - 45 L
+                    xlWorksheet_Descalibre.Cells[37, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[37, y];
+                    acum_fila37 = acum_fila37 + Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[37, dataGridView1.RowCount + 2] = acum_fila37;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG HALVES &PIECES 50 - 50 L
+                    xlWorksheet_Descalibre.Cells[38, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[38, y];
+                    acum_fila38 = acum_fila38 + Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[38, dataGridView1.RowCount + 2] = acum_fila38;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG PIECES &HALVES 80 - 20 EL
+                    xlWorksheet_Descalibre.Cells[39, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[39, y];
+                    acum_fila39 = acum_fila39 + Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[39, dataGridView1.RowCount + 2] = acum_fila39;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG PIECES &HALVES 70 - 30 EL
+                    xlWorksheet_Descalibre.Cells[40, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[40, y];
+                    acum_fila40 = acum_fila40 + Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[40, dataGridView1.RowCount + 2] = acum_fila40;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG PIECES &HALVES 60 - 40 EL
+                    xlWorksheet_Descalibre.Cells[41, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[41, y];
+                    acum_fila41 = acum_fila41 + Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[41, dataGridView1.RowCount + 2] = acum_fila41;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG PIECES &HALVES 50 - 50 EL
+                    xlWorksheet_Descalibre.Cells[42, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[42, y];
+                    acum_fila42 = acum_fila42 + Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[42, dataGridView1.RowCount + 2] = acum_fila42;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG PIECES &HALVES 80 - 20 L
+                    xlWorksheet_Descalibre.Cells[43, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[43, y];
+                    acum_fila43 = acum_fila43 + Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[43, dataGridView1.RowCount + 2] = acum_fila43;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //BIG PIECES &HALVES 60 - 40 L
+                    xlWorksheet_Descalibre.Cells[44, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[44, y];
+                    acum_fila44 = acum_fila44 + Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[44, dataGridView1.RowCount + 2] = acum_fila44;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 80 - 20 EL
+                    xlWorksheet_Descalibre.Cells[45, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[45, y];
+                    acum_fila45 = acum_fila45 + Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[45, dataGridView1.RowCount + 2] = acum_fila45;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 70 - 30 EL
+                    xlWorksheet_Descalibre.Cells[46, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[46, y];
+                    acum_fila46 = acum_fila46 + Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[46, dataGridView1.RowCount + 2] = acum_fila46;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 60 - 40 EL
+                    xlWorksheet_Descalibre.Cells[47, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[47, y];
+                    acum_fila47 = acum_fila47 + Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[47, dataGridView1.RowCount + 2] = acum_fila47;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 80 - 20 L
+                    xlWorksheet_Descalibre.Cells[48, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[48, y];
+                    acum_fila48 = acum_fila48 + Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[48, dataGridView1.RowCount + 2] = acum_fila48;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 60 - 40 L
+                    xlWorksheet_Descalibre.Cells[49, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[49, y];
+                    acum_fila49 = acum_fila49 + Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[49, dataGridView1.RowCount + 2] = acum_fila49;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 55 - 45 L
+                    xlWorksheet_Descalibre.Cells[50, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[50, y];
+                    acum_fila50 = acum_fila50 + Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[50, dataGridView1.RowCount + 2] = acum_fila50;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES 50 - 50 L
+                    xlWorksheet_Descalibre.Cells[51, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[51, y];
+                    acum_fila51 = acum_fila51 + Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[51, dataGridView1.RowCount + 2] = acum_fila51;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES & HALVES 80-20 EL
+                    xlWorksheet_Descalibre.Cells[52, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[52, y];
+                    acum_fila52 = acum_fila52 + Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[52, dataGridView1.RowCount + 2] = acum_fila52;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES &HALVES 70 - 30 EL
+                    xlWorksheet_Descalibre.Cells[53, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[53, y];
+                    acum_fila53 = acum_fila53 + Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[53, dataGridView1.RowCount + 2] = acum_fila53;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES &HALVES 60 - 40 EL
+                    xlWorksheet_Descalibre.Cells[54, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[54, y];
+                    acum_fila54 = acum_fila54 + Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[54, dataGridView1.RowCount + 2] = acum_fila54;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES &HALVES 50 - 50 EL 
+                    xlWorksheet_Descalibre.Cells[55, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[55, y];
+                    acum_fila55 = acum_fila55 + Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[55, dataGridView1.RowCount + 2] = acum_fila55;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES & HALVES 80-20 L
+                    xlWorksheet_Descalibre.Cells[56, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[56, y];
+                    acum_fila56 = acum_fila56 + Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[56, dataGridView1.RowCount + 2] = acum_fila56;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES &HALVES 60 - 40 L
+                    xlWorksheet_Descalibre.Cells[57, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[57, y];
+                    acum_fila57 = acum_fila57 + Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[57, dataGridView1.RowCount + 2] = acum_fila57;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM HALVES &PIECES LIGTH AMBAR 70 - 30
+                    xlWorksheet_Descalibre.Cells[58, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[58, y];
+                    acum_fila58 = acum_fila58 + Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[58, dataGridView1.RowCount + 2] = acum_fila58;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //LARGE PIECES EL
+                    xlWorksheet_Descalibre.Cells[59, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[59, y];
+                    acum_fila59 = acum_fila59 + Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[59, dataGridView1.RowCount + 2] = acum_fila59;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //LARGE PIECES L
+                    xlWorksheet_Descalibre.Cells[60, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[60, y];
+                    acum_fila60 = acum_fila60 + Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[60, dataGridView1.RowCount + 2] = acum_fila60;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //LARGE PIECES LA
+                    xlWorksheet_Descalibre.Cells[61, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[61, y];
+                    acum_fila61 = acum_fila61 + Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[61, dataGridView1.RowCount + 2] = acum_fila61;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES EL
+                    xlWorksheet_Descalibre.Cells[62, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[62, y];
+                    acum_fila62 = acum_fila62 + Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[62, dataGridView1.RowCount + 2] = acum_fila62;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES L
+                    xlWorksheet_Descalibre.Cells[63, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[63, y];
+                    acum_fila63 = acum_fila63 + Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[63, dataGridView1.RowCount + 2] = acum_fila63;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //MEDIUM PIECES LA
+                    xlWorksheet_Descalibre.Cells[64, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[64, y];
+                    acum_fila64 = acum_fila64 + Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[64, dataGridView1.RowCount + 2] = acum_fila64;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    //SMALL PIECES LA
+                    xlWorksheet_Descalibre.Cells[65, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[54].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[65, y];
+                    acum_fila65 = acum_fila65 + Convert.ToDouble(dataGridView1.Rows[i].Cells[54].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[65, dataGridView1.RowCount + 2] = acum_fila65;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[66, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[55].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[66, y];
+                    acum_fila66 = acum_fila66 + Convert.ToDouble(dataGridView1.Rows[i].Cells[55].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[66, dataGridView1.RowCount + 2] = acum_fila66;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    //DESCARTE 
+                    xlWorksheet_Descalibre.Cells[69, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[69, y];
+                    acum_fila69 = acum_fila69 + Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[69, dataGridView1.RowCount + 2] = acum_fila69;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[70, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[70, y];
+                    acum_fila70 = acum_fila70 + Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[70, dataGridView1.RowCount + 2] = acum_fila70;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[71, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[71, y];
+                    acum_fila71 = acum_fila71 + Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[71, dataGridView1.RowCount + 2] = acum_fila71;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[72, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[59].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[72, y];
+                    acum_fila72 = acum_fila72 + Convert.ToDouble(dataGridView1.Rows[i].Cells[59].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[72, dataGridView1.RowCount + 2] = acum_fila72;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[73, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[73, y];
+                    acum_fila73 = acum_fila73 + Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[73, dataGridView1.RowCount + 2] = acum_fila73;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[74, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[74, y];
+                    acum_fila74 = acum_fila74 + Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[74, dataGridView1.RowCount + 2] = acum_fila74;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[75, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[75, y];
+                    acum_fila75 = acum_fila75 + Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[75, dataGridView1.RowCount + 2] = acum_fila75;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[76, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[76, y];
+                    acum_fila76 = acum_fila76 + Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[76, dataGridView1.RowCount + 2] = acum_fila76;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[77, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[77, y];
+                    acum_fila77 = acum_fila77 + Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[77, dataGridView1.RowCount + 2] = acum_fila77;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[78, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[78, y];
+                    acum_fila78 = acum_fila78 + Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[78, dataGridView1.RowCount + 2] = acum_fila78;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[79, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[79, y];
+                    acum_fila79 = acum_fila79 + Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[79, dataGridView1.RowCount + 2] = acum_fila79;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[80, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[80, y];
+                    acum_fila80 = acum_fila80 + Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[80, dataGridView1.RowCount + 2] = acum_fila80;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[81, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[81, y];
+                    acum_fila81 = acum_fila81 + Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[81, dataGridView1.RowCount + 2] = acum_fila81;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[82, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[69].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[82, y];
+                    acum_fila82 = acum_fila82 + Convert.ToDouble(dataGridView1.Rows[i].Cells[69].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[82, dataGridView1.RowCount + 2] = acum_fila82;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[83, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[83, y];
+                    acum_fila83 = acum_fila83 + Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[83, dataGridView1.RowCount + 2] = acum_fila83;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[84, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[84, y];
+                    acum_fila84 = acum_fila84 + Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[84, dataGridView1.RowCount + 2] = acum_fila84;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[85, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[85, y];
+                    acum_fila85 = acum_fila85 + Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[85, dataGridView1.RowCount + 2] = acum_fila85;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[86, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString())), 1);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[86, y];
+                    acum_fila86 = acum_fila86 + Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[86, dataGridView1.RowCount + 2] = acum_fila86;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[87, y] = Math.Round((Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString())), 1);
+
+                    acum_fila87 = acum_fila87 + Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[87, dataGridView1.RowCount + 2] = acum_fila87;
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[87, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    xlWorksheet_Descalibre.Cells[23, dataGridView1.RowCount + 2] = "Totales";
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[23, dataGridView1.RowCount + 2];
+                    myRange.Font.Bold = true;
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[24, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[25, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[26, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[27, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[28, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[29, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[30, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[31, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[32, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[33, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[34, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[35, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[36, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[37, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[38, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[39, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[40, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[41, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[42, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[43, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[44, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[45, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[46, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[47, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[48, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[49, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[50, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[51, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[52, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[53, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[54, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[55, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[56, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[57, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[58, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[59, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[60, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[61, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[62, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[63, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[64, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[65, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[66, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[67, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[69, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[70, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[71, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[72, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[73, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[74, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[75, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[76, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[77, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[78, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[79, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[80, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[81, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[82, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[83, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[84, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[85, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[86, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[87, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[88, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[23, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange.Font.Bold = true;
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[24, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[25, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[26, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[27, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[28, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[29, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[30, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[31, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[32, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[33, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[34, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[35, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[36, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[37, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[38, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[39, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[40, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[41, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[42, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[43, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[44, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[45, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[46, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[47, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[48, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[49, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[50, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[51, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[52, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[53, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[54, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[55, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[56, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[57, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[58, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[59, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[60, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[61, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[62, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[63, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[64, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[65, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[66, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[67, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[69, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[70, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[71, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[72, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[73, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[74, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[75, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[76, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[77, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[78, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[79, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[80, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[81, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[82, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[83, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[84, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[85, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[86, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[87, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[88, dataGridView1.RowCount + 3];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                    xlWorksheet_Descalibre.Cells[23, dataGridView1.RowCount + 3] = "Productos Puros";
+                    xlWorksheet_Descalibre.Cells[24, dataGridView1.RowCount + 3] = (acum_fila24 * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila34 * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila32 * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila33 * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila39 * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila40 * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila41 * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila42 * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Mariposa"].Value.ToString()) / 100));//big halves extra light
+                    xlWorksheet_Descalibre.Cells[28, dataGridView1.RowCount + 3] = (acum_fila28 * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila35 * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila36 * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila37 * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila38 * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila43 * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila44 * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Mariposa"].Value.ToString()) / 100));//big halves light
+                    xlWorksheet_Descalibre.Cells[25, dataGridView1.RowCount + 3] = (acum_fila25 * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila45 * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila46 * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila47 * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila52 * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila53 * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila54 * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila55 * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Mariposa"].Value.ToString()) / 100));//medium halves extra light
+                    xlWorksheet_Descalibre.Cells[29, dataGridView1.RowCount + 3] = (acum_fila29 * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila48 * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila49 * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila50 * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila51 * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila56 * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila57 * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Mariposa"].Value.ToString()) / 100));//medium halves light
+                    xlWorksheet_Descalibre.Cells[27, dataGridView1.RowCount + 3] = (acum_fila27 * (Convert.ToSingle(dataGridView2.Rows[3].Cells["Mariposa"].Value.ToString()) / 100));
+                    xlWorksheet_Descalibre.Cells[26, dataGridView1.RowCount + 3] = (acum_fila26 * (Convert.ToSingle(dataGridView2.Rows[2].Cells["Mariposa"].Value.ToString()) / 100));
+                    xlWorksheet_Descalibre.Cells[30, dataGridView1.RowCount + 3] = (acum_fila30 * (Convert.ToSingle(dataGridView2.Rows[6].Cells["Mariposa"].Value.ToString()) / 100));
+                    xlWorksheet_Descalibre.Cells[31, dataGridView1.RowCount + 3] = (acum_fila31 * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Mariposa"].Value.ToString()) / 100)) + acum_fila58 * (Convert.ToSingle(dataGridView2.Rows[25].Cells["Mariposa"].Value.ToString()));
+                    xlWorksheet_Descalibre.Cells[32, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[33, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[34, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[35, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[36, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[37, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[38, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[39, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[40, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[41, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[42, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[43, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[44, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[45, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[46, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[47, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[48, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[49, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[50, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[51, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[52, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[53, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[54, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[55, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[56, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[57, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[58, dataGridView1.RowCount + 3] = "-";
+                    xlWorksheet_Descalibre.Cells[59, dataGridView1.RowCount + 3] = acum_fila59 + (acum_fila24 * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila34 * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila32 * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila33 * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila39 * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila40 * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila41 * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila42 * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila25 * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila45 * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila46 * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila47 * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila52 * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila53 * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila54 * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila55 * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Large_Pieces"].Value.ToString()) / 100));
+                    xlWorksheet_Descalibre.Cells[60, dataGridView1.RowCount + 3] = acum_fila60 + (acum_fila28 * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila35 * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila36 * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila37 * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila38 * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila43 * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila44 * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila29 * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila48 * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila49 * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila50 * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila51 * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila56 * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila57 * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Large_Pieces"].Value.ToString()) / 100));
+                    xlWorksheet_Descalibre.Cells[61, dataGridView1.RowCount + 3] = acum_fila61 + (acum_fila31 * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Large_Pieces"].Value.ToString()) / 100));
+                    xlWorksheet_Descalibre.Cells[62, dataGridView1.RowCount + 3] = acum_fila62;
+                    xlWorksheet_Descalibre.Cells[63, dataGridView1.RowCount + 3] = acum_fila63;
+                    xlWorksheet_Descalibre.Cells[64, dataGridView1.RowCount + 3] = acum_fila64;
+                    xlWorksheet_Descalibre.Cells[65, dataGridView1.RowCount + 3] = acum_fila65;
+                    xlWorksheet_Descalibre.Cells[66, dataGridView1.RowCount + 3] = acum_fila66;
+                    xlWorksheet_Descalibre.Cells[69, dataGridView1.RowCount + 3] = (acum_fila69 * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Mariposa"].Value.ToString()) / 100));
+                    xlWorksheet_Descalibre.Cells[70, dataGridView1.RowCount + 3] = (acum_fila70 * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Mariposa"].Value.ToString()) / 100));
+                    xlWorksheet_Descalibre.Cells[71, dataGridView1.RowCount + 3] = (acum_fila71 * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Mariposa"].Value.ToString()) / 100));
+                    xlWorksheet_Descalibre.Cells[72, dataGridView1.RowCount + 3] = acum_fila72;
+                    xlWorksheet_Descalibre.Cells[73, dataGridView1.RowCount + 3] = acum_fila73 + (acum_fila71 * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila70 * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila69 * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Large_Pieces"].Value.ToString()) / 100));
+                    xlWorksheet_Descalibre.Cells[74, dataGridView1.RowCount + 3] = acum_fila74;
+                    xlWorksheet_Descalibre.Cells[75, dataGridView1.RowCount + 3] = acum_fila75;
+                    xlWorksheet_Descalibre.Cells[76, dataGridView1.RowCount + 3] = acum_fila76;
+                    xlWorksheet_Descalibre.Cells[77, dataGridView1.RowCount + 3] = acum_fila77;
+                    xlWorksheet_Descalibre.Cells[78, dataGridView1.RowCount + 3] = acum_fila78;
+                    xlWorksheet_Descalibre.Cells[79, dataGridView1.RowCount + 3] = acum_fila79;
+                    xlWorksheet_Descalibre.Cells[80, dataGridView1.RowCount + 3] = acum_fila80;
+                    xlWorksheet_Descalibre.Cells[81, dataGridView1.RowCount + 3] = acum_fila81;
+                    xlWorksheet_Descalibre.Cells[82, dataGridView1.RowCount + 3] = acum_fila82;
+                    xlWorksheet_Descalibre.Cells[83, dataGridView1.RowCount + 3] = acum_fila83;
+                    xlWorksheet_Descalibre.Cells[84, dataGridView1.RowCount + 3] = acum_fila84;
+                    xlWorksheet_Descalibre.Cells[85, dataGridView1.RowCount + 3] = acum_fila85;
+                    xlWorksheet_Descalibre.Cells[86, dataGridView1.RowCount + 3] = acum_fila86;
+                    xlWorksheet_Descalibre.Cells[87, dataGridView1.RowCount + 3] = acum_fila87;
+                    xlWorksheet_Descalibre.Cells[67, y] = Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[54].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[55].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[88, y] = Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[59].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString());
+                    xlWorksheet_Descalibre.Cells[91, y] = Math.Round(((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[2].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[3].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[6].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[25].Cells["Mariposa"].Value.ToString()) / 100)) + Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Mariposa"].Value.ToString()) / 100)) / ACUM * 100, 2);
+                    xlWorksheet_Descalibre.Cells[92, y] = Math.Round(((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Large_Pieces"].Value.ToString()) / 100) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString())) + Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[2].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[3].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[6].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[25].Cells["Large_Pieces"].Value.ToString()) / 100)) + Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Large_Pieces"].Value.ToString()) / 100)) / ACUM * 100, 2);
+                    xlWorksheet_Descalibre.Cells[93, y] = Math.Round(((Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString())) / ACUM) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[94, y] = Math.Round(((Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[69].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString())) / ACUM) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[95, y] = 100;
+                    xlWorksheet_Descalibre.Cells[98, y] = Math.Round((((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString()))) / ACUM) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[99, y] = Math.Round((((Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[54].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[55].Value.ToString()))) / ACUM) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[100, y] = Math.Round((((Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString()))) / ACUM) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[101, y] = Math.Round((((Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[59].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString()))) / ACUM) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[102, y] = Math.Round((((Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[69].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString()))) / ACUM) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[103, y] = 100;
+
+
+                    xlWorksheet_Descalibre.Cells[67, dataGridView1.RowCount + 2] = acum_fila24 + acum_fila25 + acum_fila26 + acum_fila27 + acum_fila28 + acum_fila29 + acum_fila30 + acum_fila31 + acum_fila32 + acum_fila33 + acum_fila34 + acum_fila35 + acum_fila36 + acum_fila37 + acum_fila38 + acum_fila39 + acum_fila40 + acum_fila41 + acum_fila42 + acum_fila43 + acum_fila44 + acum_fila45 + acum_fila46 + acum_fila47 + acum_fila48 + acum_fila49 + acum_fila50 + acum_fila51 + acum_fila52 + acum_fila53 + acum_fila54 + acum_fila55 + acum_fila56 + acum_fila57 + acum_fila58 + acum_fila59 + acum_fila60 + acum_fila61 + acum_fila62 + acum_fila63 + acum_fila64 + acum_fila65 + acum_fila66;
+                    xlWorksheet_Descalibre.Cells[67, dataGridView1.RowCount + 3] = (acum_fila24 * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila34 * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila32 * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila33 * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila39 * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila40 * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila41 * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila42 * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila28 * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila35 * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila36 * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila37 * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila38 * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila43 * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila44 * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila25 * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila45 * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila46 * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila47 * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila52 * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila53 * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila54 * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila55 * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila29 * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila48 * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila49 * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila50 * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila51 * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila56 * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila57 * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila27 * (Convert.ToSingle(dataGridView2.Rows[3].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila26 * (Convert.ToSingle(dataGridView2.Rows[2].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila30 * (Convert.ToSingle(dataGridView2.Rows[6].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila31 * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Mariposa"].Value.ToString()) / 100)) + acum_fila58 * (Convert.ToSingle(dataGridView2.Rows[25].Cells["Mariposa"].Value.ToString())) + acum_fila59 + (acum_fila24 * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila34 * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila32 * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila33 * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila39 * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila40 * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila41 * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila42 * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila25 * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila45 * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila46 * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila47 * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila52 * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila53 * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila54 * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila55 * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Large_Pieces"].Value.ToString()) / 100)) + acum_fila60 + (acum_fila28 * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila35 * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila36 * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila37 * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila38 * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila43 * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila44 * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila29 * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila48 * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila49 * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila50 * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila51 * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila56 * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila57 * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Large_Pieces"].Value.ToString()) / 100)) + acum_fila61 + (acum_fila31 * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Large_Pieces"].Value.ToString()) / 100)) + acum_fila62 + acum_fila63 + acum_fila64 + acum_fila65 + acum_fila66;
+                    xlWorksheet_Descalibre.Cells[88, dataGridView1.RowCount + 2] = acum_fila69 + acum_fila70 + acum_fila71 + acum_fila72 + acum_fila73 + acum_fila74 + acum_fila75 + acum_fila76 + acum_fila77 + acum_fila78 + acum_fila79 + acum_fila80 + acum_fila81 + acum_fila82 + acum_fila83 + acum_fila84 + acum_fila85 + acum_fila86 + acum_fila87;
+                    xlWorksheet_Descalibre.Cells[88, dataGridView1.RowCount + 3] = (acum_fila69 * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila70 * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Mariposa"].Value.ToString()) / 100)) + (acum_fila71 * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Mariposa"].Value.ToString()) / 100)) + acum_fila72 + acum_fila73 + (acum_fila71 * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila70 * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Large_Pieces"].Value.ToString()) / 100)) + (acum_fila69 * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Large_Pieces"].Value.ToString()) / 100)) + acum_fila74 + acum_fila75 + acum_fila76 + acum_fila77 + acum_fila78 + acum_fila79 + acum_fila80 + acum_fila81 + acum_fila82 + acum_fila83 + acum_fila84 + acum_fila85 + acum_fila86 + acum_fila87;
+
+                    halves = halves + ((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[2].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[3].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[6].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[25].Cells["Mariposa"].Value.ToString()) / 100)) + Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Mariposa"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Mariposa"].Value.ToString()) / 100));
+                    large = large + ((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[0].Cells["Large_Pieces"].Value.ToString()) / 100) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString())) + Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[1].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[2].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[16].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[3].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[4].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[5].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[6].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[37].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[9].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[8].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[7].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[10].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[19].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[35].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[20].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[11].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[12].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[13].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[14].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[15].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[17].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[22].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[23].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[21].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[24].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[26].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[36].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[33].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[27].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[28].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[29].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[30].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[31].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[32].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[25].Cells["Large_Pieces"].Value.ToString()) / 100)) + Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[16].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[18].Cells["Large_Pieces"].Value.ToString()) / 100) + Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString()) * (Convert.ToSingle(dataGridView2.Rows[34].Cells["Large_Pieces"].Value.ToString()) / 100));
+                    medium = medium + ((Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString())));
+                    descarte = descarte + ((Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[69].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString()) + Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString())));
+
+                    acum_extra = acum_extra + (((Convert.ToDouble(dataGridView1.Rows[i].Cells[13].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[14].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[21].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[22].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[23].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[28].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[29].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[30].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[31].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[34].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[35].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[36].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[41].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[42].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[43].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[44].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[48].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[51].Value.ToString()))));
+                    acum_light = acum_light + (((Convert.ToDouble(dataGridView1.Rows[i].Cells[17].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[18].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[19].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[24].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[25].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[26].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[27].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[32].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[33].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[37].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[38].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[39].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[40].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[45].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[46].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[49].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[52].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[54].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[55].Value.ToString()))));
+                    acum_ambar = acum_ambar + (((Convert.ToDouble(dataGridView1.Rows[i].Cells[20].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[47].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[50].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[53].Value.ToString()))));
+                    acum_amarillo = acum_amarillo + (((Convert.ToDouble(dataGridView1.Rows[i].Cells[56].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[57].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[58].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[59].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[60].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[61].Value.ToString()))));
+                    acum_descarte = acum_descarte + (((Convert.ToDouble(dataGridView1.Rows[i].Cells[62].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[63].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[64].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[65].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[66].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[67].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[68].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[69].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[70].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[71].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[72].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[73].Value.ToString())) + (Convert.ToDouble(dataGridView1.Rows[i].Cells[74].Value.ToString()))));
+
+                    xlWorksheet_Descalibre.Cells[91, dataGridView1.RowCount + 2] = Math.Round((halves / acum_pepa) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[92, dataGridView1.RowCount + 2] = Math.Round((large / acum_pepa) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[93, dataGridView1.RowCount + 2] = Math.Round((medium / acum_pepa) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[94, dataGridView1.RowCount + 2] = Math.Round((descarte / acum_pepa) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[95, dataGridView1.RowCount + 2] = 100;
+
+                    xlWorksheet_Descalibre.Cells[98, dataGridView1.RowCount + 2] = Math.Round((acum_extra / acum_pepa) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[99, dataGridView1.RowCount + 2] = Math.Round((acum_light / acum_pepa) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[100, dataGridView1.RowCount + 2] = Math.Round((acum_ambar / acum_pepa) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[101, dataGridView1.RowCount + 2] = Math.Round((acum_amarillo / acum_pepa) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[102, dataGridView1.RowCount + 2] = Math.Round((acum_descarte / acum_pepa) * 100, 2);
+                    xlWorksheet_Descalibre.Cells[103, dataGridView1.RowCount + 2] = Math.Round((acum_extra / acum_pepa) * 100 + (acum_light / acum_pepa) * 100 + (acum_ambar / acum_pepa) * 100 + (acum_amarillo / acum_pepa) * 100 + (acum_descarte / acum_pepa) * 100, 1);
+
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[91, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[92, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[93, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[94, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[95, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[98, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[99, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[100, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[101, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[102, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[103, dataGridView1.RowCount + 2];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[67, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[88, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[91, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[92, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[93, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[94, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[95, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[98, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[99, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[100, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[101, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[102, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    myRange = (Excel.Range)xlWorksheet_Descalibre.Cells[103, y];
+                    myRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThin, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
+                    y++;
+                }
+            }
+            catch (Exception E) { MessageBox.Show("Error al generar reporte Descarte : " + E, "Anakena", MessageBoxButtons.OK, MessageBoxIcon.Information); }
             //try
             //{
             //    Lbl_Proceso.Text = "Generando:36+/BAJO CAT III";
@@ -27291,6 +29278,7 @@ namespace Anakena
             xlWorksheet_36_SUPEREXTRA.Activate();
             xlApp.Visible = true;
             this.Close();
+            xlApp.Quit();
         }
         public void Traer_Por_NSC(int producto, int producto_halves, int Large_Pieces, int Medium_Pieces, int Small_Pieces)
         {
@@ -27316,16 +29304,49 @@ namespace Anakena
             dataGridView1.DataSource = myds.Tables[0];
             cn.Cerrar();
         }
-        public void Traer_Porvar_por()
-        {      
-            SqlCommand cmd = new SqlCommand("spTraerPorvar_Porcentaje", cn.getConexion());
+        public void Traer_Por_NSC_Descalibre(int producto, int producto_halves, int Large_Pieces, int Medium_Pieces, int Small_Pieces)
+        {
+            try
+            { 
+            SqlCommand cmd = new SqlCommand("spTraerPor_NSC_descalibre", cn.getConexion());
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Producto", SqlDbType.Int);
+            cmd.Parameters["@Producto"].Value = producto;
+            cmd.Parameters.Add("@Cod_Variedad", SqlDbType.Int);
+            cmd.Parameters["@Cod_Variedad"].Value = cmb_variedad.SelectedValue.ToString();
+            cmd.Parameters.Add("@Cod_Halves", SqlDbType.Int);
+            cmd.Parameters["@Cod_Halves"].Value = producto_halves;
+            cmd.Parameters.Add("@Cod_LargePieces", SqlDbType.Int);
+            cmd.Parameters["@Cod_LargePieces"].Value = Large_Pieces;
+            cmd.Parameters.Add("@Cod_MediumPieces", SqlDbType.Int);
+            cmd.Parameters["@Cod_MediumPieces"].Value = Medium_Pieces;
+            cmd.Parameters.Add("@Cod_SmallPieces", SqlDbType.Int);
+            cmd.Parameters["@Cod_SmallPieces"].Value = Small_Pieces;
             cn.Abrir();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.SelectCommand.CommandTimeout = 200;
             DataSet myds = new DataSet();
             adapter.Fill(myds);
-            dataGridView2.DataSource = myds.Tables[0];
+            dataGridView1.DataSource = myds.Tables[0];
             cn.Cerrar();
+            }
+            catch { }
+        }
+        public void Traer_Porvar_por()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("spTraerPorvar_Porcentaje", cn.getConexion());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cn.Abrir();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataSet myds = new DataSet();
+                adapter.Fill(myds);
+                dataGridView2.DataSource = myds.Tables[0];
+                cn.Cerrar();
+            }
+            catch { }
+
         }
         public void CmbVariedad()
         {

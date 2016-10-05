@@ -253,6 +253,8 @@ namespace Anakena
             }
             MessageBox.Show("Informacion ingresada correctamente", "ANAKENA",MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
+
+
         public void Agregar_Por_NCC(string Producto, string variedad, float exportacion,float Pin_Sortex,float Descarte,float Vanas,float blanquear,float Mermas)
         {
             try

@@ -103,7 +103,8 @@ namespace Anakena
                // class2.Cells[1, 1] = cmb_variedad.Text.Trim();
                
                 if(column.Name.ToString() != "cod")
-                {  num++;
+                {
+                num++;
                 class2.Cells[1, num] = column.Name;
                 class2.get_Range("A1", "H1").Interior.ColorIndex = 9;
                 class2.get_Range("A1", "H1").Font.ColorIndex = 2;
@@ -134,9 +135,8 @@ namespace Anakena
             }
             class2.Visible = true;
           
-            ((Worksheet)class2.ActiveSheet).Name = cmb_variedad.Text.Trim();
-      
-           ((Worksheet)class2.ActiveSheet).Activate();
+            ((Worksheet)class2.ActiveSheet).Name = cmb_variedad.Text.Trim();    
+            ((Worksheet)class2.ActiveSheet).Activate();
             
 
         }
